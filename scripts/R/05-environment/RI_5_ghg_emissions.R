@@ -19,26 +19,26 @@ cauthnm <- "West of England"
 period_years <- 10
 
 # get the last year in the dataset
-resp_max_year <- httr2::request(RI_5_base_url) |>
-  httr2::req_url_path_append(RI_5_dataset_id, RI_5_endpoint) |>
-  httr2::req_url_query(
+resp_max_year <- request(RI_5_base_url) |>
+  req_url_path_append(RI_5_dataset_id, RI_5_endpoint) |>
+  req_url_query(
     "select" = "max(calendar_year) AS YEAR",
     "limit" = 1
   ) |>
-  httr2::req_perform()
+  req_perform()
 
 RI_5_max_date <- resp_max_year |>
-  httr2::resp_body_json() |>
+  resp_body_json() |>
   pluck("results", 1, "YEAR") |>
   strptime("%Y-%m-%dT%H:%M:%S")
 
-RI_5_start_date <- (RI_5_max_date - lubridate::years(period_years - 1)) |>
+RI_5_start_date <- (RI_5_max_date - years(period_years - 1)) |>
   strftime("%Y-%m-%dT%H:%M:%S")
 
 # make the API call for KPI sector chart
-resp <- httr2::request(RI_5_base_url) |>
-  httr2::req_url_path_append(RI_5_dataset_id, RI_5_endpoint) |>
-  httr2::req_url_query(
+resp <- request(RI_5_base_url) |>
+  req_url_path_append(RI_5_dataset_id, RI_5_endpoint) |>
+  req_url_query(
     "select" = "sum(territorial_emissions_kt_co2e) AS territorial_emissions_kt_co2e",
     "where" = glue::glue(
       "calendar_year IN [date'{RI_5_start_date}'..date'{RI_5_max_date}'] AND cauthnm='{cauthnm}'"
@@ -46,11 +46,11 @@ resp <- httr2::request(RI_5_base_url) |>
     "group_by" = "la_ghg_sector AS sector,calendar_year",
     "limit" = 100
   ) |>
-  httr2::req_perform()
+  req_perform()
 
 # process the response object to get the tbl
 RI_5_sector_emissions_weca_tbl <- resp |>
-  httr2::resp_body_json() |>
+  resp_body_json() |>
   pluck("results") |>
   bind_rows() |>
   mutate(

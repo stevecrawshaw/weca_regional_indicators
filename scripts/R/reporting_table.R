@@ -63,6 +63,7 @@
 format_indicator_summary <- function(reporting_view,
                                      indicator_id,
                                      units = "",
+                                     polarity = 0L,
                                      title = NULL,
                                      subtitle = NULL,
                                      value_fmt = NULL) {
@@ -80,6 +81,12 @@ format_indicator_summary <- function(reporting_view,
   }
   if (!is.character(units) || length(units) != 1L || is.na(units)) {
     stop("`units` must be a single character string (use \"\" for none).",
+      call. = FALSE
+    )
+  }
+  if (!is.numeric(polarity) || length(polarity) != 1L || is.na(polarity) ||
+      !polarity %in% c(-1L, 0L, 1L)) {
+    stop("`polarity` must be one of -1 (up is bad), 0 (neutral), or 1 (up is good).",
       call. = FALSE
     )
   }
@@ -149,20 +156,6 @@ format_indicator_summary <- function(reporting_view,
     }
     paste0(value_fmt(x), unit_suffix)
   }
-  fmt_pct <- function(x) {
-    if (is.na(x)) {
-      return(NA_character_)
-    }
-    sign <- if (x >= 0) "+" else ""
-    paste0(sign, formatC(x, format = "f", digits = 1), "%")
-  }
-  fmt_ppts <- function(x) {
-    if (is.na(x)) {
-      return(NA_character_)
-    }
-    sign <- if (x >= 0) "+" else ""
-    paste0(sign, formatC(x, format = "f", digits = 1), " ppts")
-  }
   fmt_date_suffix <- function(d) {
     if (is.na(d)) "" else paste0(" (", format(d), ")")
   }
@@ -178,16 +171,20 @@ format_indicator_summary <- function(reporting_view,
   )
 
   is_percent <- identical(units, "%")
-  change_vs_previous_txt <- if (is_percent) {
-    fmt_ppts(row$latest_value - row$previous_value)
+  change_vs_previous_raw <- if (is_percent) {
+    row$latest_value - row$previous_value
   } else {
-    fmt_pct(row$pct_change)
+    row$pct_change
   }
-  change_since_first_txt <- if (is_percent) {
-    fmt_ppts(row$latest_value - row$first_value)
+  change_since_first_raw <- if (is_percent) {
+    row$latest_value - row$first_value
   } else {
-    fmt_pct(row$pct_change_since_first)
+    row$pct_change_since_first
   }
+  change_vs_previous_txt <- .fmt_change(change_vs_previous_raw, is_percent)
+  change_since_first_txt <- .fmt_change(change_since_first_raw, is_percent)
+  col_vs_prev  <- .change_colour(change_vs_previous_raw, polarity)
+  col_vs_first <- .change_colour(change_since_first_raw, polarity)
 
   # --- long-form two-column table -----------------------------------------
   # The Trend row's value is a placeholder; text_transform() below replaces
@@ -232,6 +229,20 @@ format_indicator_summary <- function(reporting_view,
         rows    = metric == "Trend"
       ),
       fn = function(x) sparkline_svg
+    ) |>
+    gt::tab_style(
+      style     = gt::cell_text(color = col_vs_prev),
+      locations = gt::cells_body(
+        columns = "value",
+        rows    = metric == "Change vs previous"
+      )
+    ) |>
+    gt::tab_style(
+      style     = gt::cell_text(color = col_vs_first),
+      locations = gt::cells_body(
+        columns = "value",
+        rows    = metric == "Change since first"
+      )
     ) |>
     gt::tab_options(
       table.width          = gt::pct(60),

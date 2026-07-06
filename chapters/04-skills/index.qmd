@@ -1,6 +1,6 @@
 ---
 title: "Future-Ready Skills"
-subtitle: "Empowering residents with future-ready skills"
+subtitle: "Empowering residents with the skills to access the jobs that will shape our future"
 author: "MJ"
 date: last-modified
 execute:
@@ -39,6 +39,10 @@ source(here::here("scripts", "R", "04-skills", "RI_4C1_skills_gaps.R"))
 
 indicator_fact_tbl <- collate_fact() |>
   build_reporting_view()
+
+indicator_polarity <- core_dim_data_tbl |>
+  dplyr::select(indicator_id, polarity) |>
+  tibble::deframe()
 ```
 
 ```{r}
@@ -67,7 +71,8 @@ indicator_fact_tbl |>
     "RI_4A1_no_qualifications",
     title = "Residents with No Qualifications",
     subtitle = "Working-age population with no formal qualifications",
-    units = "%"
+    units = "%",
+    polarity = indicator_polarity[["RI_4A1_no_qualifications"]]
   )
 ```
 
@@ -96,7 +101,8 @@ indicator_fact_tbl |>
     "RI_4A2_level4_plus",
     title = "Residents with Level 4+ Qualifications",
     subtitle = "Working-age population qualified to Level 4 and above",
-    units = "%"
+    units = "%",
+    polarity = indicator_polarity[["RI_4A2_level4_plus"]]
   )
 ```
 
@@ -125,7 +131,8 @@ indicator_fact_tbl |>
     "RI_4A3_apprenticeship_starts",
     title = "Apprenticeship Starts",
     subtitle = "Apprenticeship starts across the region",
-    units = "Starts"
+    units = "Starts",
+    polarity = indicator_polarity[["RI_4A3_apprenticeship_starts"]]
   )
 ```
 
@@ -154,7 +161,8 @@ indicator_fact_tbl |>
     "RI_4A4_ks4_attainment8",
     title = "KS4 Attainment 8",
     subtitle = "Average Attainment 8 score at Key Stage 4",
-    units = "Score"
+    units = "Score",
+    polarity = indicator_polarity[["RI_4A4_ks4_attainment8"]]
   )
 ```
 
@@ -183,7 +191,8 @@ indicator_fact_tbl |>
     "RI_4B1_employment_rate_16_64",
     title = "Employment Rate 16-64",
     subtitle = "Proportion of working-age residents in employment",
-    units = "%"
+    units = "%",
+    polarity = indicator_polarity[["RI_4B1_employment_rate_16_64"]]
   )
 ```
 
@@ -212,7 +221,8 @@ indicator_fact_tbl |>
     "RI_4B2_economic_inactivity",
     title = "Economic Inactivity",
     subtitle = "Proportion of working-age residents economically inactive",
-    units = "%"
+    units = "%",
+    polarity = indicator_polarity[["RI_4B2_economic_inactivity"]]
   )
 ```
 
@@ -241,7 +251,8 @@ indicator_fact_tbl |>
     "RI_4B3_neet_16_17",
     title = "NEET 16-17",
     subtitle = "16-17 year olds not in education, employment or training",
-    units = "%"
+    units = "%",
+    polarity = indicator_polarity[["RI_4B3_neet_16_17"]]
   )
 ```
 
@@ -273,7 +284,8 @@ indicator_fact_tbl |>
     "RI_4B5_below_living_wage",
     title = "Below Living Wage",
     subtitle = "Proportion of employees earning below the Living Wage",
-    units = "%"
+    units = "%",
+    polarity = indicator_polarity[["RI_4B5_below_living_wage"]]
   )
 ```
 

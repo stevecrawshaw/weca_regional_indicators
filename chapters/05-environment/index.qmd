@@ -34,6 +34,10 @@ source(here::here("scripts", "R", "05-environment", "RI_5F4_water_catchment_heal
 
 indicator_fact_tbl <- collate_fact() |>
   build_reporting_view()
+
+indicator_polarity <- core_dim_data_tbl |>
+  dplyr::select(indicator_id, polarity) |>
+  tibble::deframe()
 ```
 
 ```{r}
@@ -61,7 +65,8 @@ indicator_fact_tbl |>
     "RI_5_ghg_emissions",
     title = "Greenhouse Gas Emissions",
     subtitle = "Transport, Commercial, Industry, Public sector, Domestic",
-    units = "Kt CO2e"
+    units = "Kt CO2e",
+    polarity = indicator_polarity[["RI_5_ghg_emissions"]]
   )
 ```
 
@@ -112,7 +117,8 @@ indicator_fact_tbl |>
     "RI_5A1_renewable_capacity_km2",
     title = "Renewable Electricity Installed Capacity",
     subtitle = "Installed capacity per square Km",
-    units = "MW/km2"
+    units = "MW/km2",
+    polarity = indicator_polarity[["RI_5A1_renewable_capacity_km2"]]
   )
 ```
 ### Overview
@@ -150,7 +156,8 @@ indicator_fact_tbl |>
     "RI_5A2_domestic_renewable",
     title = "Domestic Renewable Energy",
     subtitle = "Photovoltaic sites",
-    units = "Sites per household"
+    units = "Sites per household",
+    polarity = indicator_polarity[["RI_5A2_domestic_renewable"]]
   )
 ```
 ### Overview
@@ -186,7 +193,8 @@ indicator_fact_tbl |>
     "RI_5B1_nondom_epc_a",
     title = "Non - Domestic Energy Ratings",
     subtitle = "Proportion of properties rated A or A+",
-    units = "%"
+    units = "%",
+    polarity = indicator_polarity[["RI_5B1_nondom_epc_a"]]
   )
 ```
 
@@ -223,7 +231,8 @@ indicator_fact_tbl |>
     "RI_5E1_heat_stress_deaths",
     title = "Heat Associated Mortality",
     subtitle = "Deaths per million population",
-    units = "deaths per million"
+    units = "deaths per million",
+    polarity = indicator_polarity[["RI_5E1_heat_stress_deaths"]]
   )
 ```
 
@@ -258,7 +267,8 @@ indicator_fact_tbl |>
     "RI_5E2_flood_warning_index",
     title = "Flood Warnings Intensity Index",
     subtitle = "Relative to 2020 baseline",
-    units = ""
+    units = "",
+    polarity = indicator_polarity[["RI_5E2_flood_warning_index"]]
   )
 ```
 
@@ -296,7 +306,8 @@ indicator_fact_tbl |>
     "RI_5F1_tree_canopy",
     title = "Tree Canopy Cover",
     subtitle = "National Forest Inventory Woodland",
-    units = "Ha"
+    units = "Ha",
+    polarity = indicator_polarity[["RI_5F1_tree_canopy"]]
   )
 ```
 
@@ -331,7 +342,8 @@ indicator_fact_tbl |>
     "RI_5F4_water_catchment_health",
     title = "Water Catchment Health",
     subtitle = "Proportion of surface waters in 'Good' ecological health",
-    units = "%"
+    units = "%",
+    polarity = indicator_polarity[["RI_5F4_water_catchment_health"]]
   )
 ```
 

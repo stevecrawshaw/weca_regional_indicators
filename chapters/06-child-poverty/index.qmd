@@ -1,6 +1,6 @@
 ---
 title: "Child Poverty"
-subtitle: "Lifting children and families out of poverty"
+subtitle: "Lifting children and families out of poverty in the West of England"
 author: "MJ"
 date: last-modified
 execute:
@@ -39,6 +39,10 @@ source(here::here("scripts", "R", "06-child-poverty", "RI_6D5_pupil_semh_needs.R
 
 indicator_fact_tbl <- collate_fact() |>
   build_reporting_view()
+
+indicator_polarity <- core_dim_data_tbl |>
+  dplyr::select(indicator_id, polarity) |>
+  tibble::deframe()
 ```
 
 ```{r}
@@ -67,7 +71,8 @@ indicator_fact_tbl |>
     "RI_6A1_child_poverty",
     title = "Child Poverty",
     subtitle = "Children living in low-income families after housing costs",
-    units = "%"
+    units = "%",
+    polarity = indicator_polarity[["RI_6A1_child_poverty"]]
   )
 ```
 
@@ -93,7 +98,8 @@ indicator_fact_tbl |>
     "RI_6A2_good_development_u5",
     title = "Good Level of Development by Age 5",
     subtitle = "Children achieving a good level of development",
-    units = "%"
+    units = "%",
+    polarity = indicator_polarity[["RI_6A2_child_development_u5"]]
   )
 ```
 
@@ -120,7 +126,8 @@ indicator_fact_tbl |>
     "RI_6A3_ks2_expected_standards",
     title = "KS2 Expected Standards",
     subtitle = "Pupils meeting expected standards in reading, writing and maths",
-    units = "%"
+    units = "%",
+    polarity = indicator_polarity[["RI_6A3_ks2_expected_standards"]]
   )
 ```
 
@@ -146,7 +153,8 @@ indicator_fact_tbl |>
     "RI_6A4_free_school_meals",
     title = "Free School Meals Eligibility",
     subtitle = "Pupils eligible for free school meals",
-    units = "%"
+    units = "%",
+    polarity = indicator_polarity[["RI_6A4_free_school_meals"]]
   )
 ```
 
@@ -171,7 +179,8 @@ indicator_fact_tbl |>
     "RI_6B1_childcare_places",
     title = "Childcare Places",
     subtitle = "Childcare places relative to the population aged 0-4",
-    units = "%"
+    units = "%",
+    polarity = indicator_polarity[["RI_6B1_childcare_places"]]
   )
 ```
 ### Overview
@@ -199,7 +208,8 @@ indicator_fact_tbl |>
     "RI_6B2_early_years_quality",
     title = "Early Years Settings Rated Good or Outstanding",
     subtitle = "Early years settings judged good or outstanding",
-    units = "%"
+    units = "%",
+    polarity = indicator_polarity[["RI_6B2_early_years_quality"]]
   )
 ```
 
@@ -280,7 +290,8 @@ indicator_fact_tbl |>
     "RI_6D4_child_health_2yr_review",
     title = "Child Health at 2–2.5 Year Review",
     subtitle = "Children achieving a good level of development at review",
-    units = "%"
+    units = "%",
+    polarity = indicator_polarity[["RI_6D4_child_health_2yr_review"]]
   )
 ```
 
@@ -309,7 +320,8 @@ indicator_fact_tbl |>
     "RI_6D5_pupil_semh_needs",
     title = "Pupils with Social, Emotional and Mental Health Needs",
     subtitle = "School pupils identified with SEMH needs",
-    units = "%"
+    units = "%",
+    polarity = indicator_polarity[["RI_6D5_pupil_semh_needs"]]
   )
 ```
 

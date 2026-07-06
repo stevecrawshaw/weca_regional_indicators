@@ -1,6 +1,6 @@
 ---
 title: "Public Transport Connectivity"
-subtitle: "Connecting the region through better public transport"
+subtitle: "Connecting the region through public transport & active travel"
 author: "HB"
 date: last-modified
 execute:

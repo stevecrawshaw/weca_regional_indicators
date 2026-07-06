@@ -21,22 +21,12 @@ book:
   # Chapters organised by priority area
   chapters:
     - index.qmd
-    - part: "Economic Growth"
-      chapters:
-        - chapters/01-economy/index.qmd
-    - part: "Infrastructure & Place"
-      chapters:
-        - chapters/02-transport/index.qmd
-        - chapters/03-place/index.qmd
-    - part: "Skills & Opportunity"
-      chapters:
-        - chapters/04-skills/index.qmd
-    - part: "Green Jobs and Growth"
-      chapters:
-        - chapters/05-environment/index.qmd
-    - part: "Child Poverty"
-      chapters:
-        - chapters/06-child-poverty/index.qmd
+    - chapters/01-economy/index.qmd
+    - chapters/02-transport/index.qmd
+    - chapters/03-place/index.qmd
+    - chapters/04-skills/index.qmd
+    - chapters/05-environment/index.qmd
+    - chapters/06-child-poverty/index.qmd
 
   # Sidebar styling
   sidebar:
@@ -51,6 +41,7 @@ format:
     code-summary: "Show code"
     toc: true              # Table of contents on the right
     number-sections: true
+    number-depth: 2
     embed-resources: false # Keep resources separate for better performance
     fig-responsive: true   # Responsive figures for different screen sizes
     page-layout: full      # Use full page width

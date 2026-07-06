@@ -4,9 +4,7 @@ subtitle: "Building affordable and attractive homes in sustainable communities"
 author: "CJ"
 date: last-modified
 execute:
-  echo: true
-  warning: false
-  message: false
+  echo: false
 ---
 
 ## Context

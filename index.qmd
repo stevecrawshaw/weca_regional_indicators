@@ -1,24 +1,25 @@
 ---
+title: "Indicators Summary"
 number-sections: false
 ---
 
-# Key indicators across the Combined Authority's priority areas
+# Indicators Summary
 
 
-## About This Report
+## About These Summaries
 
-This report summarises key regional indicators for the West of England Combined Authority's regional priority areas. The indicators measure progress against the [West of England Growth Strategy](https://www.westofengland-ca.gov.uk/about-us/our-strategy/west-of-england-growth-plan/). They are not intended to directly measure outcomes or outputs for WECA projects, but rather to provide a high-level overview of regional trends and performance.
+These summaries present key regional indicators for the West of England Combined Authority's priority areas. The indicators measure progress against the [West of England Growth Strategy](https://www.westofengland-ca.gov.uk/about-us/our-strategy/west-of-england-growth-plan/). They are not intended to directly measure outcomes or outputs for WECA projects, but rather to provide a high-level overview of regional trends and performance.
 
 ## Priority Areas
 
-| Chapter | Priority Area |
+| Section | Priority Area |
 |---------|--------------|
-| 1 | Contributing to national economic growth |
-| 2 | Connecting the region through better public transport |
-| 3 | Creating and building affordable/sustainable homes |
-| 4 | Empowering residents with future-ready skills |
-| 5 | Making the West of England the home for green jobs and growth |
-| 6 | Lifting children and families out of poverty |
+| 2 | Contributing to national economic growth helping our businesses succeed and creating jobs |
+| 3 | Connecting the region through public transport & active travel |
+| 4 | Building affordable and attractive homes in sustainable communities |
+| 5 | Empowering residents with the skills to access the jobs that will shape our future |
+| 6 | Making the West of England the home for green jobs and green growth |
+| 7 | Lifting children and families out of poverty in the West of England |
 
 ```{r}
 #| label: overall_summary
@@ -37,7 +38,7 @@ format_overall_summary(
 )
 ```
 
-## How to Use This Report
+## How to Use These Summaries
 
 - Use the **sidebar navigation** to jump to any chapter
 - Each chapter is self-contained and can be read independently

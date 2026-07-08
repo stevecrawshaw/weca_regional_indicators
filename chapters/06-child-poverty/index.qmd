@@ -25,17 +25,72 @@ source(here::here("scripts", "R", "_common.R"))
 
 # Sourcing indicators
 source(here::here("scripts", "R", "06-child-poverty", "RI_6A1_child_poverty.R"))
-source(here::here("scripts", "R", "06-child-poverty", "RI_6A2_child_development_u5.R"))
-source(here::here("scripts", "R", "06-child-poverty", "RI_6A3_ks2_expected_standards.R"))
-source(here::here("scripts", "R", "06-child-poverty", "RI_6A4_free_school_meals.R"))
-source(here::here("scripts", "R", "06-child-poverty", "RI_6B1_childcare_places.R"))
-source(here::here("scripts", "R", "06-child-poverty", "RI_6B2_early_years_quality.R"))
-source(here::here("scripts", "R", "06-child-poverty", "RI_6C1_qol_deprived_areas.R"))
-source(here::here("scripts", "R", "06-child-poverty", "RI_6D1_life_satisfaction.R"))
-source(here::here("scripts", "R", "06-child-poverty", "RI_6D2_life_expectancy_gap.R"))
-source(here::here("scripts", "R", "06-child-poverty", "RI_6D3_healthy_life_expectancy.R"))
-source(here::here("scripts", "R", "06-child-poverty", "RI_6D4_child_health_2yr_review.R"))
-source(here::here("scripts", "R", "06-child-poverty", "RI_6D5_pupil_semh_needs.R"))
+source(here::here(
+  "scripts",
+  "R",
+  "06-child-poverty",
+  "RI_6A2_child_development_u5.R"
+))
+source(here::here(
+  "scripts",
+  "R",
+  "06-child-poverty",
+  "RI_6A3_ks2_expected_standards.R"
+))
+source(here::here(
+  "scripts",
+  "R",
+  "06-child-poverty",
+  "RI_6A4_free_school_meals.R"
+))
+source(here::here(
+  "scripts",
+  "R",
+  "06-child-poverty",
+  "RI_6B1_childcare_places.R"
+))
+source(here::here(
+  "scripts",
+  "R",
+  "06-child-poverty",
+  "RI_6B2_early_years_quality.R"
+))
+source(here::here(
+  "scripts",
+  "R",
+  "06-child-poverty",
+  "RI_6C1_qol_deprived_areas.R"
+))
+source(here::here(
+  "scripts",
+  "R",
+  "06-child-poverty",
+  "RI_6D1_life_satisfaction.R"
+))
+source(here::here(
+  "scripts",
+  "R",
+  "06-child-poverty",
+  "RI_6D2_life_expectancy_gap.R"
+))
+source(here::here(
+  "scripts",
+  "R",
+  "06-child-poverty",
+  "RI_6D3_healthy_life_expectancy.R"
+))
+source(here::here(
+  "scripts",
+  "R",
+  "06-child-poverty",
+  "RI_6D4_child_health_2yr_review.R"
+))
+source(here::here(
+  "scripts",
+  "R",
+  "06-child-poverty",
+  "RI_6D5_pupil_semh_needs.R"
+))
 
 indicator_fact_tbl <- collate_fact() |>
   build_reporting_view()
@@ -95,7 +150,7 @@ RI_6A1_child_poverty_plot
 
 indicator_fact_tbl |>
   format_indicator_summary(
-    "RI_6A2_good_development_u5",
+    "RI_6A2_child_development_u5",
     title = "Good Level of Development by Age 5",
     subtitle = "Children achieving a good level of development",
     units = "%",

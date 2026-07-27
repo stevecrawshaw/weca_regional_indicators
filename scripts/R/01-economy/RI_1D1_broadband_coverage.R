@@ -3,26 +3,50 @@ source(here::here("scripts", "R", "_common.R"))
 
 # RI_1D1_broadband_coverage
 
-RI_1D1_raw_tbl <- read_csv(here::here("data", "raw", "broadband_coverage_weighted.csv"))
+RI_1D1_raw_tbl <- read_csv(
+  here::here(
+    "data",
+    "raw",
+    "broadband_coverage_weighted.csv"
+  ),
+  col_types = cols(
+    date = col_date(format = "%d/%m/%Y"),
+    superfast_coverage = col_double(),
+    gigabit_coverage = col_double()
+  )
+)
 
 head(RI_1D1_raw_tbl)
-
-# convert to date
-
-RI_1D1_raw_tbl <- RI_1D1_raw_tbl %>%
-  mutate(date = dmy(date))
 
 # plot
 
 RI_1D1_plot <- ggplot(RI_1D1_raw_tbl, aes(x = date)) +
-  geom_line(aes(y = superfast_coverage, color = "Superfast (30mbps)"), linewidth = 1, na.rm = TRUE) +
-  geom_line(aes(y = gigabit_coverage, color = "Gigabit (1000mbps)"), linewidth = 1, na.rm = TRUE) +
-  geom_point(aes(y = superfast_coverage, color = "Superfast (30mbps)"), size = 2, na.rm = TRUE) +
-  geom_point(aes(y = gigabit_coverage, color = "Gigabit (1000mbps)"), size = 2, na.rm = TRUE) +
-  scale_color_manual(values = c(
-    "Superfast (30mbps)" = "#40A832",
-    "Gigabit (1000mbps)" = "#590075"
-  )) +
+  geom_line(
+    aes(y = superfast_coverage, color = "Superfast (30mbps)"),
+    linewidth = 1,
+    na.rm = TRUE
+  ) +
+  geom_line(
+    aes(y = gigabit_coverage, color = "Gigabit (1000mbps)"),
+    linewidth = 1,
+    na.rm = TRUE
+  ) +
+  geom_point(
+    aes(y = superfast_coverage, color = "Superfast (30mbps)"),
+    size = 2,
+    na.rm = TRUE
+  ) +
+  geom_point(
+    aes(y = gigabit_coverage, color = "Gigabit (1000mbps)"),
+    size = 2,
+    na.rm = TRUE
+  ) +
+  scale_color_manual(
+    values = c(
+      "Superfast (30mbps)" = "#40A832",
+      "Gigabit (1000mbps)" = "#590075"
+    )
+  ) +
   labs(
     title = "Broadband coverage",
     subtitle = "West of England (weighted)",
@@ -45,9 +69,14 @@ RI_1D1_plot
 # fact table
 
 RI_1D1_fact_tbl <- RI_1D1_raw_tbl |>
+  arrange(date) |>
   transmute(
-    period_start = as.Date(glue("{date}-01-01")),
-    period_end = as.Date(glue("{date}-12-31")),
+    period_start = date,
+    period_end = lead(
+      date,
+      default = (make_date(year(max(date)), 12, 31) + 1)
+    ) -
+      days(1),
     value = superfast_coverage,
     date = NULL,
     superfast_coverage = NULL

@@ -3,15 +3,11 @@ title: "Economic Growth"
 subtitle: "Contributing to national economic growth helping our businesses succeed and creating jobs"
 author: "SN"
 date: last-modified
-execute:
-  echo: false
-  warning: false
-  message: false
 ---
 
 ## Context
 
-This chapter tracks regional indicators related to the West of England's contribution to national economic growth. It includes indicators related to business growth, productivity, and innovation. The chapter draws on a range of national and local data sources to provide a high-level overview of regional trends and performance in relation to economic growth. Indicators were defined as part of the development of our [Growth Strategy](https://www.westofengland-ca.gov.uk/wp-content/uploads/2025/09/WE4915-Growth-Strategy-exec-summary_aw_web_v1.pdf) and are intended to provide a high-level overview of regional trends and performance in relation to economic growth.
+This indicator summary tracks regional indicators related to the West of England's contribution to national economic growth. It includes indicators related to business growth, productivity, and innovation. The chapter draws on a range of national and local data sources to provide a high-level overview of regional trends and performance in relation to economic growth. Indicators were defined as part of the development of our [Growth Strategy](https://www.westofengland-ca.gov.uk/wp-content/uploads/2025/09/WE4915-Growth-Strategy-exec-summary_aw_web_v1.pdf) and are intended to provide a high-level overview of regional trends and performance in relation to economic growth.
 
 ```{r}
 #| label: 01_setup
@@ -24,6 +20,15 @@ library(tidyverse)
 # Source shared helpers (theme, helpers, fact_helpers, collate_fact)
 source(here::here("scripts", "R", "_common.R"))
 # source(here::here("scripts", "R", "load_pins.R"))
+source(here::here(
+  "scripts",
+  "R",
+  "01-economy",
+  "RI_1A2_employment_priority_sectors.R"
+))
+source(here::here("scripts", "R", "01-economy", "RI_1B1_gdp_growth.R"))
+source(here::here("scripts", "R", "01-economy", "RI_1B2_gva_per_hour.R"))
+source(here::here("scripts", "R", "01-economy", "RI_1B3_median_weekly_pay.R"))
 source(here::here("scripts", "R", "01-economy", "RI_1D1_broadband_coverage.R"))
 source(here::here("scripts", "R", "01-economy", "RI_1E2_population_change.R"))
 source(here::here("scripts", "R", "01-economy", "RI_1E3_area_satisfaction.R"))
@@ -34,6 +39,133 @@ indicator_fact_tbl <- collate_fact() |>
 indicator_polarity <- core_dim_data_tbl |>
   dplyr::select(indicator_id, polarity) |>
   tibble::deframe()
+```
+```{r}
+#| label: priority_summary
+#| eval: true
+#| code-summary: "Priority 1 indicator summary table"
+format_priority_summary(
+  indicator_fact_tbl,
+  core_dim_data_tbl,
+  priority = 1,
+  title = "Economic Growth: Indicator Summary"
+)
+```
+---
+
+## Employment level and growth for priority sectors
+
+```{r}
+#| label: RI_1A2_employment_priority_sectors
+#| eval: true
+#| code-summary: "RI_1A2_employment_priority_sectors KPI summary"
+indicator_fact_tbl |>
+  format_indicator_summary(
+    "RI_1A2_employment_priority_sectors",
+    title = "Priority sector employment",
+    subtitle = "West of England",
+    units = "jobs",
+    polarity = indicator_polarity[["RI_1A2_employment_priority_sectors"]]
+  )
+```
+
+### Overview
+
+Total employment in priority sectors, excluding clean energy. This tracks the region's progress in relation to its aim of increasing employment in priority sectors by 72,000 jobs over 10 years. Clean energy is excluded from this total as the priority sectors are measured using Standard Industry Classification codes (SICs) and there are no SICs for clean energy.
+
+
+```{r}
+#| label: RI_1A2_employment_priority_sectors_plot
+#| eval: true
+#| code-summary: "RI_1A2_employment_priority_sectors analysis"
+RI_1A2_employment_priority_sectors_plot
+```
+
+---
+
+## Real GDP growth rate
+
+```{r}
+#| label: RI_1B1_real_gdp_growth
+#| eval: true
+#| code-summary: "RI_1B1_real_gdp_growth KPI summary"
+indicator_fact_tbl |>
+  format_indicator_summary(
+    "RI_1B1_gdp_growth",
+    title = "GDP growth since 2013",
+    subtitle = "Real GDP (excluding inflation) for the West of England",
+    units = "percent",
+    polarity = indicator_polarity[["RI_1B1_gdp_growth"]]
+  )
+```
+
+### Overview
+
+Growth in Gross Domestic Product (GDP) since 2013. This tracks the region's progress in relation to its aim of increasing GDP by 28% over 10 years.
+
+```{r}
+#| label: RI_1B1_real_gdp_growth_plot
+#| eval: true
+#| code-summary: " RI_1B1_real_gdp_growth analysis"
+RI_1B1_plot
+```
+
+---
+
+## GVA per job
+
+```{r}
+#| label: RI_1B2_gva_per_job
+#| eval: true
+#| code-summary: "RI_1B2_gva_per_job KPI summary"
+indicator_fact_tbl |>
+  format_indicator_summary(
+    "RI_1B2_gva_per_hour",
+    title = "Annual GVA per job, 2013-2023",
+    subtitle = "Current price GVA (including inflation) per job for the West of England",
+    units = "pounds",
+    polarity = indicator_polarity[["RI_1B2_gva_per_hour"]]
+  )
+```
+
+### Overview
+
+Current price GVA per job is a measure of productivity. It provides insights into how much a worker can produce in their job and it is a key measure of economic growth.
+
+```{r}
+#| label: RI_1B2_gva_per_job_plot
+#| eval: true
+#| code-summary: "RI_1B2_gva_per_job analysis"
+RI_1B2_plot
+```
+
+---
+
+## Gross monthly median wage
+
+```{r}
+#| label: RI_1B3_median_wage
+#| eval: true
+#| code-summary: " RI_1B3_median_wage KPI summary"
+indicator_fact_tbl |>
+  format_indicator_summary(
+    "RI_1B3_median_weekly_pay",
+    title = "Annual GVA per job, 2013-2023",
+    subtitle = "Current price GVA (including inflation) per job for the West of England",
+    units = "pounds",
+    polarity = indicator_polarity[["RI_1B3_median_weekly_pay"]]
+  )
+```
+
+### Overview
+
+Gross monthly median wage provides an indication of how wages are changing across the region. The median relates to the person in the middle of the distribution, so it is more reliable than a mean average, which can be skewed upwards by those on very high wages. Whilst a rising median wage is a good thing, the measure takes no account of how wages are changing across the distribution. For example, those on very low wages might see their pay change at a different rate to those in other pay brackets, but this is not reflected in the median.
+
+```{r}
+#| label: RI_1B3_median_wage_plot
+#| eval: true
+#| code-summary: "RI_1B3_median_wage analysis"
+RI_1B3_plot
 ```
 
 ---
@@ -64,9 +196,6 @@ Regional broadband coverage for residential and commercial premises. This tracks
 #| code-summary: "RI_1D1_broadband_coverage analysis"
 RI_1D1_plot
 ```
-
----
-
 ---
 
 ## Population change
@@ -76,13 +205,13 @@ RI_1D1_plot
 #| eval: true
 #| code-summary: "RI_1E2_population_change KPI summary"
 indicator_fact_tbl |>
-format_indicator_summary(
-  "RI_1E2_population_change",
-  title = "Total population change (cumulative)",
-  subtitle = "West of England",
-  units = "percent",
-  polarity = indicator_polarity[["RI_1E2_population_change"]]
-)
+  format_indicator_summary(
+    "RI_1E2_population_change",
+    title = "Total population change (cumulative)",
+    subtitle = "West of England",
+    units = "percent",
+    polarity = indicator_polarity[["RI_1E2_population_change"]]
+  )
 ```
 
 ### Overview
@@ -98,8 +227,6 @@ RI_1E2_plot
 
 ---
 
----
-
 ## Satisfaction with local area as a place to live
 
 ```{r}
@@ -107,13 +234,13 @@ RI_1E2_plot
 #| eval: true
 #| code-summary: "RI_1E3_area_satisfaction KPI summary"
 indicator_fact_tbl |>
-format_indicator_summary(
-  "RI_1E3_area_satisfaction",
-  title = "Satisfaction with local area as a place to live",
-  subtitle = "Bristol only - see plot for all constituent authorities and North Somerset",
-  units = "percent",
-  polarity = indicator_polarity[["RI_1E3_area_satisfaction"]]
-)
+  format_indicator_summary(
+    "RI_1E3_area_satisfaction",
+    title = "Satisfaction with local area as a place to live",
+    subtitle = "Bristol only - see plot for all constituent authorities and North Somerset",
+    units = "percent",
+    polarity = indicator_polarity[["RI_1E3_area_satisfaction"]]
+  )
 ```
 
 ### Overview

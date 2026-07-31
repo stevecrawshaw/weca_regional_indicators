@@ -27,14 +27,15 @@ get_dim_priority <- function(dim_data_tbl, priority) {
       indicator_summary,
       units,
       polarity,
-      priority_description
+      priority_description,
+      order_within_priority
     )
 }
 
 #' Return DIM rows for all priorities with the priority column as a single digit
 #'
 #' @param dim_data_tbl The core DIM tibble (e.g. `core_dim_data_tbl`).
-#' @return A tibble with columns: indicator_id, indicator_summary, units, priority, polarity.
+#' @return A tibble with columns: indicator_id, indicator_summary, units, priority, polarity, order_within_priority.
 get_dim_all <- function(dim_data_tbl) {
   dim_data_tbl |>
     mutate(priority = str_extract(priority, "\\d")) |>
@@ -44,6 +45,31 @@ get_dim_all <- function(dim_data_tbl) {
       units,
       priority,
       polarity,
-      priority_description
+      priority_description,
+      order_within_priority
     )
+}
+
+#' Stop if any row is missing `order_within_priority`
+#'
+#' Called after joining DIM data to FACT-backed indicators, so it only fires
+#' for indicators actually appearing in a summary table (not the whole master
+#' sheet, some rows of which may legitimately lack FACT data yet).
+#'
+#' @param tbl A tibble with `indicator_id` and `order_within_priority` columns.
+#' @keywords internal
+check_order_within_priority <- function(tbl) {
+  missing_order <- tbl |>
+    filter(is.na(order_within_priority)) |>
+    pull(indicator_id)
+
+  if (length(missing_order) > 0L) {
+    stop(
+      "`order_within_priority` is missing for indicator(s): ",
+      paste(missing_order, collapse = ", "),
+      ". Set this in indicators-master.xlsx before rendering.",
+      call. = FALSE
+    )
+  }
+  invisible(tbl)
 }

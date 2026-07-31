@@ -125,7 +125,12 @@ format_priority_summary <- function(
     dim_priority,
     reporting_view,
     by = dplyr::join_by(indicator_id)
-  ) |>
+  )
+
+  check_order_within_priority(tbl)
+
+  tbl <- tbl |>
+    dplyr::arrange(order_within_priority) |>
     dplyr::mutate(
       period_start = format(latest_period_start),
       period_end = format(latest_period_end)
@@ -149,7 +154,7 @@ format_priority_summary <- function(
 
   gt::gt(tbl) |>
     gt::tab_header(
-      title = title %||% paste0("Priority ", priority),
+      title = title %||% paste0("Priority ", priority, " "),
       subtitle = subtitle
     ) |>
     gt::cols_label(
@@ -341,7 +346,11 @@ format_overall_summary <- function(
     dim_all,
     reporting_view,
     by = dplyr::join_by(indicator_id)
-  ) |>
+  )
+
+  check_order_within_priority(tbl)
+
+  tbl <- tbl |>
     dplyr::mutate(
       is_percent = (units == "%"),
       change_raw = dplyr::if_else(
@@ -355,7 +364,7 @@ format_overall_summary <- function(
       period_end = format(latest_period_end),
       priority = paste0("Priority ", priority, ": ", priority_description)
     ) |>
-    dplyr::arrange(priority, indicator_id)
+    dplyr::arrange(priority, order_within_priority)
 
   if (nrow(tbl) == 0L) {
     stop("No indicators with FACT data found.", call. = FALSE)

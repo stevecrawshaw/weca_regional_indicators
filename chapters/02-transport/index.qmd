@@ -4,70 +4,428 @@ subtitle: "Connecting the region through public transport & active travel"
 author: "HB"
 date: last-modified
 execute:
-  echo: true
+  echo: false
   warning: false
   message: false
 ---
 
 ## Context
 
-This chapter tracks indicators related to public transport connectivity across the West of England. The chapter draws on a range of national and local data sources to provide a high-level overview of regional trends and performance in relation to transport connectivity. Indicators were defined as part of the development of our [Growth Strategy](https://www.westofengland-ca.gov.uk/wp-content/uploads/2025/09/WE4915-Growth-Strategy-exec-summary_aw_web_v1.pdf).
+This chapter tracks regional indicators related to the West of England’s transport network. It includes indicators related to usage, satisfaction and connectivity. Indicators relating to carbon emissions can be found in the [green jobs and growth indicator summary](/chapters/05-environment/index.qmd). 
 
-## Setup
+These indicators will provide the context and framework for the next update of our [Joint Local Transport Plan](https://www.westofengland-ca.gov.uk/what-we-do/transport/joint-local-transport-plan/)
 
 ```{r}
 #| label: setup
 #| code-summary: "Load required packages"
-
+#| include: false
+#| 
 # Load required packages
 library(tidyverse)
 
 # Source shared helpers (theme, helpers, fact_helpers, collate_fact)
 source(here::here("scripts", "R", "_common.R"))
+source(here::here("scripts", "R", "02-transport", "RI_2A1_bus_rail_trips.R"))
+source(here::here("scripts", "R", "02-transport", "RI_2A2_pt_satisfaction.R"))
+source(here::here("scripts", "R", "02-transport", "RI_2_mode_share.R"))
+source(here::here("scripts", "R", "02-transport", "RI_2B1_walk_cycle_rate.R"))
+source(here::here(
+  "scripts",
+  "R",
+  "02-transport",
+  "RI_2B3_active_travel_satisfaction.R"
+))
+source(here::here(
+  "scripts",
+  "R",
+  "02-transport",
+  "RI_2B2_ebike_escooter_usage.R"
+))
+source(here::here(
+  "scripts",
+  "R",
+  "02-transport",
+  "RI_2C1_pt_connectivity_score.R"
+))
+source(here::here(
+  "scripts",
+  "R",
+  "02-transport",
+  "RI_2C2_pop_30min_employment.R"
+))
+source(here::here(
+  "scripts",
+  "R",
+  "02-transport",
+  "RI_2D2_bus_value_for_money.R"
+))
+# add other indicator files the same way
+
+# code below sets up data sources for the tables that follow
+indicator_fact_tbl <- collate_fact() |>
+  build_reporting_view()
+
+indicator_polarity <- core_dim_data_tbl |>
+  dplyr::select(indicator_id, polarity) |>
+  tibble::deframe()
 ```
 
----
 
-## Indicator 1: [Your Transport Indicator]
+```{r}
+#| label: priority_summary
+#| eval: true
+#| code-summary: "Priority 2 indicator summary table"
 
-**Data source:** [Specify source]
-**Last updated:** [Date]
-**Refresh schedule:** [Annual/Quarterly/Monthly]
+# This code chunk summarises all the indicators for this priority
+format_priority_summary(
+  indicator_fact_tbl,
+  core_dim_data_tbl,
+  priority = 2,
+  title = "Transport: Indicator Summary"
+)
+```
+
+## Public Transport Trips
+
+```{r}
+#| label: RI_2A1_bus_rail_trips_gt
+#| eval: true
+#| code-summary: "RI_2A1_bus_rail_trips KPI summary"
+
+# This is the table which summarises an individual indicator
+# use the same pattern for label and code-summary
+# this bit creates the table - use the right indicator ID - check the spreadsheet
+indicator_fact_tbl |>
+  format_indicator_summary(
+    "RI_2A1_bus_rail_trips",
+    title = "Bus and Rail Trips",
+    subtitle = "DfT/ORR data",
+    units = "Trips pppa",
+    polarity = indicator_polarity[["RI_2A1_bus_rail_trips"]]
+  )
+```
 
 
 ### Overview
 
-[Describe what this indicator measures and why it matters for public transport connectivity]
+Public transport patronage is influenced by the size of the population, the mode of transport people choose to make trips (modal share) and the type/frequency of trips people choose to make.  Increased trips are usually made as the public transport network expands i.e. as bus or rail services increase in frequency, extend their opening hours, or are extended into new areas. We can also increase trips on the existing network by removing barriers such as cost, poor disabled access or poor access to information. Changes to patronage are also affected by the opening or closing of facilities (e.g. shops or employment sites), societal changes (such as increased homeworking, online shopping or changing leisure habits), household car availability and the relative attractiveness of car travel.
+
+This indicator shows the trips per person per year, so that the effects of population growth are removed. Higher trips per person can increase revenue, making the system more financially self-sustaining. Higher public transport patronage (when people switch from car travel) is also a key factor in reducing carbon emissions, improving health and reducing congestion, which makes the region more attractive to investment.
+
+This indicator uses bus data from DfT which allows comparisons with trends in other areas. Locally collected data allows more granular analysis over shorter time periods and smaller geographical areas, but historic data may not be available before 2019.
+
 
 ```{r}
-#| label: indicator-1
-#| eval: false
-#| code-summary: "Indicator 1 analysis"
+#| label: RI_2A1_bus_rail_trips_plot
+#| eval: true
+#| code-summary: "RI_2A1_bus_rail_trips analysis"
 
-# Your code here
-# See chapters/01-economy/index.qmd for a worked example pattern:
-# 1. Load data using load_csv()
-# 2. Process/filter/aggregate data
-# 3. Create visualization with theme_weca()
-# 4. Calculate key statistics using format_number()
+# name of the plot object you created in the script for this indicator
+RI_2A1_plot
 ```
 
-### Findings
+## Bus Satisfaction
 
-[Your narrative findings here]
+```{r}
+#| label: RI_2A2_pt_satisfaction_gt
+#| eval: true
+#| code-summary: "RI_2A2_pt_satisfaction KPI summary"
 
----
+# This is the table which summarises an individual indicator
+# use the same pattern for label and code-summary
+# this bit creates the table - use the right indicator ID - check the spreadsheet
+indicator_fact_tbl |>
+  format_indicator_summary(
+    "RI_2A2_pt_satisfaction",
+    title = "Bus Satisfaction",
+    subtitle = "% of bus users satisfied",
+    units = "%",
+    polarity = indicator_polarity[["RI_2A2_pt_satisfaction"]]
+  )
+```
 
-## Indicator 2: [Your Transport Indicator]
 
-**Data source:**
-**Last updated:**
-**Refresh schedule:**
+### Overview
 
-[Repeat structure - add up to 10 indicators total]
+Bus satisfaction is measured by surveys carried out by Transport Focus on buses and at bus stops. Bus satisfaction is usually influenced by a number of factors including bus punctuality/reliability, journey times, bus frequency, the price paid for the journey, the quality of the bus stop and the environment on the bus.
 
----
 
-## Summary
+```{r}
+#| label: RI_2A2_pt_satisfaction_plot
+#| eval: true
+#| code-summary: "RI_2A2_pt-satisfaction analysis"
 
-[Summary of key findings across all transport indicators. What is the overall picture for public transport connectivity?]
+# name of the plot object you created in the script for this indicator
+RI_2A2_plot
+```
+
+## Bus - Satisfaction with Value for Money
+
+```{r}
+#| label: RI_2D2_bus_value_for_money_gt
+#| eval: true
+#| code-summary: "RI_2D2_bus_value_for_money KPI summary"
+
+# This is the table which summarises an individual indicator
+# use the same pattern for label and code-summary
+# this bit creates the table - use the right indicator ID - check the spreadsheet
+indicator_fact_tbl |>
+  format_indicator_summary(
+    "RI_2D2_bus_value_for_money",
+    title = "Bus satisfaction with Value for Money",
+    subtitle = "% of bus users satisfied",
+    units = "%",
+    polarity = indicator_polarity[["RI_2D2_bus_value_for_money"]]
+  )
+```
+
+
+### Overview
+
+Satisfaction with Value for Money can be influenced by the price paid for the ticket and the quality of service received in return. It may also be affected by general economic conditions and household income. 
+
+This is measured in surveys to fare-paying customers carried out by Transport Focus - it does not include people using concessionary passes.
+
+
+```{r}
+#| label: RI_2D2_bus_value_for_money_plot
+#| eval: true
+#| code-summary: "RI_2D2_bus_value_for_money analysis"
+
+# name of the plot object you created in the script for this indicator
+RI_2D2_plot
+```
+
+## Active Travel participation rates
+
+```{r}
+#| label: RI_2B1_walk_cycle_rate_gt
+#| eval: true
+#| code-summary: "RI_2B1_walk_cycle_rate KPI summary"
+
+# This is the table which summarises an individual indicator
+# use the same pattern for label and code-summary
+# this bit creates the table - use the right indicator ID - check the spreadsheet
+indicator_fact_tbl |>
+  format_indicator_summary(
+    "RI_2B1_walk_cycle_rate",
+    title = "Active Travel Participation Rates",
+    subtitle = "% participating at least twice in the past 28 days",
+    units = "%",
+    polarity = indicator_polarity[["RI_2B1_walk_cycle_rate"]]
+  )
+```
+
+
+### Overview
+
+Active travel participation rates show the average of walking participation and cycling participation  at least twice in the past 28 days in a survey in November. This may not reflect where there are changes in the number of people walking or cycling more frequently such as regular commuters. An active travel index based on counts of people walking and cycling will give a better indication of whether active travel is increasing or decreasing.
+
+Walking and cycling rates are influenced by the quality of walking and cycling routes and facilities such as cycle parking and public toilets, household car availability and the relative attractiveness of car travel, the opening or closing of facilities (e.g. shops or employment sites), and societal changes (such as increased homeworking, online shopping or changing leisure habits).
+
+Higher active travel participation (when people switch from car travel) is a key factor in reducing carbon emissions, improving health and reducing congestion, which makes the region more attractive to investment.
+
+
+```{r}
+#| label: RI_2B1_walk_cycle_rate_plot
+#| eval: true
+#| code-summary: "RI_2B1_walk_cycle_rate analysis"
+
+# name of the plot object you created in the script for this indicator
+RI_2B1_plot
+```
+
+
+
+
+
+## Active Travel Satisfaction 
+
+```{r}
+#| label: RI_2B3_active_travel_satisfaction_gt
+#| eval: true
+#| code-summary: "RI_2B3_active_travel_satisfaction KPI summary"
+
+# This is the table which summarises an individual indicator
+# use the same pattern for label and code-summary
+# this bit creates the table - use the right indicator ID - check the spreadsheet
+indicator_fact_tbl |>
+  format_indicator_summary(
+    "RI_2B3_active_travel_satisfaction",
+    title = "Active Travel Satisfaction",
+    subtitle = "% of people surveyed by NHT",
+    units = "%",
+    polarity = indicator_polarity[["RI_2B3_active_travel_satisfaction"]]
+  )
+```
+
+
+### Overview
+
+Active Travel satisfaction is an average of satisfaction with pavements and footpaths, and satisfaction with cycle routes and facilities. It is measured by the [NHT Public Satisfaction survey](https://nhtnetwork.org/services/public-satisfaction-survey/). It is a measure of the general public's satisfaction rather than people who regularly walk or cycle. 
+
+Satisfaction with cycle routes and facilities may be influenced by the quality of routes in general (safety, directness, coherence, attractiveness, comfort), cycle parking availability and quality, availability of information about routes, and other factors such as familiarity with cycling. The volume and speed of traffic is a major inluence: traffic-free routes are strongly preferred. Satisfaction with pavements and footpaths may be influenced by the quality of the routes in general, but this indicator may not fully reflect satisfaction with how easy or attractive the region is for walking as the survey does not ask about a wider range of factors such as shade, the presence of resting places (benches) or public toilets.
+
+
+
+```{r}
+#| label: RI_2B3_active_travel_satisfaction_plot
+#| eval: true
+#| code-summary: "RI_2B3_active_travel_satisfaction analysis"
+
+# name of the plot object you created in the script for this indicator
+RI_2B3_plot
+```
+
+## E-bike and E-scooter usage 
+
+```{r}
+#| label: RI_2B2_ebike_escooter_usage_gt
+#| eval: true
+#| code-summary: "RI_2B2_ebike_escooter_usage KPI summary"
+
+# This is the table which summarises an individual indicator
+# use the same pattern for label and code-summary
+# this bit creates the table - use the right indicator ID - check the spreadsheet
+indicator_fact_tbl |>
+  format_indicator_summary(
+    "RI_2B2_ebike_escooter_usage",
+    title = "E-bike and E-scooter Usage",
+    subtitle = "Operated by Voi (Oct 24 - Aug 23), Tier (Sept 23- Aug 24), Dott (Sept 24 - present) ",
+    units = "Trips",
+    polarity = indicator_polarity[["RI_2B2_ebike_escooter_usage"]]
+  )
+```
+
+
+### Overview
+
+E-bike hire and e-scooter hire give people more options for how they travel. These trips may be trips that would not have been made at all previously, or they may transfer from existing active travel, bus or car usage. E-bike hire and e-bike usage contribute to overall walking and cycling participation rates.
+
+
+
+
+```{r}
+#| label: RI_2B2_ebike_escooter_usage_plot
+#| eval: true
+#| code-summary: "RI_2B2_ebike_escooter_usage analysis"
+
+# name of the plot object you created in the script for this indicator
+RI_2B2_plot
+```
+
+
+
+## Public Transport Connectivity
+
+```{r}
+#| label: RI_2C1_pt_connectivity_score_gt
+#| eval: true
+#| code-summary: "RI_2C1_pt_connectivity_score KPI summary"
+
+# This is the table which summarises an individual indicator
+# use the same pattern for label and code-summary
+# this bit creates the table - use the right indicator ID - check the spreadsheet
+indicator_fact_tbl |>
+  format_indicator_summary(
+    "RI_2C1_pt_connectivity_score",
+    title = "Public Transport Connectivity",
+    subtitle = "Peak hour journey times to education, employment, health and retail",
+    units = "Score",
+    polarity = indicator_polarity[["RI_2C1_pt_connectivity_score"]]
+  )
+```
+
+
+### Overview
+
+Public transport connectivity has been modelled using the Combined Authority's Connectivity Tool. It models journey times to key education, employment, health and retail amenities.
+
+Connectivity may change due to changes in public transport service timetables, new infrastructure or new facilities being built. Public transport services are more financially viable in areas with denser population, so these areas are more likely to see improvements in connectivity. Areas with an aging population, where people make less trips and are more likely to own cars, or where facilities close down, may see reductions in connectivity.  It is often easier to increase patronage in areas of good connectivity by measures such as making public transport more affordable, extending service opening hours or improving journey planning information.  
+
+```{r}
+#| label: RI_2C1_pt_connectivity_score_plot
+#| eval: true
+#| code-summary: "RI_2C1_pt_connectivity_score analysis"
+
+# name of the plot object you created in the script for this indicator
+RI_2C1_plot
+```
+
+
+## Journey Times to Employment
+
+```{r}
+#| label: RI_2C2_pop_30min_employment_gt
+#| eval: true
+#| code-summary: "RI_2C2_pop_30min_employment KPI summary"
+
+# This is the table which summarises an individual indicator
+# use the same pattern for label and code-summary
+# this bit creates the table - use the right indicator ID - check the spreadsheet
+indicator_fact_tbl |>
+  format_indicator_summary(
+    "RI_2C2_pop_30min_employment",
+    title = "Population within 30 minutes of major employment sites",
+    subtitle = "by bus, train, walking or cycling",
+    units = "%",
+    polarity = indicator_polarity[["RI_2C2_pop_30min_employment"]]
+  )
+```
+
+
+### Overview
+
+Transport connectivity has been modelled using the Combined Authority's Connectivity Tool to employment sites with over 5000 employees. This metric is influenced by population density and the provision of public transport and active travel networks. 
+
+When people make choices about their transport, journey time reliability is often more important than small improvements to journey time. Congestion is a key factor that increases journey times and reduces reliability.
+
+This indicator can be improved by increasing housing density in areas of good connectivity, reducing congestion, building more dedicated public transport routes, and building more direct active travel routes.
+
+```{r}
+#| label: RI_2C2_pop_30min_employment_plot
+#| eval: true
+#| code-summary: "RI_2C2_pop_30min_employment analysis"
+
+# name of the plot object you created in the script for this indicator
+RI_2C2_plot
+```
+
+## Mode Share
+
+```{r}
+#| label: RI_2_mode_share_gt
+#| eval: true
+#| code-summary: "RI_2_mode_share KPI summary"
+
+# This is the table which summarises an individual indicator
+# use the same pattern for label and code-summary
+# this bit creates the table - use the right indicator ID - check the spreadsheet
+indicator_fact_tbl |>
+  format_indicator_summary(
+    "RI_2_mode_share",
+    title = "Mode Share in the West of England",
+    subtitle = "DfT: National Travel Survey",
+    units = "%",
+    polarity = indicator_polarity[["RI_2_mode_share"]]
+  )
+```
+
+
+### Overview
+
+This indicator shows an estimate of how many trips the average person makes each year by each mode of transport. It is based on National Travel Survey data, and each data point combines two years of data, as the sample sizes would be too small if we considered each year's data individually. We are exploring different ways of understanding mode share using alternative data sources.
+
+Higher public transport and active travel mode share is likely to mean reduced carbon emissions, improved health outcomes, reduced congestion, and a more pleasant place to live. 
+
+While mode share does not always correlate exactly with total trip numbers/mileage for a number of reasons, traffic count data and active travel participation data do not show a rise in walking or a large fall in car usage, which casts doubt on the NTS data reliability for 2023 and 2024.
+
+```{r}
+#| label: RI_2_mode_share_plot
+#| eval: true
+#| code-summary: "RI_2_mode_share analysis"
+
+# name of the plot object you created in the script for this indicator
+RI_2_plot
+```
+

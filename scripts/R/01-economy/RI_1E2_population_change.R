@@ -16,8 +16,7 @@ RI_1E2_raw_tbl <- read_csv(
   )
 )
 
-head(RI_1E2_raw_tbl)
-
+# head(RI_1E2_raw_tbl)
 
 RI_1E2_fact_tbl <- RI_1E2_raw_tbl |>
   filter(Area == "West of England") |>
@@ -27,19 +26,18 @@ RI_1E2_fact_tbl <- RI_1E2_raw_tbl |>
     value = cumulative_percentage_change,
     Date = NULL,
     cumulative_percentage_change = NULL
-  ) |>
-  glimpse()
-
+  )
 #plot
 
 RI_1E2_plot <-
   RI_1E2_raw_tbl |>
-  ggplot() +
-  geom_line(
+  ggplot(
     aes(x = Date, y = cumulative_percentage_change, color = Area),
     linewidth = 1.25,
     na.rm = TRUE
   ) +
+  geom_line(linewidth = 1) +
+  geom_point(size = 2) +
   scale_color_manual(
     values = c(
       "Bath & North East Somerset" = "#590075",
@@ -68,7 +66,7 @@ RI_1E2_plot <-
     date_labels = "%Y"
   )
 
-RI_1E2_plot
+# RI_1E2_plot
 
 #fact table
 

@@ -15,14 +15,15 @@ RI_4A2_level4_plus_raw_tbl <- fetch_nomis(
     "1778384920", # North Somerset
     "1778384921", # South Gloucestershire
     "1925185566", # West of England LEP
-    "2092957699"  # England
+    "2092957699" # England
   ),
-  date = c(
-    "latestMINUS40", "latestMINUS36", "latestMINUS32",
-    "latestMINUS28", "latestMINUS24", "latestMINUS20",
-    "latestMINUS16", "latestMINUS12", "latestMINUS8",
-    "latestMINUS4", "latest"
-  ),
+  # date = c(
+  #   "latestMINUS40", "latestMINUS36", "latestMINUS32",
+  #   "latestMINUS28", "latestMINUS24", "latestMINUS20",
+  #   "latestMINUS16", "latestMINUS12", "latestMINUS8",
+  #   "latestMINUS4", "latest"
+  # ),
+  date = paste0(2022:(year(Sys.Date()) - 1), "-12"),
   variable = 1902,
   measures = 20599
 ) |>
@@ -42,11 +43,11 @@ RI_4A2_level4_plus_long_tbl <-
   RI_4A2_level4_plus_raw_tbl |>
   transmute(
     area,
-    
+
     # Nomis date is annual December data, e.g. Dec 2022.
     # We store this as the final day of that month.
     period_end = ceiling_date(ymd(paste0(date, "-01")), "month") - days(1),
-    
+
     # Nomis returns percentages as whole numbers,
     # Divide by 100 so values are stored as proportions.
     value = obs_value / 100
@@ -62,17 +63,18 @@ RI_4A2_level4_plus_long_tbl <-
 RI_4A2_level4_plus_long_tbl |>
   count(area)
 
-# Compare local authorities against West of England 
+# Compare local authorities against West of England
 RI_4A2_level4_plus_plot_tbl <-
   RI_4A2_level4_plus_long_tbl |>
   filter(
-    area %in% c(
-      "Bath and North East Somerset",
-      "Bristol",
-      "North Somerset",
-      "South Gloucestershire",
-      "West of England"
-    )
+    area %in%
+      c(
+        "Bath and North East Somerset",
+        "Bristol",
+        "North Somerset",
+        "South Gloucestershire",
+        "West of England"
+      )
   ) |>
   mutate(
     year = lubridate::year(period_end)

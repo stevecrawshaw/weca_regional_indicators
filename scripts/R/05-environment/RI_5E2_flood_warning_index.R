@@ -4,7 +4,9 @@ source(here::here("scripts", "R", "_common.R"))
 # RI_5E2_flood_warning_index
 # data is hosted on github and provided through the FWII project, which is a composite index of flood warning indicators. The data is updated annually and the latest version is available at the following URL: https://github.com/stevecrawshaw/fwii
 #
-RI_5E2_raw_tbl <- read_csv("https://raw.githubusercontent.com/stevecrawshaw/fwii/refs/heads/main/data/outputs/fwii_timeseries.csv")
+RI_5E2_raw_tbl <- read_csv(
+  "https://raw.githubusercontent.com/stevecrawshaw/fwii/refs/heads/main/data/outputs/fwii_timeseries.csv"
+)
 
 
 RI_5E2_flood_warning_index_fact_tbl <- RI_5E2_raw_tbl |>
@@ -17,8 +19,12 @@ RI_5E2_flood_warning_index_fact_tbl <- RI_5E2_raw_tbl |>
 RI_5E2_flood_warning_index_plot <- RI_5E2_flood_warning_index_fact_tbl |>
   ggplot(aes(x = period_start, y = value)) +
   geom_line() +
-  geom_point() +
-  geom_hline(yintercept = 100, linetype = "dashed", color = get_weca_color("forest_green")) +
+  geom_point(size = 2) +
+  geom_hline(
+    yintercept = 100,
+    linetype = "dashed",
+    color = get_weca_color("forest_green")
+  ) +
   scale_x_date(date_breaks = "1 year", date_labels = "%Y") +
   scale_y_continuous(limits = c(0, 200)) +
   labs(

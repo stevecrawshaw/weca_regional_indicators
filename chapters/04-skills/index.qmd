@@ -1,6 +1,6 @@
 ---
 title: "Future-Ready Skills"
-subtitle: "Empowering residents with the skills to access the jobs that will shape our future"
+subtitle: "Empowering residents with future-ready skills"
 author: "MJ"
 date: last-modified
 execute:
@@ -11,7 +11,7 @@ execute:
 
 ## Context
 
-This chapter tracks indicators related to skills development and training across the West of England. Indicators cover metrics like qualification levels, apprenticeships, adult learning participation, skills gaps, and employment outcomes. Indicators were developed to provide high-level insights into regional trends and performance in relation to the West of England's skills priorities, which are informed by the [Growth Strategy](https://www.westofengland-ca.gov.uk/wp-content/uploads/2025/09/WE4915-Growth-Strategy-exec-summary_aw_web_v1.pdf).
+This indicator summary tracks indicators related to skills development and training across the West of England. Indicators cover metrics like qualification levels, apprenticeships, adult learning participation, skills gaps, and employment outcomes. Indicators were developed to provide high-level insights into regional trends and performance in relation to the West of England's skills priorities, which are informed by the [Growth Strategy](https://www.westofengland-ca.gov.uk/wp-content/uploads/2025/09/WE4915-Growth-Strategy-exec-summary_aw_web_v1.pdf).
 
 ```{r}
 #| label: setup
@@ -27,14 +27,29 @@ source(here::here("scripts", "R", "_common.R"))
 #Sourcing indicators
 source(here::here("scripts", "R", "04-skills", "RI_4A1_no_qualifications.R"))
 source(here::here("scripts", "R", "04-skills", "RI_4A2_level4_plus.R"))
-source(here::here("scripts", "R", "04-skills", "RI_4A3_apprenticeship_starts.R"))
+source(here::here(
+  "scripts",
+  "R",
+  "04-skills",
+  "RI_4A3_apprenticeship_starts.R"
+))
 source(here::here("scripts", "R", "04-skills", "RI_4A4_ks4_attainment8.R"))
-source(here::here("scripts", "R", "04-skills", "RI_4B1_employment_rate_16_64.R"))
+# source(here::here(
+#   "scripts",
+#   "R",
+#   "04-skills",
+#   "RI_4B1_employment_rate_16_64.R"
+# ))
 source(here::here("scripts", "R", "04-skills", "RI_4B2_economic_inactivity.R"))
 source(here::here("scripts", "R", "04-skills", "RI_4B3_neet_16_17.R"))
 source(here::here("scripts", "R", "04-skills", "RI_4B4_neet_18_24.R"))
 source(here::here("scripts", "R", "04-skills", "RI_4B5_below_living_wage.R"))
-source(here::here("scripts", "R", "04-skills", "RI_4B6_claimant_deprived_wards.R"))
+source(here::here(
+  "scripts",
+  "R",
+  "04-skills",
+  "RI_4B6_claimant_deprived_wards.R"
+))
 source(here::here("scripts", "R", "04-skills", "RI_4C1_skills_gaps.R"))
 
 indicator_fact_tbl <- collate_fact() |>
@@ -57,8 +72,6 @@ format_priority_summary(
 )
 ```
 
-All indicators in this section relate to the wider West of England geography, which includes Bath and North East Somerset, Bristol, North Somerset and South Gloucestershire. This geography extends beyond the West of England Combined Authority area to include North Somerset.
----
 ## Residents with No Qualifications
 
 ```{r}
@@ -124,21 +137,29 @@ RI_4A2_level4_plus_plot
 ```{r}
 #| label: RI_4A3_apprenticeship_starts_gt
 #| eval: true
-#| code-summary: "RI_4A3_apprenticeship_starts summary"
+#| code-summary: "RI_4A3_apprenticeship_starts annual change summary"
 
 indicator_fact_tbl |>
   format_indicator_summary(
     "RI_4A3_apprenticeship_starts",
-    title = "Apprenticeship Starts",
-    subtitle = "Apprenticeship starts across the region",
-    units = "Starts",
+    title = "Annual change in apprenticeship starts",
+    subtitle = "Percentage change from the previous academic year",
+    units = "%",
     polarity = indicator_polarity[["RI_4A3_apprenticeship_starts"]]
   )
 ```
 
 ### Overview
 
-Apprenticeships provide an important route into skilled employment and career progression. This indicator measures participation in apprenticeship programmes across the region. Strong apprenticeship uptake helps employers develop the workforce they need while providing residents with opportunities to gain qualifications and practical experience.
+Apprenticeships provide an important route into skilled employment and career progression. This indicator measures the annual percentage change in apprenticeship starts across the region. Monitoring year-on-year change helps identify whether participation is increasing or decreasing over time and provides an indication of trends in apprenticeship uptake.
+
+```{r}
+#| label: RI_4A3_apprenticeship_starts_change_plot
+#| eval: true
+#| code-summary: "RI_4A3_apprenticeship_starts annual change line chart"
+
+RI_4A3_apprenticeship_starts_change_plot
+```
 
 ```{r}
 #| label: RI_4A3_apprenticeship_starts_plot
@@ -147,8 +168,6 @@ Apprenticeships provide an important route into skilled employment and career pr
 
 RI_4A3_apprenticeship_starts_plot
 ```
-
-
 ## KS4 Attainment 8
 
 ```{r}
@@ -168,7 +187,7 @@ indicator_fact_tbl |>
 
 ### Overview
 
-Educational attainment provides the foundation for future learning, skills development and employment opportunities. This indicator measures average pupil attainment across a range of subjects at the end of Key Stage 4 (GCSE). Strong educational outcomes help ensure young people are equipped to progress into further education, training and employment. Comparisons over time should be interpreted with some caution, as educational attainment and assessment arrangements were affected by the COVID-19 pandemic, particularly during 2020 and 2021. 
+Educational attainment provides the foundation for future learning, skills development and employment opportunities. This indicator measures [average pupil attainment across a range of subjects at the end of Key Stage 4 (GCSE)](https://www.gov.uk/government/publications/progress-8-school-performance-measure/secondary-accountability-measures-2025-guidance-for-maintained-secondary-schools-academies-and-free-schools#annex-a-progress-8-methodology). Strong educational outcomes help ensure young people are equipped to progress into further education, training and employment. Comparisons over time should be interpreted with some caution, as educational attainment and assessment arrangements were affected by the COVID-19 pandemic, particularly during 2020 and 2021. 
 
 ```{r}
 #| label: RI_4A4_ks4_attainment8_plot
@@ -179,34 +198,6 @@ RI_4A4_ks4_attainment8_plot
 ```
 
 
-## Employment Rate 16-64
-
-```{r}
-#| label: RI_4B1_employment_rate_16_64_gt
-#| eval: true
-#| code-summary: "RI_4B1_employment_rate_16_64 summary"
-
-indicator_fact_tbl |>
-  format_indicator_summary(
-    "RI_4B1_employment_rate_16_64",
-    title = "Employment Rate 16-64",
-    subtitle = "Proportion of working-age residents in employment",
-    units = "%",
-    polarity = indicator_polarity[["RI_4B1_employment_rate_16_64"]]
-  )
-```
-
-### Overview
-
-Employment is a key measure of economic participation and prosperity. This indicator measures the proportion of working-age residents who are in employment. Higher employment rates indicate that residents are benefiting from economic opportunities and contributing their skills within the labour market. Sustaining high employment levels is important for supporting inclusive growth and regional productivity.
-
-```{r}
-#| label: RI_4B1_employment_rate_16_64_plot
-#| eval: true
-#| code-summary: "RI_4B1_employment_rate_16_64 line chart"
-
-RI_4B1_employment_rate_16_64_plot
-```
 
 
 ## Economic Inactivity

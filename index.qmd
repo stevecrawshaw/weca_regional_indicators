@@ -1,25 +1,20 @@
----
-title: "Indicators Summary"
-number-sections: false
----
-
-# Indicators Summary
+# Indicators Summary {.unnumbered}
 
 
 ## About These Summaries
 
-These summaries present key regional indicators for the West of England Combined Authority's priority areas. The indicators measure progress against the [West of England Growth Strategy](https://www.westofengland-ca.gov.uk/about-us/our-strategy/west-of-england-growth-plan/). They are not intended to directly measure outcomes or outputs for WECA projects, but rather to provide a high-level overview of regional trends and performance.
+These summaries present key regional indicators for the West of England West of England's priority areas. The indicators measure progress against the [West of England Growth Strategy](https://www.westofengland-ca.gov.uk/about-us/our-strategy/west-of-england-growth-plan/). They are not intended to directly measure outcomes or outputs for WECA projects, but rather to provide a high-level overview of regional trends and performance. A wide range of factors affect these indicators, including residents’ and businesses’ actions, long-term trends, national and international economic conditions, as well as regional interventions.
+
+The default geography includes North Somerset as part of a wider West of England region unless otherwise stated. A process is underway to incorporate North Somerset into the West of England Combined Authority.
 
 ## Priority Areas
 
-| Section | Priority Area |
-|---------|--------------|
-| 2 | Contributing to national economic growth helping our businesses succeed and creating jobs |
-| 3 | Connecting the region through public transport & active travel |
-| 4 | Building affordable and attractive homes in sustainable communities |
-| 5 | Empowering residents with the skills to access the jobs that will shape our future |
-| 6 | Making the West of England the home for green jobs and green growth |
-| 7 | Lifting children and families out of poverty in the West of England |
+- [Contributing to national economic growth helping our businesses succeed and creating jobs](/chapters/01-economy/)
+- [Connecting the region through public transport & active travel](/chapters/02-transport/)
+- [Building affordable and attractive homes in sustainable communities](/chapters/03-place/)
+- [Empowering residents with the skills to access the jobs that will shape our future](/chapters/04-skills/)
+- [Making the West of England the home for green jobs and green growth](/chapters/05-environment/)
+- [Lifting children and families out of poverty in the West of England](/chapters/06-child-poverty/)
 
 ```{r}
 #| label: overall_summary
@@ -41,7 +36,8 @@ format_overall_summary(
 ## How to Use These Summaries
 
 - Use the **sidebar navigation** to jump to any chapter
-- Each chapter is self-contained and can be read independently
+- Each summary is self-contained and can be read independently
+- The majority of time series data are for a calendar year, but some data represent different time periods, for example academic years. Where data are update more frequently than yearly they are provided at this cadence.
 
 ## Data Sources
 

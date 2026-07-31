@@ -1,5 +1,9 @@
 # libraries ---------------------
-pacman::p_load(tidyverse, janitor, glue, tidyxl, readxl, here)
+library(tidyverse)
+library(janitor)
+library(glue)
+library(readxl)
+library(here)
 source(here::here("scripts", "R", "_common.R"))
 
 # RI_6B1_childcare_places
@@ -14,12 +18,11 @@ RI_6B1_childcare_places_path <- here::here(
 RI_6B1_childcare_places_raw_tbl <- read_excel(
   RI_6B1_childcare_places_path,
   sheet = "childcare_places",
-  skip = 3
+  skip = 3,
+  col_types = c("date", "text", "numeric", "numeric", "numeric")
 ) |>
   clean_names() |>
   rename(
-    date = date,
-    area = area,
     value = proportion
   ) |>
   mutate(
@@ -27,14 +30,14 @@ RI_6B1_childcare_places_raw_tbl <- read_excel(
     area = recode(
       area,
       "West of England+" = "West of England"
-    ),
-    date = as.Date(date, origin = "1899-12-30")
+    )
   )
 
 # Use West of England only for this indicator chart
+# And just the August Ofsted ratings
 RI_6B1_childcare_places_plot_tbl <-
   RI_6B1_childcare_places_raw_tbl |>
-  filter(area == "West of England")
+  filter(area == "West of England", month(date) == 8)
 
 # Line chart
 RI_6B1_childcare_places_plot <-
@@ -57,15 +60,16 @@ RI_6B1_childcare_places_plot <-
   )
 
 # View line chart
-#RI_6B1_childcare_places_plot
+# RI_6B1_childcare_places_plot
 
 # Creating fact table
+
 RI_6B1_childcare_places_fact_tbl <-
-  RI_6B1_childcare_places_raw_tbl |>
+  RI_6B1_childcare_places_plot_tbl |>
   filter(area == "West of England") |>
   mutate(
-    period_start = date,
-    period_end = date,
+    period_start = make_date(year = year(date), 1, 1),
+    period_end = make_date(year = year(date) + 1, 12, 31),
     value = value * 100
   ) |>
   select(
@@ -80,4 +84,3 @@ RI_6B1_childcare_places_fact_tbl |>
     indicator_id = "RI_6B1_childcare_places"
   ) |>
   save_fact()
-

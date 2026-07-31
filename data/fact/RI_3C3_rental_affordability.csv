@@ -1,0 +1,12 @@
+indicator_id,period_start,period_end,value,last_updated
+RI_3C3_rental_affordability,2015-07-01,2016-06-30,942.5,2026-07-30
+RI_3C3_rental_affordability,2016-07-01,2017-06-30,980,2026-07-30
+RI_3C3_rental_affordability,2017-07-01,2018-06-30,1025,2026-07-30
+RI_3C3_rental_affordability,2018-07-01,2019-06-30,1075,2026-07-30
+RI_3C3_rental_affordability,2019-07-01,2020-06-30,1130,2026-07-30
+RI_3C3_rental_affordability,2020-07-01,2021-06-30,1190,2026-07-30
+RI_3C3_rental_affordability,2021-07-01,2022-06-30,1260,2026-07-30
+RI_3C3_rental_affordability,2022-07-01,2023-06-30,1340,2026-07-30
+RI_3C3_rental_affordability,2023-07-01,2024-06-30,1425,2026-07-30
+RI_3C3_rental_affordability,2024-07-01,2025-06-30,1525,2026-07-30
+RI_3C3_rental_affordability,2025-07-01,2026-06-30,1677,2026-07-30

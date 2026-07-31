@@ -1,5 +1,9 @@
 # libraries ---------------------
-pacman::p_load(tidyverse, janitor, glue, tidyxl, readxl, here)
+library(tidyverse)
+library(janitor)
+library(glue)
+library(readxl)
+library(here)
 source(here::here("scripts", "R", "_common.R"))
 
 # RI_6A2_good_development
@@ -46,13 +50,14 @@ RI_6A2_child_development_u5_plot_tbl <-
     academic_year >= "2015/16"
   ) |>
   filter(
-    area %in% c(
-      "Bath and North East Somerset",
-      "Bristol",
-      "North Somerset",
-      "South Gloucestershire",
-      "West of England"
-    )
+    area %in%
+      c(
+        "Bath and North East Somerset",
+        "Bristol",
+        "North Somerset",
+        "South Gloucestershire",
+        "West of England"
+      )
   )
 
 # Line chart
@@ -94,7 +99,7 @@ RI_6A2_child_development_u5_plot <-
   )
 
 # View line chart
-#RI_6A2_child_development_u5_plot
+RI_6A2_child_development_u5_plot
 
 # Creating fact table
 RI_6A2_child_development_u5_fact_tbl <-
@@ -106,7 +111,7 @@ RI_6A2_child_development_u5_fact_tbl <-
   mutate(
     start_year = readr::parse_number(academic_year),
     period_start = as.Date(glue("{start_year}-09-01")),
-    period_end = as.Date(glue("{start_year + 1}-08-31")), 
+    period_end = as.Date(glue("{start_year + 1}-08-31")),
     value = value * 100
   ) |>
   select(
@@ -118,6 +123,6 @@ RI_6A2_child_development_u5_fact_tbl <-
 # Save the fact file
 RI_6A2_child_development_u5_fact_tbl |>
   build_fact(
-    indicator_id = "RI_6A2_good_development_u5"
+    indicator_id = "RI_6A2_child_development_u5"
   ) |>
   save_fact()

@@ -26,6 +26,7 @@ RI_5F1_index_tbl <- RI_5F1_nfi_tbl |>
 RI_5F1_plot <- RI_5F1_index_tbl |>
   ggplot(aes(x = Year, y = index)) +
   geom_line(linewidth = 1) +
+  geom_point(size = 2) +
   scale_y_continuous(
     labels = scales::label_percent(scale = 1),
     limits = c(-1, 1)

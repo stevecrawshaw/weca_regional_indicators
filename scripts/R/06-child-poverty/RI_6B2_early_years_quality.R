@@ -1,5 +1,11 @@
 # libraries ---------------------
-pacman::p_load(tidyverse, janitor, glue, tidyxl, readxl, here)
+library(tidyverse)
+library(janitor)
+library(glue)
+library(tidyxl)
+library(readxl)
+library(here)
+
 source(here::here("scripts", "R", "_common.R"))
 
 # RI_6B2_early_years_quality
@@ -14,34 +20,35 @@ RI_6B2_early_years_quality_path <- here::here(
 RI_6B2_early_years_quality_raw_tbl <- read_excel(
   RI_6B2_early_years_quality_path,
   sheet = "Sheet1",
-  skip = 4
+  skip = 4,
+  col_types = c("date", "text", "numeric")
 ) |>
   clean_names() |>
   rename(
-    date = 1,
-    area = 2,
-    value = 3
+    value = outstanding_and_good
   ) |>
   mutate(
     area = str_squish(area),
     area = recode(
       area,
       "West of England+" = "West of England"
-    ),
-    value = as.numeric(value)
+    )
   )
 
 # Use local authorities and West of England for this line chart
+# We just use the data for the August OFSTED assessment
 RI_6B2_early_years_quality_plot_tbl <-
   RI_6B2_early_years_quality_raw_tbl |>
   filter(
-    area %in% c(
-      "Bath and North East Somerset",
-      "Bristol",
-      "North Somerset",
-      "South Gloucestershire",
-      "West of England"
-    )
+    area %in%
+      c(
+        "Bath and North East Somerset",
+        "Bristol",
+        "North Somerset",
+        "South Gloucestershire",
+        "West of England"
+      ),
+    month(date) == 8
   )
 
 # Line chart
@@ -88,15 +95,15 @@ RI_6B2_early_years_quality_plot <-
   )
 
 # View line chart
-#RI_6B2_early_years_quality_plot
+RI_6B2_early_years_quality_plot
 
 # Creating fact table
 RI_6B2_early_years_quality_fact_tbl <-
-  RI_6B2_early_years_quality_raw_tbl |>
+  RI_6B2_early_years_quality_plot_tbl |>
   filter(area == "West of England") |>
   mutate(
-    period_start = date,
-    period_end = date,
+    period_start = make_date(year = year(date), 1, 1),
+    period_end = make_date(year = year(date) + 1, 12, 31),
   ) |>
   select(
     period_start,
@@ -110,4 +117,3 @@ RI_6B2_early_years_quality_fact_tbl |>
     indicator_id = "RI_6B2_early_years_quality"
   ) |>
   save_fact()
-

@@ -16,7 +16,7 @@ RI_1D1_raw_tbl <- read_csv(
   )
 )
 
-head(RI_1D1_raw_tbl)
+# head(RI_1D1_raw_tbl)
 
 # plot
 
@@ -64,7 +64,7 @@ RI_1D1_plot <- ggplot(RI_1D1_raw_tbl, aes(x = date)) +
     date_labels = "%Y"
   )
 
-RI_1D1_plot
+# RI_1D1_plot
 
 # fact table
 
@@ -80,8 +80,7 @@ RI_1D1_fact_tbl <- RI_1D1_raw_tbl |>
     value = superfast_coverage,
     date = NULL,
     superfast_coverage = NULL
-  ) |>
-  glimpse()
+  )
 
 RI_1D1_fact_tbl |>
   build_fact("RI_1D1_broadband_coverage") |>

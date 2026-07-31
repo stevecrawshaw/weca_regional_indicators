@@ -11,7 +11,7 @@ execute:
 
 ## Context
 
-This chapter tracks indicators related to green economy and environmental sustainability across the West of England. Topics include carbon emissions, renewable energy, water pollution, climate resilience and public health. Indicators were developed to provide high-level insights into regional trends and performance in relation to the West of England's environmental priorities, which are informed by the [Growth Strategy](https://www.westofengland-ca.gov.uk/wp-content/uploads/2025/09/WE4915-Growth-Strategy-exec-summary_aw_web_v1.pdf).
+This indicator summary tracks indicators related to green economy and environmental sustainability across the West of England. Topics include carbon emissions, renewable energy, water pollution, climate resilience and public health. Indicators were developed to provide high-level insights into regional trends and performance in relation to the West of England's environmental priorities, which are informed by the [Growth Strategy](https://www.westofengland-ca.gov.uk/wp-content/uploads/2025/09/WE4915-Growth-Strategy-exec-summary_aw_web_v1.pdf).
 
 ```{r}
 #| label: setup
@@ -27,10 +27,25 @@ source(here::here("scripts", "R", "_common.R"))
 source(here::here("scripts", "R", "05-environment", "RI_5_ghg_emissions.R"))
 source(here::here("scripts", "R", "05-environment", "RI_5A1_renewable.R"))
 source(here::here("scripts", "R", "05-environment", "RI_5B1_nondom_epc_a.R"))
-source(here::here("scripts", "R", "05-environment", "RI_5E1_heat_stress_deaths.R"))
-source(here::here("scripts", "R", "05-environment", "RI_5E2_flood_warning_index.R"))
+source(here::here(
+  "scripts",
+  "R",
+  "05-environment",
+  "RI_5E1_heat_stress_deaths.R"
+))
+source(here::here(
+  "scripts",
+  "R",
+  "05-environment",
+  "RI_5E2_flood_warning_index.R"
+))
 source(here::here("scripts", "R", "05-environment", "RI_5F1_tree_canopy.R"))
-source(here::here("scripts", "R", "05-environment", "RI_5F4_water_catchment_health.R"))
+source(here::here(
+  "scripts",
+  "R",
+  "05-environment",
+  "RI_5F4_water_catchment_health.R"
+))
 
 indicator_fact_tbl <- collate_fact() |>
   build_reporting_view()
@@ -51,7 +66,6 @@ format_priority_summary(
   title = "Green Jobs and Growth: Indicator Summary"
 )
 ```
-
 ---
 
 ## Greenhouse Gas Emissions
@@ -105,120 +119,6 @@ RI_5_sector_current_year_plot
 ```
 ---
 
-## Renewable Energy
-
-```{r}
-#| label: RI_5A1_renewable_gt
-#| eval: true
-#| code-summary: "RI_5A1_renewable summary"
-
-indicator_fact_tbl |>
-  format_indicator_summary(
-    "RI_5A1_renewable_capacity_km2",
-    title = "Renewable Electricity Installed Capacity",
-    subtitle = "Installed capacity per square Km",
-    units = "MW/km2",
-    polarity = indicator_polarity[["RI_5A1_renewable_capacity_km2"]]
-  )
-```
-### Overview
-
-Potential for renewable energy capacity is strongly influenced by land availability and price, hence this indicator is expressed in terms of Megawatts per square Kilometre to enable future comparison with other regions.
-
-```{r}
-#| label: RI_5A1_renewable_plot
-#| eval: true
-#| code-summary: "RI_5A1_renewable plot bar chart"
-#| fig-alt: |
-#|   Stacked bar chart of renewable electricity installed capacity in
-#|   Megawatts by local authority in the West of England, from 2015 to 2024.
-#|   The y-axis shows capacity in MW; the x-axis shows year. South
-#|   Gloucestershire (dark green) contributes the largest share, followed by
-#|   North Somerset (black), Bristol (red), and Bath and North East Somerset
-#|   (purple). Total installed capacity grew steadily from around 250 MW in
-#|   2015 to over 525 MW in 2024, reflecting the region's ambitions for net
-#|   zero.
-
-RI_5A1_renewable_plot
-```
-
----
-
-## Domestic Renewable Energy
-
-```{r}
-#| label: RI_5A2_domestic_renewable_gt
-#| eval: true
-#| code-summary: "RI_5A2_domestic_renewable summary"
-# no specific R script for this analysis - it's in RI_5A1
-indicator_fact_tbl |>
-  format_indicator_summary(
-    "RI_5A2_domestic_renewable",
-    title = "Domestic Renewable Energy",
-    subtitle = "Photovoltaic sites",
-    units = "Sites per household",
-    polarity = indicator_polarity[["RI_5A2_domestic_renewable"]]
-  )
-```
-### Overview
-
-Solar photovoltaic (PV) installations are a key aspect of energy security and net zero. This indicator tracks installations per household in the region. Almost all domestic PV installations are rooftop, so the indicator is expressed in terms of site counts rather than capacity. The data are derived from the Department for Energy Security and Net Zero's [renewable energy by local authority spreadsheet](https://assets.publishing.service.gov.uk/media/68da76d2c487360cc70c9e9d/Renewable_electricity_by_local_authority_2014_-_2024.xlsx).
-
-```{r}
-#| label: RI_5A2_domestic_renewable_plot
-#| eval: true
-#| code-summary: "RI_5A2_domestic_renewable plot bar chart"
-#| fig-alt: |
-#|   Stacked bar chart of photovoltaic (PV) site counts by local authority in
-#|   the West of England, from 2015 to 2024. The y-axis shows the number of
-#|   sites; the x-axis shows year. North Somerset (black) has the largest
-#|   share, followed by Bristol (red), Bath and North East Somerset (purple),
-#|   and South Gloucestershire (dark green). Total PV sites increased steadily
-#|   from around 16,000 in 2015 to over 36,000 in 2024, indicating consistent
-#|   growth in domestic solar adoption.
-RI_5A2_domestic_renewable_plot
-```
-
----
-
-## Non-Domestic Energy Performance
-
-```{r}
-#| label: RI_5B1_nondom_epc_a_gt
-#| eval: true
-#| code-summary: "summary"
-
-indicator_fact_tbl |>
-  format_indicator_summary(
-    "RI_5B1_nondom_epc_a",
-    title = "Non - Domestic Energy Ratings",
-    subtitle = "Proportion of properties rated A or A+",
-    units = "%",
-    polarity = indicator_polarity[["RI_5B1_nondom_epc_a"]]
-  )
-```
-
-### Overview
-
-This indicator measures the energy efficiency of non - domestic property by expressing the proportion of properties which have an energy rating of A or A+, in other words the best performing properties. Data are sourced from the [Ministry of Housing, Communities and Local Government](https://get-energy-performance-data.communities.gov.uk/).
-
-```{r}
-#| label: RI_5B1_nondom_epc_a_plot
-#| eval: true
-#| code-summary: "RI_5B1_nondom_epc_a monthly cumulative plot"
-#| fig-alt: |
-#|   Line chart showing the cumulative monthly proportion of non-domestic
-#|   properties in the West of England with an EPC energy rating of A or A+,
-#|   from 2017 to 2026. The y-axis shows percentage from 0% to 100%; the
-#|   x-axis shows date. The line rises very gradually from under 2% to
-#|   approximately 6% by 2026, showing slow but steady improvement in the
-#|   proportion of best-performing non-domestic buildings.
-RI_5B1_nondom_epc_a_plot
-```
-
----
-
-
 ## Heat Associated Mortality
 
 ```{r}
@@ -252,7 +152,6 @@ This indicator tracks the number of heat associated deaths per million populatio
 #|   continuing rise in ambient temperatures from a warming climate.
 RI_5E1_heat_stress_deaths_plot
 ```
-
 ---
 
 ## Flood Warnings Intensity
@@ -291,7 +190,43 @@ This indicator is designed to represent the risk of flooding relative to a 2020 
 #|   intensity in the series.
 RI_5E2_flood_warning_index_plot
 ```
+---
 
+## Water Catchment Health
+
+```{r}
+#| label: RI_5F4_water_catchment_health_gt
+#| eval: true
+#| code-summary: "RI_5F4_water_catchment_health summary"
+
+indicator_fact_tbl |>
+  format_indicator_summary(
+    "RI_5F4_water_catchment_health",
+    title = "Water Catchment Health",
+    subtitle = "Proportion of surface waters in 'Good' ecological health",
+    units = "%",
+    polarity = indicator_polarity[["RI_5F4_water_catchment_health"]]
+  )
+```
+
+### Overview
+
+This indicator tracks the ecological health of surface waters in the catchment which most closely represents the region - [Avon Bristol and Somerset North Streams](https://environment.data.gov.uk/catchment-planning/ManagementCatchment/3005/classifications). It is expressed as the proportion of surface waters in 'Good' ecological health. The data are derived from the Environment Agency's regular water quality monitoring programme. Surface water classification and sources have changed over the years, so data prior to 2019 are not comparable with recent datasets.
+
+```{r}
+#| label: RI_5F4_water_catchment_health_plot
+#| eval: true
+#| code-summary: "RI_5F4_water_catchment_health plot"
+#| fig-alt: |
+#|   Line and point chart of the proportion of surface waters in 'Good'
+#|   ecological health in the Avon Bristol and Somerset North Streams
+#|   catchment, for 2019 and 2022. The y-axis shows percentage from 0% to
+#|   100%; the x-axis shows year. Both data points sit at approximately 14-15%,
+#|   showing virtually no change and reflecting the national picture of
+#|   persistently poor surface water quality.
+
+RI_5F4_plot
+```
 ---
 
 ## Tree Canopy
@@ -329,89 +264,114 @@ This indicator tracks the extent of tree canopy cover in the region, as measured
 
 RI_5F1_plot
 ```
+---
 
-## Water Catchment Health
+## Non-Domestic Energy Performance
 
 ```{r}
-#| label: RI_5F4_water_catchment_health_gt
+#| label: RI_5B1_nondom_epc_a_gt
 #| eval: true
-#| code-summary: "RI_5F4_water_catchment_health summary"
+#| code-summary: "summary"
 
 indicator_fact_tbl |>
   format_indicator_summary(
-    "RI_5F4_water_catchment_health",
-    title = "Water Catchment Health",
-    subtitle = "Proportion of surface waters in 'Good' ecological health",
+    "RI_5B1_nondom_epc_a",
+    title = "Non - Domestic Energy Ratings",
+    subtitle = "Proportion of properties rated A or A+",
     units = "%",
-    polarity = indicator_polarity[["RI_5F4_water_catchment_health"]]
+    polarity = indicator_polarity[["RI_5B1_nondom_epc_a"]]
   )
 ```
 
 ### Overview
 
-This indicator tracks the ecological health of surface waters in the catchment which most closely represents the region - [Avon Bristol and Somerset North Streams](https://environment.data.gov.uk/catchment-planning/ManagementCatchment/3005/classifications). It is expressed as the proportion of surface waters in 'Good' ecological health. The data are derived from the Environment Agency's regular water quality monitoring programme. Surface water classification and sources have changed over the years, so data prior to 2019 are not comparable with recent datasets.
+This indicator measures the energy efficiency of non - domestic property by expressing the proportion of properties which have an energy rating of A or A+, in other words the best performing properties. Data are sourced from the [Ministry of Housing, Communities and Local Government](https://get-energy-performance-data.communities.gov.uk/).
 
 ```{r}
-#| label: RI_5F4_water_catchment_health_plot
+#| label: RI_5B1_nondom_epc_a_plot
 #| eval: true
-#| code-summary: "RI_5F4_water_catchment_health plot"
+#| code-summary: "RI_5B1_nondom_epc_a monthly cumulative plot"
 #| fig-alt: |
-#|   Line and point chart of the proportion of surface waters in 'Good'
-#|   ecological health in the Avon Bristol and Somerset North Streams
-#|   catchment, for 2019 and 2022. The y-axis shows percentage from 0% to
-#|   100%; the x-axis shows year. Both data points sit at approximately 14-15%,
-#|   showing virtually no change and reflecting the national picture of
-#|   persistently poor surface water quality.
-
-RI_5F4_plot
+#|   Line chart showing the cumulative monthly proportion of non-domestic
+#|   properties in the West of England with an EPC energy rating of A or A+,
+#|   from 2017 to 2026. The y-axis shows percentage from 0% to 100%; the
+#|   x-axis shows date. The line rises very gradually from under 2% to
+#|   approximately 6% by 2026, showing slow but steady improvement in the
+#|   proportion of best-performing non-domestic buildings.
+RI_5B1_nondom_epc_a_plot
 ```
-
 ---
 
-<!-- ## Indicator -->
+## Domestic Renewable Energy
 
-<!-- ```{r} -->
-<!-- #| label: _gt -->
-<!-- #| eval: true -->
-<!-- #| code-summary: "summary" -->
+```{r}
+#| label: RI_5A2_domestic_renewable_gt
+#| eval: true
+#| code-summary: "RI_5A2_domestic_renewable summary"
+# no specific R script for this analysis - it's in RI_5A1
+indicator_fact_tbl |>
+  format_indicator_summary(
+    "RI_5A2_domestic_renewable",
+    title = "Domestic Renewable Energy",
+    subtitle = "Photovoltaic sites",
+    units = "Sites per household",
+    polarity = indicator_polarity[["RI_5A2_domestic_renewable"]]
+  )
+```
+### Overview
 
-<!-- ``` -->
+Solar photovoltaic (PV) installations are a key aspect of energy security and net zero. This indicator tracks installations per household in the region. Almost all domestic PV installations are rooftop, so the indicator is expressed in terms of site counts rather than capacity. The data are derived from the Department for Energy Security and Net Zero's [renewable energy by local authority spreadsheet](https://assets.publishing.service.gov.uk/media/68da76d2c487360cc70c9e9d/Renewable_electricity_by_local_authority_2014_-_2024.xlsx).
 
-<!-- ### Overview -->
+```{r}
+#| label: RI_5A2_domestic_renewable_plot
+#| eval: true
+#| code-summary: "RI_5A2_domestic_renewable plot bar chart"
+#| fig-alt: |
+#|   Stacked bar chart of photovoltaic (PV) site counts by local authority in
+#|   the West of England, from 2015 to 2024. The y-axis shows the number of
+#|   sites; the x-axis shows year. North Somerset (black) has the largest
+#|   share, followed by Bristol (red), Bath and North East Somerset (purple),
+#|   and South Gloucestershire (dark green). Total PV sites increased steadily
+#|   from around 16,000 in 2015 to over 36,000 in 2024, indicating consistent
+#|   growth in domestic solar adoption.
+RI_5A2_domestic_renewable_plot
+```
+---
 
-<!-- ```{r} -->
-<!-- #| label: _plot -->
-<!-- #| eval: true -->
-<!-- #| code-summary: " plot" -->
+## Renewable Energy
 
+```{r}
+#| label: RI_5A1_renewable_gt
+#| eval: true
+#| code-summary: "RI_5A1_renewable summary"
 
-<!-- ``` -->
+indicator_fact_tbl |>
+  format_indicator_summary(
+    "RI_5A1_renewable_capacity_km2",
+    title = "Renewable Electricity Installed Capacity",
+    subtitle = "Installed capacity per square Km",
+    units = "MW/km2",
+    polarity = indicator_polarity[["RI_5A1_renewable_capacity_km2"]]
+  )
+```
+### Overview
 
-<!-- ### Findings -->
+Potential for renewable energy capacity is strongly influenced by land availability and price, hence this indicator is expressed in terms of Megawatts per square Kilometre to enable future comparison with other regions.
 
-<!-- --- -->
+```{r}
+#| label: RI_5A1_renewable_plot
+#| eval: true
+#| code-summary: "RI_5A1_renewable plot bar chart"
+#| fig-alt: |
+#|   Stacked bar chart of renewable electricity installed capacity in
+#|   Megawatts by local authority in the West of England, from 2015 to 2024.
+#|   The y-axis shows capacity in MW; the x-axis shows year. South
+#|   Gloucestershire (dark green) contributes the largest share, followed by
+#|   North Somerset (black), Bristol (red), and Bath and North East Somerset
+#|   (purple). Total installed capacity grew steadily from around 250 MW in
+#|   2015 to over 525 MW in 2024, reflecting the region's ambitions for net
+#|   zero.
 
-<!-- ## Indicator 4: Non-Domestic Energy Performance Certificates (EPC) A or A+ -->
-
-<!-- ```{r} -->
-<!-- #| label: _gt -->
-<!-- #| eval: true -->
-<!-- #| code-summary: "summary" -->
-
-<!-- ``` -->
-
-<!-- ### Overview -->
-
-<!-- ```{r} -->
-<!-- #| label: _plot -->
-<!-- #| eval: true -->
-<!-- #| code-summary: " plot" -->
-
-
-<!-- ``` -->
-
-<!-- ### Findings -->
-
-<!-- --- -->
-
+RI_5A1_renewable_plot
+```
 ---

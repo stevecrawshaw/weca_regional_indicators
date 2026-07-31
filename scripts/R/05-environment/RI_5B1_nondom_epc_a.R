@@ -38,7 +38,11 @@ start_date <- max_date - (years(9))
 #' @param cat_vec: vector of EPC categories to include in the "in_cat" group
 #' @param date_col: the date column to use for ordering and grouping the data
 #' @return a tibble with monthly proportions of properties in the specified EPC categories, along with period start and end dates
-make_cumulative_prop_tbl <- function(raw_tbl, cat_vec = c("A", "A+"), date_col = lodgement_date) {
+make_cumulative_prop_tbl <- function(
+  raw_tbl,
+  cat_vec = c("A", "A+"),
+  date_col = lodgement_date
+) {
   raw_tbl |>
     arrange({{ date_col }}) |>
     mutate(in_cat = if_else(asset_rating_band %in% cat_vec, TRUE, FALSE)) |>
@@ -63,6 +67,7 @@ RI_5B1_nondom_epc_a_fact_tbl <- make_cumulative_prop_tbl(
 RI_5B1_nondom_epc_a_plot <- RI_5B1_nondom_epc_a_fact_tbl |>
   ggplot(aes(x = period_end, y = value)) +
   geom_line() +
+  geom_point(size = 2) +
   labs(
     title = "Proportion of non-domestic properties with EPC rating A or A+",
     subtitle = "Cumulative monthly proportions",
@@ -70,7 +75,10 @@ RI_5B1_nondom_epc_a_plot <- RI_5B1_nondom_epc_a_fact_tbl |>
     y = "%",
     caption = "Source: MHCLG"
   ) +
-  scale_y_continuous(labels = scales::label_percent(scale = 1), limits = c(0, 100)) +
+  scale_y_continuous(
+    labels = scales::label_percent(scale = 1),
+    limits = c(0, 100)
+  ) +
   theme_weca() +
   theme(axis.title.y = element_text(angle = 0, vjust = 0.5))
 

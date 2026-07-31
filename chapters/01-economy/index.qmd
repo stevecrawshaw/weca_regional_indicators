@@ -7,7 +7,7 @@ date: last-modified
 
 ## Context
 
-This indicator summary tracks regional indicators related to the West of England's contribution to national economic growth. It includes indicators related to business growth, productivity, and innovation. The chapter draws on a range of national and local data sources to provide a high-level overview of regional trends and performance in relation to economic growth. Indicators were defined as part of the development of our [Growth Strategy](https://www.westofengland-ca.gov.uk/wp-content/uploads/2025/09/WE4915-Growth-Strategy-exec-summary_aw_web_v1.pdf) and are intended to provide a high-level overview of regional trends and performance in relation to economic growth.
+This indicator summary tracks regional indicators related to the West of England's contribution to national economic growth. It includes indicators related to business growth, productivity, and employment. It draws on a range of national and local data sources to provide a high-level overview of regional trends and performance in relation to economic growth. Indicators were defined as part of the development of our [Growth Strategy](https://www.westofengland-ca.gov.uk/wp-content/uploads/2025/09/WE4915-Growth-Strategy-exec-summary_aw_web_v1.pdf) and are intended to provide a high-level overview of regional trends and performance in relation to economic growth.
 
 ```{r}
 #| label: 01_setup
@@ -28,6 +28,7 @@ source(here::here(
 ))
 source(here::here("scripts", "R", "01-economy", "RI_1B1_gdp_growth.R"))
 source(here::here("scripts", "R", "01-economy", "RI_1B2_gva_per_hour.R"))
+source(here::here("scripts", "R", "01-economy", "RI_1A1_employment_rate.R"))
 source(here::here("scripts", "R", "01-economy", "RI_1B3_median_weekly_pay.R"))
 source(here::here("scripts", "R", "01-economy", "RI_1D1_broadband_coverage.R"))
 source(here::here("scripts", "R", "01-economy", "RI_1E2_population_change.R"))
@@ -50,6 +51,90 @@ format_priority_summary(
   priority = 1,
   title = "Economic Growth: Indicator Summary"
 )
+```
+## Real GDP growth rate
+
+```{r}
+#| label: RI_1B1_real_gdp_growth
+#| eval: true
+#| code-summary: "RI_1B1_real_gdp_growth KPI summary"
+indicator_fact_tbl |>
+  format_indicator_summary(
+    "RI_1B1_gdp_growth",
+    title = "GDP growth since 2013",
+    subtitle = "Real GDP (excluding inflation) for the West of England",
+    units = "percent",
+    polarity = indicator_polarity[["RI_1B1_gdp_growth"]]
+  )
+```
+
+### Overview
+
+Growth in Gross Domestic Product (GDP) since 2013. This tracks the region's progress in relation to its aim of increasing GDP by 28% over 10 years.
+
+```{r}
+#| label: RI_1B1_real_gdp_growth_plot
+#| eval: true
+#| code-summary: " RI_1B1_real_gdp_growth analysis"
+RI_1B1_plot
+```
+---
+
+## GVA per job
+
+```{r}
+#| label: RI_1B2_gva_per_job
+#| eval: true
+#| code-summary: "RI_1B2_gva_per_job KPI summary"
+indicator_fact_tbl |>
+  format_indicator_summary(
+    "RI_1B2_gva_per_hour",
+    title = "Annual GVA per job, 2013-2023",
+    subtitle = "Current price GVA (including inflation) per job for the West of England",
+    units = "pounds",
+    polarity = indicator_polarity[["RI_1B2_gva_per_hour"]]
+  )
+```
+
+### Overview
+
+Current price GVA per job is a measure of productivity. It provides insights into how much a worker can produce in their job and it is a key measure of economic growth.
+
+```{r}
+#| label: RI_1B2_gva_per_job_plot
+#| eval: true
+#| code-summary: "RI_1B2_gva_per_job analysis"
+RI_1B2_plot
+```
+---
+
+## Employment Rate 16-64
+
+```{r}
+#| label: RI_1A1_employment_rate_gt
+#| eval: true
+#| code-summary: "RI_1A1_employment_rate summary"
+
+indicator_fact_tbl |>
+  format_indicator_summary(
+    "RI_1A1_employment_rate",
+    title = "Employment Rate 16-64",
+    subtitle = "Proportion of working-age residents in employment",
+    units = "%",
+    polarity = indicator_polarity[["RI_1A1_employment_rate"]]
+  )
+```
+
+### Overview
+
+Employment is a key measure of economic participation and prosperity. This indicator measures the proportion of working-age residents who are in employment. Higher employment rates indicate that residents are benefiting from economic opportunities and contributing their skills within the labour market. Sustaining high employment levels is important for supporting inclusive growth and regional productivity.
+
+```{r}
+#| label: RI_1A1_employment_rate_plot
+#| eval: true
+#| code-summary: "RI_1A1_employment_rate line chart"
+
+RI_1A1_employment_rate_plot
 ```
 ---
 
@@ -80,65 +165,6 @@ Total employment in priority sectors, excluding clean energy. This tracks the re
 #| code-summary: "RI_1A2_employment_priority_sectors analysis"
 RI_1A2_employment_priority_sectors_plot
 ```
-
----
-
-## Real GDP growth rate
-
-```{r}
-#| label: RI_1B1_real_gdp_growth
-#| eval: true
-#| code-summary: "RI_1B1_real_gdp_growth KPI summary"
-indicator_fact_tbl |>
-  format_indicator_summary(
-    "RI_1B1_gdp_growth",
-    title = "GDP growth since 2013",
-    subtitle = "Real GDP (excluding inflation) for the West of England",
-    units = "percent",
-    polarity = indicator_polarity[["RI_1B1_gdp_growth"]]
-  )
-```
-
-### Overview
-
-Growth in Gross Domestic Product (GDP) since 2013. This tracks the region's progress in relation to its aim of increasing GDP by 28% over 10 years.
-
-```{r}
-#| label: RI_1B1_real_gdp_growth_plot
-#| eval: true
-#| code-summary: " RI_1B1_real_gdp_growth analysis"
-RI_1B1_plot
-```
-
----
-
-## GVA per job
-
-```{r}
-#| label: RI_1B2_gva_per_job
-#| eval: true
-#| code-summary: "RI_1B2_gva_per_job KPI summary"
-indicator_fact_tbl |>
-  format_indicator_summary(
-    "RI_1B2_gva_per_hour",
-    title = "Annual GVA per job, 2013-2023",
-    subtitle = "Current price GVA (including inflation) per job for the West of England",
-    units = "pounds",
-    polarity = indicator_polarity[["RI_1B2_gva_per_hour"]]
-  )
-```
-
-### Overview
-
-Current price GVA per job is a measure of productivity. It provides insights into how much a worker can produce in their job and it is a key measure of economic growth.
-
-```{r}
-#| label: RI_1B2_gva_per_job_plot
-#| eval: true
-#| code-summary: "RI_1B2_gva_per_job analysis"
-RI_1B2_plot
-```
-
 ---
 
 ## Gross monthly median wage
@@ -167,7 +193,6 @@ Gross monthly median wage provides an indication of how wages are changing acros
 #| code-summary: "RI_1B3_median_wage analysis"
 RI_1B3_plot
 ```
-
 ---
 
 ## Broadband coverage
@@ -224,7 +249,6 @@ Cumulative population change between 2016 and 2025 in the West of England, inclu
 #| code-summary: "RI_1E2_population_change analysis"
 RI_1E2_plot
 ```
-
 ---
 
 ## Satisfaction with local area as a place to live

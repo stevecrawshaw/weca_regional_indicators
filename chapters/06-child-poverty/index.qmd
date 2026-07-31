@@ -11,7 +11,7 @@ execute:
 
 ## Context
 
-This chapter tracks indicators related to child poverty, early years development, educational outcomes, health and wellbeing across the West of England. Together these indicators provide insight into the factors that influence children's life chances and help monitor progress towards the West of England Growth Strategy's ambition to lift children and families out of poverty. The indicators cover measures of income, education, childcare, health and wellbeing, helping to understand whether all children have the opportunity to thrive regardless of their background.
+This indicator summary tracks indicators related to child poverty, early years development, educational outcomes, health and wellbeing across the West of England. Together these indicators provide insight into the factors that influence children's life chances and help monitor progress towards the West of England Growth Strategy's ambition to lift children and families out of poverty. The indicators cover measures of income, education, childcare, health and wellbeing, helping to understand whether all children have the opportunity to thrive regardless of their background.
 
 
 ```{r}

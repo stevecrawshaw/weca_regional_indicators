@@ -17,8 +17,6 @@ RI_1E3_raw_tbl <- read_csv(
   )
 )
 
-# head(RI_1E3_raw_tbl)
-
 #plot
 
 RI_1E3_plot <- ggplot(RI_1E3_raw_tbl, aes(x = date)) +
@@ -63,8 +61,7 @@ RI_1E3_fact_tbl <- RI_1E3_raw_tbl |>
     value = percent_satisfied,
     date = NULL,
     percent_satisfied = NULL
-  ) |>
-  glimpse()
+  )
 
 RI_1E3_fact_tbl |>
   build_fact("RI_1E3_area_satisfaction") |>

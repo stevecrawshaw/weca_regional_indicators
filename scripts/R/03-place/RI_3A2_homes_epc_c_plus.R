@@ -33,7 +33,6 @@ RI_3A2_get_epc_month_tbl <- function(cat_vec = c("A", "B", "C")) {
   }
   RI_3A2_base_url <- "https://opendata.westofengland-ca.gov.uk/api/explore/v2.1/catalog/datasets/epc_domestic_lep_ods/exports/csv"
 
-
   request(RI_3A2_base_url) |>
     req_method("GET") |>
     req_url_query(
@@ -76,8 +75,10 @@ RI_3A2_fact_tbl <- RI_3A2_in_cat_tbl |>
   filter(period_start >= RI_3A2_start_date) |>
   glimpse()
 
-RI_3A2_plot <- RI_3A2_fact_tbl |> ggplot(aes(x = period_end, y = value)) +
+RI_3A2_plot <- RI_3A2_fact_tbl |>
+  ggplot(aes(x = period_end, y = value)) +
   geom_line() +
+  geom_point() +
   labs(
     title = "Proportion of Homes with EPC rating C or better",
     subtitle = "Cumulative monthly proportions",
@@ -85,7 +86,10 @@ RI_3A2_plot <- RI_3A2_fact_tbl |> ggplot(aes(x = period_end, y = value)) +
     y = "%",
     caption = "Source: MHCLG"
   ) +
-  scale_y_continuous(labels = scales::label_percent(scale = 1), limits = c(0, 100)) +
+  scale_y_continuous(
+    labels = scales::label_percent(scale = 1),
+    limits = c(0, 100)
+  ) +
   theme_weca() +
   theme(axis.title.y = element_text(angle = 0, vjust = 0.5))
 

@@ -69,8 +69,6 @@ indicator_polarity <- core_dim_data_tbl |>
   dplyr::select(indicator_id, polarity) |>
   tibble::deframe()
 ```
-
-
 ```{r}
 #| label: priority_summary
 #| eval: true
@@ -105,7 +103,6 @@ indicator_fact_tbl |>
   )
 ```
 
-
 ### Overview
 
 Public transport patronage is influenced by the size of the population, the mode of transport people choose to make trips (modal share) and the type/frequency of trips people choose to make.  Increased trips are usually made as the public transport network expands i.e. as bus or rail services increase in frequency, extend their opening hours, or are extended into new areas. We can also increase trips on the existing network by removing barriers such as cost, poor disabled access or poor access to information. Changes to patronage are also affected by the opening or closing of facilities (e.g. shops or employment sites), societal changes (such as increased homeworking, online shopping or changing leisure habits), household car availability and the relative attractiveness of car travel.
@@ -119,6 +116,12 @@ This indicator uses bus data from DfT which allows comparisons with trends in ot
 #| label: RI_2A1_bus_rail_trips_plot
 #| eval: true
 #| code-summary: "RI_2A1_bus_rail_trips analysis"
+#| fig-alt: |
+#|   Grouped bar chart of public transport trips per person per year, by
+#|   financial year end. Bars compare bus, rail and total public transport
+#|   trips per head using DfT/ORR estimates. This measure strips out population
+#|   growth, so changes reflect real shifts in how often people use bus and
+#|   rail services.
 
 # name of the plot object you created in the script for this indicator
 RI_2A1_plot
@@ -144,7 +147,6 @@ indicator_fact_tbl |>
   )
 ```
 
-
 ### Overview
 
 Bus satisfaction is measured by surveys carried out by Transport Focus on buses and at bus stops. Bus satisfaction is usually influenced by a number of factors including bus punctuality/reliability, journey times, bus frequency, the price paid for the journey, the quality of the bus stop and the environment on the bus.
@@ -154,6 +156,11 @@ Bus satisfaction is measured by surveys carried out by Transport Focus on buses 
 #| label: RI_2A2_pt_satisfaction_plot
 #| eval: true
 #| code-summary: "RI_2A2_pt-satisfaction analysis"
+#| fig-alt: |
+#|   Grouped bar chart of bus satisfaction by year, comparing the percentage
+#|   of bus users satisfied in the West of England against the England
+#|   average. Satisfaction reflects factors such as punctuality, journey
+#|   times, frequency and fares.
 
 # name of the plot object you created in the script for this indicator
 RI_2A2_plot
@@ -191,6 +198,12 @@ This is measured in surveys to fare-paying customers carried out by Transport Fo
 #| label: RI_2D2_bus_value_for_money_plot
 #| eval: true
 #| code-summary: "RI_2D2_bus_value_for_money analysis"
+#| fig-alt: |
+#|   Grouped bar chart of satisfaction with bus value for money by year, with
+#|   bars for each West of England unitary authority (B&NES, Bristol, North
+#|   Somerset, South Glos), the West of England total and the England
+#|   average. Based on fare-paying customer surveys, excluding concessionary
+#|   pass holders.
 
 # name of the plot object you created in the script for this indicator
 RI_2D2_plot
@@ -230,15 +243,16 @@ Higher active travel participation (when people switch from car travel) is a key
 #| label: RI_2B1_walk_cycle_rate_plot
 #| eval: true
 #| code-summary: "RI_2B1_walk_cycle_rate analysis"
+#| fig-alt: |
+#|   Grouped bar chart covering the last ten survey years, showing the
+#|   percentage of people cycling, walking, and doing either at least twice
+#|   in the past 28 days. Walking participation is consistently higher than
+#|   cycling, and the combined active travel figure tracks the walking rate
+#|   closely.
 
 # name of the plot object you created in the script for this indicator
 RI_2B1_plot
 ```
-
-
-
-
-
 ## Active Travel Satisfaction 
 
 ```{r}
@@ -258,20 +272,22 @@ indicator_fact_tbl |>
     polarity = indicator_polarity[["RI_2B3_active_travel_satisfaction"]]
   )
 ```
-
-
 ### Overview
 
 Active Travel satisfaction is an average of satisfaction with pavements and footpaths, and satisfaction with cycle routes and facilities. It is measured by the [NHT Public Satisfaction survey](https://nhtnetwork.org/services/public-satisfaction-survey/). It is a measure of the general public's satisfaction rather than people who regularly walk or cycle. 
 
 Satisfaction with cycle routes and facilities may be influenced by the quality of routes in general (safety, directness, coherence, attractiveness, comfort), cycle parking availability and quality, availability of information about routes, and other factors such as familiarity with cycling. The volume and speed of traffic is a major inluence: traffic-free routes are strongly preferred. Satisfaction with pavements and footpaths may be influenced by the quality of the routes in general, but this indicator may not fully reflect satisfaction with how easy or attractive the region is for walking as the survey does not ask about a wider range of factors such as shade, the presence of resting places (benches) or public toilets.
 
-
-
 ```{r}
 #| label: RI_2B3_active_travel_satisfaction_plot
 #| eval: true
 #| code-summary: "RI_2B3_active_travel_satisfaction analysis"
+#| fig-alt: |
+#|   Grouped bar chart covering the last ten survey years, showing the
+#|   percentage of the general public satisfied with walking routes, cycling
+#|   routes, and an average of the two, from the NHT Public Satisfaction
+#|   survey. This reflects general public opinion rather than the views of
+#|   regular walkers or cyclists.
 
 # name of the plot object you created in the script for this indicator
 RI_2B3_plot
@@ -297,25 +313,23 @@ indicator_fact_tbl |>
   )
 ```
 
-
 ### Overview
 
 E-bike hire and e-scooter hire give people more options for how they travel. These trips may be trips that would not have been made at all previously, or they may transfer from existing active travel, bus or car usage. E-bike hire and e-bike usage contribute to overall walking and cycling participation rates.
-
-
-
 
 ```{r}
 #| label: RI_2B2_ebike_escooter_usage_plot
 #| eval: true
 #| code-summary: "RI_2B2_ebike_escooter_usage analysis"
+#| fig-alt: |
+#|   Grouped bar chart of annual e-scooter, e-bike and combined e-hire trips.
+#|   Data is drawn from successive hire operators (Voi, Tier and Dott), so
+#|   totals reflect a scheme that has continued to operate under different
+#|   providers over time.
 
 # name of the plot object you created in the script for this indicator
 RI_2B2_plot
 ```
-
-
-
 ## Public Transport Connectivity
 
 ```{r}
@@ -335,24 +349,26 @@ indicator_fact_tbl |>
     polarity = indicator_polarity[["RI_2C1_pt_connectivity_score"]]
   )
 ```
-
-
 ### Overview
 
 Public transport connectivity has been modelled using the Combined Authority's Connectivity Tool. It models journey times to key education, employment, health and retail amenities.
 
-Connectivity may change due to changes in public transport service timetables, new infrastructure or new facilities being built. Public transport services are more financially viable in areas with denser population, so these areas are more likely to see improvements in connectivity. Areas with an aging population, where people make less trips and are more likely to own cars, or where facilities close down, may see reductions in connectivity.  It is often easier to increase patronage in areas of good connectivity by measures such as making public transport more affordable, extending service opening hours or improving journey planning information.  
+Connectivity may change due to changes in public transport service timetables, new infrastructure or new facilities being built. Public transport services are more financially viable in areas with denser population, so these areas are more likely to see improvements in connectivity. Areas with an ageing population, where people make less trips and are more likely to own cars, or where facilities close down, may see reductions in connectivity.  It is often easier to increase patronage in areas of good connectivity by measures such as making public transport more affordable, extending service opening hours or improving journey planning information.  
 
 ```{r}
 #| label: RI_2C1_pt_connectivity_score_plot
 #| eval: true
 #| code-summary: "RI_2C1_pt_connectivity_score analysis"
+#| fig-alt: |
+#|   Grouped bar chart of public transport connectivity scores by year, with
+#|   bars for each West of England unitary authority (B&NES, Bristol, North
+#|   Somerset, South Glos) and the West of England total. Scores are modelled
+#|   peak-hour journey times to education, employment, health and retail, and
+#|   tend to be higher in more densely populated areas.
 
 # name of the plot object you created in the script for this indicator
 RI_2C1_plot
 ```
-
-
 ## Journey Times to Employment
 
 ```{r}
@@ -372,8 +388,6 @@ indicator_fact_tbl |>
     polarity = indicator_polarity[["RI_2C2_pop_30min_employment"]]
   )
 ```
-
-
 ### Overview
 
 Transport connectivity has been modelled using the Combined Authority's Connectivity Tool to employment sites with over 5000 employees. This metric is influenced by population density and the provision of public transport and active travel networks. 
@@ -386,6 +400,12 @@ This indicator can be improved by increasing housing density in areas of good co
 #| label: RI_2C2_pop_30min_employment_plot
 #| eval: true
 #| code-summary: "RI_2C2_pop_30min_employment analysis"
+#| fig-alt: |
+#|   Grouped bar chart of the percentage of the population able to reach
+#|   major employment sites (over 5000 employees) within 15 minutes and
+#|   within 30 minutes, by year, using bus, train, walking or cycling. The
+#|   30-minute figure is consistently higher than the 15-minute figure,
+#|   reflecting the wider catchment reachable at longer journey times.
 
 # name of the plot object you created in the script for this indicator
 RI_2C2_plot
@@ -411,7 +431,6 @@ indicator_fact_tbl |>
   )
 ```
 
-
 ### Overview
 
 This indicator shows an estimate of how many trips the average person makes each year by each mode of transport. It is based on National Travel Survey data, and each data point combines two years of data, as the sample sizes would be too small if we considered each year's data individually. We are exploring different ways of understanding mode share using alternative data sources.
@@ -424,6 +443,13 @@ While mode share does not always correlate exactly with total trip numbers/milea
 #| label: RI_2_mode_share_plot
 #| eval: true
 #| code-summary: "RI_2_mode_share analysis"
+#| fig-alt: |
+#|   Stacked bar chart covering the last ten two-year periods, showing the
+#|   percentage of trips made by walking, cycling, car, bus, rail and other
+#|   modes, based on National Travel Survey data. Car remains the dominant
+#|   mode in every period; recent years show an unexpected rise in walking
+#|   and fall in car use that other local data sources do not corroborate,
+#|   casting doubt on the reliability of the 2023 and 2024 NTS estimates.
 
 # name of the plot object you created in the script for this indicator
 RI_2_plot

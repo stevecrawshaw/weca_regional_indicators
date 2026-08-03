@@ -76,9 +76,13 @@ Growth in Gross Domestic Product (GDP) since 2013. This tracks the region's prog
 #| label: RI_1B1_real_gdp_growth_plot
 #| eval: true
 #| code-summary: " RI_1B1_real_gdp_growth analysis"
+#| fig-alt: |
+#|   Line chart of a real GDP index for the West of England, 2013 to 2023,
+#|   with 2013 set at 100. The line rises in most years, showing sustained
+#|   growth in real GDP over the decade as the region tracks its target of
+#|   a 28% increase.
 RI_1B1_plot
 ```
----
 
 ## GVA per job
 
@@ -104,9 +108,12 @@ Current price GVA per job is a measure of productivity. It provides insights int
 #| label: RI_1B2_gva_per_job_plot
 #| eval: true
 #| code-summary: "RI_1B2_gva_per_job analysis"
+#| fig-alt: |
+#|   Line chart of annual current-price GVA per job in pounds for the West
+#|   of England, 2013 to 2023. The line trends upward over the period,
+#|   indicating rising productivity per worker across the region.
 RI_1B2_plot
 ```
----
 
 ## Employment Rate 16-64
 
@@ -133,10 +140,15 @@ Employment is a key measure of economic participation and prosperity. This indic
 #| label: RI_1A1_employment_rate_plot
 #| eval: true
 #| code-summary: "RI_1A1_employment_rate line chart"
+#| fig-alt: |
+#|   Line chart of the employment rate for residents aged 16 to 64, shown
+#|   as two lines: the West of England in green and Great Britain in grey,
+#|   covering the latest available years. The two lines track closely
+#|   together, with the West of England generally at or slightly above the
+#|   Great Britain rate.
 
 RI_1A1_employment_rate_plot
 ```
----
 
 ## Employment level and growth for priority sectors
 
@@ -163,9 +175,13 @@ Total employment in priority sectors, excluding clean energy. This tracks the re
 #| label: RI_1A2_employment_priority_sectors_plot
 #| eval: true
 #| code-summary: "RI_1A2_employment_priority_sectors analysis"
+#| fig-alt: |
+#|   Line chart of total employment in priority sectors, excluding clean
+#|   energy, for the West of England from 2015 to the most recent year.
+#|   The line shows the region's progress towards its target of adding
+#|   72,000 priority sector jobs over 10 years.
 RI_1A2_employment_priority_sectors_plot
 ```
----
 
 ## Gross monthly median wage
 
@@ -191,9 +207,13 @@ Gross monthly median wage provides an indication of how wages are changing acros
 #| label: RI_1B3_median_wage_plot
 #| eval: true
 #| code-summary: "RI_1B3_median_wage analysis"
+#| fig-alt: |
+#|   Line chart of the estimated median monthly wage in pounds for the West
+#|   of England over the most recent 10 years. The line rises over time,
+#|   showing wages increasing across the region, though this measure does
+#|   not show how the increase is distributed between low and high earners.
 RI_1B3_plot
 ```
----
 
 ## Broadband coverage
 
@@ -219,9 +239,14 @@ Regional broadband coverage for residential and commercial premises. This tracks
 #| label: RI_1D1_broadband_coverage_plot
 #| eval: true
 #| code-summary: "RI_1D1_broadband_coverage analysis"
+#| fig-alt: |
+#|   Line chart showing two coverage measures for the West of England over
+#|   time: superfast broadband (30mbps+) in green and gigabit broadband
+#|   (1000mbps+) in purple. Superfast coverage is consistently higher and
+#|   close to full coverage, while gigabit coverage started lower but has
+#|   been catching up in more recent years.
 RI_1D1_plot
 ```
----
 
 ## Population change
 
@@ -247,9 +272,14 @@ Cumulative population change between 2016 and 2025 in the West of England, inclu
 #| label: RI_1E2_population_change_plot
 #| eval: true
 #| code-summary: "RI_1E2_population_change analysis"
+#| fig-alt: |
+#|   Line chart of cumulative percentage population change from 2016 to
+#|   2025, with separate coloured lines for Bath and North East Somerset,
+#|   Bristol, North Somerset, South Gloucestershire, and the West of
+#|   England total. All areas show a rising cumulative trend, with the
+#|   individual authorities spread above and below the regional total.
 RI_1E2_plot
 ```
----
 
 ## Satisfaction with local area as a place to live
 
@@ -275,7 +305,13 @@ Respondent satisfaction with their local area as a place to live as reported by 
 #| label: RI_1E3_area_satisfaction_plot
 #| eval: true
 #| code-summary: "RI_1E3_area_satisfaction analysis"
+#| fig-alt: |
+#|   Line chart of the percentage of respondents satisfied with their local
+#|   area as a place to live, with separate coloured lines for Bath and
+#|   North East Somerset, Bristol, North Somerset, and South Gloucestershire
+#|   over time. Satisfaction levels are broadly high across all four
+#|   authorities, with some year-to-year variation between them.
 RI_1E3_plot
 ```
 
----
+

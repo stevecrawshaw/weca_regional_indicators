@@ -97,11 +97,16 @@ Qualifications are a key driver of employment, productivity and economic opportu
 #| label: RI_4A1_no_qualifications_plot
 #| eval: true
 #| code-summary: "RI_4A1_no_qualifications line chart"
+#| fig-alt: |
+#|   Line chart of the percentage of residents aged 16 to 64 with no
+#|   qualifications, from December 2022 onwards, for Bath and North East
+#|   Somerset, Bristol, North Somerset, South Gloucestershire and the
+#|   West of England as a whole. Lines are broadly flat to declining across
+#|   the local authorities, with the West of England tracking below most
+#|   of the individual unitary authorities.
 
 RI_4A1_no_qualifications_plot
 ```
-
-
 ## Residents with Level 4+ Qualifications
 
 ```{r}
@@ -127,11 +132,16 @@ Higher-level qualifications are an important indicator of workforce capability a
 #| label: RI_4A2_level4_plus_plot
 #| eval: true
 #| code-summary: "RI_4A2_level4_plus line chart"
+#| fig-alt: |
+#|   Line chart of the percentage of residents aged 16 to 64 qualified to
+#|   Level 4 or above, from December 2022 onwards, for Bath and North East
+#|   Somerset, Bristol, North Somerset, South Gloucestershire and the
+#|   West of England as a whole. Bath and North East Somerset consistently
+#|   shows the highest share of higher-level qualifications, while the
+#|   West of England sits in the middle of the group.
 
 RI_4A2_level4_plus_plot
 ```
-
-
 ## Apprenticeship Starts
 
 ```{r}
@@ -157,6 +167,12 @@ Apprenticeships provide an important route into skilled employment and career pr
 #| label: RI_4A3_apprenticeship_starts_change_plot
 #| eval: true
 #| code-summary: "RI_4A3_apprenticeship_starts annual change line chart"
+#| fig-alt: |
+#|   Line chart of the year-on-year percentage change in apprenticeship
+#|   starts for the West of England, from the 2016/17 academic year
+#|   onwards, with a reference line at zero. The change fluctuates above
+#|   and below zero across the years, showing no sustained upward or
+#|   downward trend in apprenticeship uptake.
 
 RI_4A3_apprenticeship_starts_change_plot
 ```
@@ -165,6 +181,12 @@ RI_4A3_apprenticeship_starts_change_plot
 #| label: RI_4A3_apprenticeship_starts_plot
 #| eval: true
 #| code-summary: "RI_4A3_apprenticeship_starts line chart"
+#| fig-alt: |
+#|   Stacked bar chart of apprenticeship starts by academic year from
+#|   2015/16 onwards, with bars split by Bath and North East Somerset,
+#|   Bristol, North Somerset and South Gloucestershire. Total starts vary
+#|   year to year, with Bristol consistently contributing the largest
+#|   share of the regional total.
 
 RI_4A3_apprenticeship_starts_plot
 ```
@@ -193,13 +215,16 @@ Educational attainment provides the foundation for future learning, skills devel
 #| label: RI_4A4_ks4_attainment8_plot
 #| eval: true
 #| code-summary: "RI_4A4_ks4_attainment8 line chart"
+#| fig-alt: |
+#|   Line chart of average Attainment 8 score by academic year from
+#|   2015/16 onwards, for Bath and North East Somerset, Bristol, North
+#|   Somerset, South Gloucestershire and the West of England as a whole.
+#|   Scores dip in the years affected by the COVID-19 pandemic before
+#|   partially recovering, with Bath and North East Somerset generally
+#|   scoring highest and the West of England in the middle of the group.
 
 RI_4A4_ks4_attainment8_plot
 ```
-
-
-
-
 ## Economic Inactivity
 
 ```{r}
@@ -216,7 +241,6 @@ indicator_fact_tbl |>
     polarity = indicator_polarity[["RI_4B2_economic_inactivity"]]
   )
 ```
-
 ### Overview
 
 Economic inactivity can limit workforce participation and reduce the availability of skills within the labour market. This indicator measures the proportion of working-age residents who are neither employed or actively seeking work. Lower levels of inactivity indicate greater participation in economic activity and access to employment opportunities. Reducing inactivity is an important part of addressing labour shortages and supporting inclusive growth.
@@ -225,11 +249,15 @@ Economic inactivity can limit workforce participation and reduce the availabilit
 #| label: RI_4B2_economic_inactivity_plot
 #| eval: true
 #| code-summary: "RI_4B2_economic_inactivity line chart"
+#| fig-alt: |
+#|   Line chart of the economic inactivity rate for residents aged 16 to
+#|   64, tracked monthly over the most recent years, comparing the
+#|   West of England against Great Britain. The West of England rate
+#|   tracks below the Great Britain rate for most of the period, with
+#|   both series showing similar fluctuations over time.
 
 RI_4B2_economic_inactivity_plot
 ```
-
-
 ## NEET 16-17
 
 ```{r}
@@ -255,11 +283,15 @@ Participation in education, employment or training during the transition from sc
 #| label: RI_4B3_neet_16_17_plot
 #| eval: true
 #| code-summary: "RI_4B3_neet_16_17 line chart"
+#| fig-alt: |
+#|   Line chart of the percentage of 16 to 17 year olds not in education,
+#|   employment or training, by year from 2015 onwards, for Bath and North
+#|   East Somerset, Bristol, North Somerset, South Gloucestershire and the
+#|   West of England as a whole. Rates vary between the local authorities
+#|   year to year, with no single authority consistently highest or lowest.
 
 RI_4B3_neet_16_17_plot
 ```
-
-
 ## NEET 18-24
 Please note: This indicator is currently under development and data is not yet available for reporting. Analysis will be included in a future update of the Regional Indicators report.
 
@@ -288,14 +320,16 @@ The quality of employment is an important aspect of economic wellbeing. This ind
 #| label: RI_4B5_below_living_wage_plot
 #| eval: true
 #| code-summary: "RI_4B5_below_living_wage line chart"
+#| fig-alt: |
+#|   Bar chart of the percentage of employees in the West of England
+#|   earning below the Real Living Wage, by year from 2015 onwards. The
+#|   share below the Living Wage has generally declined over the period,
+#|   though the most recent year is provisional and may be revised.
 
 RI_4B5_below_living_wage_plot
 ```
-
-
 ## Claimant Count in Deprived Wards
 Please note: This indicator is currently under development and data is not yet available for reporting. Analysis will be included in a future update of the Regional Indicators report.
-
 
 ## Skills Gaps
 

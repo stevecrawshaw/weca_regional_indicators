@@ -66,8 +66,6 @@ format_priority_summary(
   title = "Green Jobs and Growth: Indicator Summary"
 )
 ```
----
-
 ## Greenhouse Gas Emissions
 
 ```{r}
@@ -117,8 +115,6 @@ The indicator is defined by subset of sectors. To calculate the proportion of to
 #|   emissions in KT CO2e. The chart shows that Transport is the largest contributor followed by Domestic
 RI_5_sector_current_year_plot
 ```
----
-
 ## Heat Associated Mortality
 
 ```{r}
@@ -152,8 +148,6 @@ This indicator tracks the number of heat associated deaths per million populatio
 #|   continuing rise in ambient temperatures from a warming climate.
 RI_5E1_heat_stress_deaths_plot
 ```
----
-
 ## Flood Warnings Intensity
 
 ```{r}
@@ -190,8 +184,6 @@ This indicator is designed to represent the risk of flooding relative to a 2020 
 #|   intensity in the series.
 RI_5E2_flood_warning_index_plot
 ```
----
-
 ## Water Catchment Health
 
 ```{r}
@@ -227,8 +219,6 @@ This indicator tracks the ecological health of surface waters in the catchment w
 
 RI_5F4_plot
 ```
----
-
 ## Tree Canopy
 
 ```{r}
@@ -264,8 +254,6 @@ This indicator tracks the extent of tree canopy cover in the region, as measured
 
 RI_5F1_plot
 ```
----
-
 ## Non-Domestic Energy Performance
 
 ```{r}
@@ -300,8 +288,6 @@ This indicator measures the energy efficiency of non - domestic property by expr
 #|   proportion of best-performing non-domestic buildings.
 RI_5B1_nondom_epc_a_plot
 ```
----
-
 ## Domestic Renewable Energy
 
 ```{r}
@@ -336,8 +322,6 @@ Solar photovoltaic (PV) installations are a key aspect of energy security and ne
 #|   growth in domestic solar adoption.
 RI_5A2_domestic_renewable_plot
 ```
----
-
 ## Renewable Energy
 
 ```{r}
@@ -374,4 +358,3 @@ Potential for renewable energy capacity is strongly influenced by land availabil
 
 RI_5A1_renewable_plot
 ```
----

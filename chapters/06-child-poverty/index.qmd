@@ -132,12 +132,20 @@ indicator_fact_tbl |>
 ```
 
 ### Overview
+
 Child poverty can have lasting impacts on children's health, educational attainment and future employment opportunities. This indicator measures the proportion of children living in households with incomes below 60% of the national median after housing costs have been taken into account. Higher levels indicate that more children are growing up in financial hardship, which can affect outcomes throughout their lives. Monitoring child poverty helps assess progress towards reducing inequalities and ensuring that all children and families can benefit from economic growth.
 
 ```{r}
 #| label: RI_6A1_child_poverty_plot
 #| eval: true
 #| code-summary: "RI_6A1_child_poverty line chart"
+#| fig-alt: |
+#|   Bar chart of the proportion of children living in low-income
+#|   households after housing costs in the West of England, financial
+#|   year 2015/16 to 2023/24. The x-axis shows financial year; the y-axis
+#|   shows percentage of children in poverty. The rate held broadly steady
+#|   between 24% and 26% for most of the period before rising to almost
+#|   27.5% in 2023/24, the highest level in the series.
 
 RI_6A1_child_poverty_plot
 ```
@@ -166,6 +174,15 @@ Early childhood development plays a crucial role in shaping future educational a
 #| label: RI_6A2_child_development_u5_plot
 #| eval: true
 #| code-summary: "RI_6A2_child_development_u5 line chart"
+#| fig-alt: |
+#|   Line chart comparing the percentage of children achieving a good
+#|   level of development by age five across Bath and North East
+#|   Somerset, Bristol, North Somerset, South Gloucestershire and the
+#|   West of England, from 2015/16 onward. The x-axis shows academic
+#|   year; the y-axis shows percentage, with each local authority shown
+#|   in a different colour. The West of England average has improved in
+#|   recent years, rising from around 68% in 2021/22 to almost 72% in
+#|   2024/25, with local authorities following a similar upward pattern.
 
 RI_6A2_child_development_u5_plot
 ```
@@ -194,6 +211,14 @@ Educational attainment during primary school is an important predictor of future
 #| label: RI_6A3_ks2_expected_standards_plot
 #| eval: true
 #| code-summary: "RI_6A3_ks2_expected_standards line chart"
+#| fig-alt: |
+#|   Bar chart of the proportion of pupils meeting expected standards in
+#|   reading, writing and maths at Key Stage 2 in the West of England,
+#|   academic year 2015/16 to 2024/25. The x-axis shows academic year;
+#|   the y-axis shows percentage. Attainment rose from around 54% in
+#|   2015/16 to a peak of nearly 66% in 2018/19, then no data is shown
+#|   for 2019/20 and 2020/21 because assessments were cancelled during
+#|   the pandemic, before recovering to around 62% by 2024/25.
 
 RI_6A3_ks2_expected_standards_plot
 ```
@@ -220,6 +245,13 @@ Eligibility for free school meals is widely used as a proxy measure of socioecon
 #| label: RI_6A4_free_school_meals_plot
 #| eval: true
 #| code-summary: "RI_6A4_free_school_meals line chart"
+#| fig-alt: |
+#|   Bar chart of the proportion of pupils eligible for free school meals
+#|   in the West of England, academic year 2015/16 to 2024/25. The
+#|   x-axis shows academic year; the y-axis shows percentage. Eligibility
+#|   has climbed steadily and continuously, from around 13% in 2015/16 to
+#|   nearly 22% in 2024/25, indicating a growing proportion of families
+#|   experiencing financial hardship.
 
 RI_6A4_free_school_meals_plot
 ```
@@ -246,13 +278,15 @@ Access to childcare supports children's development while enabling parents and c
 #| label: RI_6B1_childcare_places_plot
 #| eval: true
 #| code-summary: "RI_6B1_childcare_places line chart"
+#| fig-alt: |
+#|   Line and point chart of childcare places relative to the population
+#|   aged 0 to 4 in the West of England, each August from 2020 to 2025.
+#|   The x-axis shows year; the y-axis shows percentage. Availability has
+#|   increased steadily each year, from around 45% in 2020 to almost 50%
+#|   in 2025, showing gradually improving childcare capacity.
 
 RI_6B1_childcare_places_plot
 ```
-
-
-
-
 ## Early Years Settings Rated Good or Outstanding
 ```{r}
 #| label: RI_6B2_early_years_quality_gt
@@ -274,7 +308,16 @@ The quality of early years provision plays a significant role in children's deve
 ```{r}
 #| label: RI_6B2_early_years_quality_plot
 #| eval: true
-#| code-summary: "RI_6B2_early_years_quality line chart" 
+#| code-summary: "RI_6B2_early_years_quality line chart"
+#| fig-alt: |
+#|   Line chart comparing the percentage of early years settings rated
+#|   good or outstanding across Bath and North East Somerset, Bristol,
+#|   North Somerset, South Gloucestershire and the West of England, each
+#|   August from 2020 to 2025. The x-axis shows date; the y-axis shows
+#|   percentage, with each local authority shown in a different colour.
+#|   Quality ratings remain consistently high across all areas throughout
+#|   the period, with the West of England average staying between around
+#|   96% and 99%, showing little change over time.
 
 RI_6B2_early_years_quality_plot
 ```
@@ -297,6 +340,15 @@ Life expectancy gap is a widely used measure of population health and inequality
 #| label: RI_6D2_life_expectancy_gap_female_plot
 #| eval: true
 #| code-summary: "RI_6D2_life_expectancy_gap female line chart"
+#| fig-alt: |
+#|   Line chart of the gap in female life expectancy at birth between the
+#|   most and least deprived areas, for Bath and North East Somerset,
+#|   Bristol, North Somerset and South Gloucestershire, from 2015
+#|   onward. The x-axis shows time period; the y-axis shows the gap in
+#|   years, on a scale from 0 to 14. The gap differs by local authority,
+#|   with some areas showing a persistently wider gap than others,
+#|   indicating uneven progress in reducing health inequalities between
+#|   women in the most and least deprived neighbourhoods.
 
 RI_6D2_life_expectancy_gap_female_plot
 ```
@@ -305,11 +357,18 @@ RI_6D2_life_expectancy_gap_female_plot
 #| label: RI_6D2_life_expectancy_gap_male_plot
 #| eval: true
 #| code-summary: "RI_6D2_life_expectancy_gap male line chart"
+#| fig-alt: |
+#|   Line chart of the gap in male life expectancy at birth between the
+#|   most and least deprived areas, for Bath and North East Somerset,
+#|   Bristol, North Somerset and South Gloucestershire, from 2015
+#|   onward. The x-axis shows time period; the y-axis shows the gap in
+#|   years, on a scale from 0 to 14. Male gaps are generally wider than
+#|   the equivalent female gaps shown in the previous chart, and vary
+#|   noticeably between local authorities, reflecting differing levels of
+#|   health inequality across the region.
 
 RI_6D2_life_expectancy_gap_male_plot
 ```
-
-
 ## Healthy Life Expectancy at Birth
 
 ### Overview
@@ -320,6 +379,14 @@ Healthy life expectancy is a measure of both the length and quality of life. Thi
 #| label: RI_6D3_healthy_life_expectancy_female_plot
 #| eval: true
 #| code-summary: "RI_6D3_healthy_life_expectancy female line chart"
+#| fig-alt: |
+#|   Line chart of healthy life expectancy at birth for women, for Bath
+#|   and North East Somerset, Bristol, North Somerset and South
+#|   Gloucestershire, from 2015 onward. The x-axis shows time period; the
+#|   y-axis shows years of healthy life, on a scale from 60 to 70. Levels
+#|   differ between local authorities and show only modest change over
+#|   time, indicating persistent variation in how many years women can
+#|   expect to live in good health across the region.
 
 RI_6D3_healthy_life_expectancy_female_plot
 ```
@@ -328,11 +395,17 @@ RI_6D3_healthy_life_expectancy_female_plot
 #| label: RI_6D3_healthy_life_expectancy_male_plot
 #| eval: true
 #| code-summary: "RI_6D3_healthy_life_expectancy male line chart"
+#| fig-alt: |
+#|   Line chart of healthy life expectancy at birth for men, for Bath and
+#|   North East Somerset, Bristol, North Somerset and South
+#|   Gloucestershire, from 2015 onward. The x-axis shows time period; the
+#|   y-axis shows years of healthy life, on a scale from 60 to 70. Local
+#|   authorities track fairly close together with only gradual change
+#|   over time, though a consistent gap remains between the highest and
+#|   lowest performing areas.
 
 RI_6D3_healthy_life_expectancy_male_plot
 ```
-
-
 ## Child Health: Good Level of Development at 2–2.5 Year Review
 
 ```{r}
@@ -358,11 +431,17 @@ The 2 to 2½ year review is an important early assessment of children's developm
 #| label: RI_6D4_child_health_2yr_review_plot
 #| eval: true
 #| code-summary: "RI_6D4_child_health_2yr_review line chart"
+#| fig-alt: |
+#|   Bar chart of the proportion of children in the West of England
+#|   achieving a good level of development at their 2 to 2.5 year
+#|   review, financial year 2021/22 to 2024/25. The x-axis shows
+#|   financial year; the y-axis shows percentage, on a scale from 70% to
+#|   100%. The proportion rose from around 84% in 2021/22 to almost 87%
+#|   by 2024/25, showing steady improvement in early child development
+#|   outcomes.
 
 RI_6D4_child_health_2yr_review_plot
 ```
-
-
 ## Pupils with Social, Emotional and Mental Health Needs
 
 ```{r}
@@ -388,6 +467,13 @@ Social, emotional and mental health are important factors influencing children's
 #| label: RI_6D5_pupil_semh_needs_plot
 #| eval: true
 #| code-summary: "RI_6D5_pupil_semh_needs line chart"
+#| fig-alt: |
+#|   Bar chart of the proportion of school pupils in the West of England
+#|   identified with social, emotional and mental health needs, academic
+#|   year 2015/16 to 2024/25. The x-axis shows academic year; the y-axis
+#|   shows percentage. The proportion has risen continuously and more
+#|   than doubled, from around 2.4% in 2015/16 to over 5.3% in 2024/25,
+#|   indicating a growing prevalence of SEMH needs among pupils.
 
 RI_6D5_pupil_semh_needs_plot
 ```

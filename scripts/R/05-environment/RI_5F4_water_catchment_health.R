@@ -28,8 +28,8 @@ RI_5F4_plot <- RI_5F4_fact_tbl |>
     limits = c(0, 100)
   ) +
   scale_x_continuous(breaks = seq(RI_5F4_start_year, RI_5F4_end_year, by = 1)) +
-  geom_line(linewidth = 1) +
-  geom_point(size = 4) +
+  geom_line(color = "#40A832", linewidth = 1) +
+  geom_point(size = 2, color = "#40A832") +
   labs(
     title = "Proportion of Surface Waters in 'Good' Ecological Health",
     subtitle = "Avon Bristol and Somerset North Streams",

@@ -50,8 +50,8 @@ RI_5E1_heat_stress_deaths_plot <- RI_5E1_heat_stress_deaths_fact_tbl |>
   ggplot(aes(x = year, y = value)) +
   scale_y_continuous(labels = scales::comma, limits = c(0, 50)) +
   scale_x_continuous(breaks = seq(RI_5E1_start_year, RI_5E1_end_year, by = 1)) +
-  geom_line() +
-  geom_point(size = 2) +
+  geom_line(color = "#40A832", linewidth = 1) +
+  geom_point(size = 2, color = "#40A832") +
   labs(
     title = "Heat mortality associated deaths per million population",
     subtitle = "Avon Local Resilience Forum Area",
@@ -61,7 +61,6 @@ RI_5E1_heat_stress_deaths_plot <- RI_5E1_heat_stress_deaths_fact_tbl |>
   ) +
   theme_weca() +
   theme(axis.title.y = element_text(angle = 0, vjust = 0.5))
-
 
 RI_5E1_heat_stress_deaths_fact_tbl |>
   build_fact(indicator_id = "RI_5E1_heat_stress_deaths") |>

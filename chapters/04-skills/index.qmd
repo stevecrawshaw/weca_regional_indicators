@@ -82,9 +82,9 @@ format_priority_summary(
 indicator_fact_tbl |>
   format_indicator_summary(
     "RI_4A1_no_qualifications",
+    dim_tbl = core_dim_data_tbl,
     title = "Residents with No Qualifications",
     subtitle = "Working-age population with no formal qualifications",
-    units = "%",
     polarity = indicator_polarity[["RI_4A1_no_qualifications"]]
   )
 ```
@@ -112,9 +112,9 @@ RI_4A1_no_qualifications_plot
 indicator_fact_tbl |>
   format_indicator_summary(
     "RI_4A2_level4_plus",
+    dim_tbl = core_dim_data_tbl,
     title = "Residents with Level 4+ Qualifications",
     subtitle = "Working-age population qualified to Level 4 and above",
-    units = "%",
     polarity = indicator_polarity[["RI_4A2_level4_plus"]]
   )
 ```
@@ -142,9 +142,9 @@ RI_4A2_level4_plus_plot
 indicator_fact_tbl |>
   format_indicator_summary(
     "RI_4A3_apprenticeship_starts",
+    dim_tbl = core_dim_data_tbl,
     title = "Annual change in apprenticeship starts",
     subtitle = "Percentage change from the previous academic year",
-    units = "%",
     polarity = indicator_polarity[["RI_4A3_apprenticeship_starts"]]
   )
 ```
@@ -178,9 +178,9 @@ RI_4A3_apprenticeship_starts_plot
 indicator_fact_tbl |>
   format_indicator_summary(
     "RI_4A4_ks4_attainment8",
+    dim_tbl = core_dim_data_tbl,
     title = "KS4 Attainment 8",
     subtitle = "Average Attainment 8 score at Key Stage 4",
-    units = "Score",
     polarity = indicator_polarity[["RI_4A4_ks4_attainment8"]]
   )
 ```
@@ -210,9 +210,9 @@ RI_4A4_ks4_attainment8_plot
 indicator_fact_tbl |>
   format_indicator_summary(
     "RI_4B2_economic_inactivity",
+    dim_tbl = core_dim_data_tbl,
     title = "Economic Inactivity",
     subtitle = "Proportion of working-age residents economically inactive",
-    units = "%",
     polarity = indicator_polarity[["RI_4B2_economic_inactivity"]]
   )
 ```
@@ -240,9 +240,9 @@ RI_4B2_economic_inactivity_plot
 indicator_fact_tbl |>
   format_indicator_summary(
     "RI_4B3_neet_16_17",
+    dim_tbl = core_dim_data_tbl,
     title = "NEET 16-17",
     subtitle = "16-17 year olds not in education, employment or training",
-    units = "%",
     polarity = indicator_polarity[["RI_4B3_neet_16_17"]]
   )
 ```
@@ -273,9 +273,9 @@ Please note: This indicator is currently under development and data is not yet a
 indicator_fact_tbl |>
   format_indicator_summary(
     "RI_4B5_below_living_wage",
+    dim_tbl = core_dim_data_tbl,
     title = "Below Living Wage",
     subtitle = "Proportion of employees earning below the Living Wage",
-    units = "%",
     polarity = indicator_polarity[["RI_4B5_below_living_wage"]]
   )
 ```

@@ -61,9 +61,9 @@ format_priority_summary(
 indicator_fact_tbl |>
   format_indicator_summary(
     "RI_1B1_gdp_growth",
+    dim_tbl = core_dim_data_tbl,
     title = "GDP growth since 2013",
     subtitle = "Real GDP (excluding inflation) for the West of England",
-    units = "percent",
     polarity = indicator_polarity[["RI_1B1_gdp_growth"]]
   )
 ```
@@ -89,9 +89,9 @@ RI_1B1_plot
 indicator_fact_tbl |>
   format_indicator_summary(
     "RI_1B2_gva_per_hour",
+    dim_tbl = core_dim_data_tbl,
     title = "Annual GVA per job, 2013-2023",
     subtitle = "Current price GVA (including inflation) per job for the West of England",
-    units = "pounds",
     polarity = indicator_polarity[["RI_1B2_gva_per_hour"]]
   )
 ```
@@ -118,9 +118,9 @@ RI_1B2_plot
 indicator_fact_tbl |>
   format_indicator_summary(
     "RI_1A1_employment_rate",
+    dim_tbl = core_dim_data_tbl,
     title = "Employment Rate 16-64",
     subtitle = "Proportion of working-age residents in employment",
-    units = "%",
     polarity = indicator_polarity[["RI_1A1_employment_rate"]]
   )
 ```
@@ -147,9 +147,9 @@ RI_1A1_employment_rate_plot
 indicator_fact_tbl |>
   format_indicator_summary(
     "RI_1A2_employment_priority_sectors",
+    dim_tbl = core_dim_data_tbl,
     title = "Priority sector employment",
     subtitle = "West of England",
-    units = "jobs",
     polarity = indicator_polarity[["RI_1A2_employment_priority_sectors"]]
   )
 ```
@@ -176,9 +176,9 @@ RI_1A2_employment_priority_sectors_plot
 indicator_fact_tbl |>
   format_indicator_summary(
     "RI_1B3_median_weekly_pay",
+    dim_tbl = core_dim_data_tbl,
     title = "Annual GVA per job, 2013-2023",
     subtitle = "Current price GVA (including inflation) per job for the West of England",
-    units = "pounds",
     polarity = indicator_polarity[["RI_1B3_median_weekly_pay"]]
   )
 ```
@@ -204,9 +204,9 @@ RI_1B3_plot
 indicator_fact_tbl |>
   format_indicator_summary(
     "RI_1D1_broadband_coverage",
+    dim_tbl = core_dim_data_tbl,
     title = "Superfast coverage",
     subtitle = "Residential and commercial premises",
-    units = "percent",
     polarity = indicator_polarity[["RI_1D1_broadband_coverage"]]
   )
 ```
@@ -232,9 +232,9 @@ RI_1D1_plot
 indicator_fact_tbl |>
   format_indicator_summary(
     "RI_1E2_population_change",
+    dim_tbl = core_dim_data_tbl,
     title = "Total population change (cumulative)",
     subtitle = "West of England",
-    units = "percent",
     polarity = indicator_polarity[["RI_1E2_population_change"]]
   )
 ```
@@ -260,9 +260,9 @@ RI_1E2_plot
 indicator_fact_tbl |>
   format_indicator_summary(
     "RI_1E3_area_satisfaction",
+    dim_tbl = core_dim_data_tbl,
     title = "Satisfaction with local area as a place to live",
     subtitle = "Bristol only - see plot for all constituent authorities and North Somerset",
-    units = "percent",
     polarity = indicator_polarity[["RI_1E3_area_satisfaction"]]
   )
 ```

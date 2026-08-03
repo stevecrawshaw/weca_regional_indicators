@@ -77,9 +77,9 @@ format_priority_summary(
 indicator_fact_tbl |>
   format_indicator_summary(
     "RI_5_ghg_emissions",
+    dim_tbl = core_dim_data_tbl,
     title = "Greenhouse Gas Emissions",
     subtitle = "Transport, Commercial, Industry, Public sector, Domestic",
-    units = "Kt CO2e",
     polarity = indicator_polarity[["RI_5_ghg_emissions"]]
   )
 ```
@@ -129,9 +129,9 @@ RI_5_sector_current_year_plot
 indicator_fact_tbl |>
   format_indicator_summary(
     "RI_5E1_heat_stress_deaths",
+    dim_tbl = core_dim_data_tbl,
     title = "Heat Associated Mortality",
     subtitle = "Deaths per million population",
-    units = "deaths per million",
     polarity = indicator_polarity[["RI_5E1_heat_stress_deaths"]]
   )
 ```
@@ -164,9 +164,9 @@ RI_5E1_heat_stress_deaths_plot
 indicator_fact_tbl |>
   format_indicator_summary(
     "RI_5E2_flood_warning_index",
+    dim_tbl = core_dim_data_tbl,
     title = "Flood Warnings Intensity Index",
     subtitle = "Relative to 2020 baseline",
-    units = "",
     polarity = indicator_polarity[["RI_5E2_flood_warning_index"]]
   )
 ```
@@ -202,9 +202,9 @@ RI_5E2_flood_warning_index_plot
 indicator_fact_tbl |>
   format_indicator_summary(
     "RI_5F4_water_catchment_health",
+    dim_tbl = core_dim_data_tbl,
     title = "Water Catchment Health",
     subtitle = "Proportion of surface waters in 'Good' ecological health",
-    units = "%",
     polarity = indicator_polarity[["RI_5F4_water_catchment_health"]]
   )
 ```
@@ -239,9 +239,9 @@ RI_5F4_plot
 indicator_fact_tbl |>
   format_indicator_summary(
     "RI_5F1_tree_canopy",
+    dim_tbl = core_dim_data_tbl,
     title = "Tree Canopy Cover",
     subtitle = "National Forest Inventory Woodland",
-    units = "Ha",
     polarity = indicator_polarity[["RI_5F1_tree_canopy"]]
   )
 ```
@@ -276,9 +276,9 @@ RI_5F1_plot
 indicator_fact_tbl |>
   format_indicator_summary(
     "RI_5B1_nondom_epc_a",
+    dim_tbl = core_dim_data_tbl,
     title = "Non - Domestic Energy Ratings",
     subtitle = "Proportion of properties rated A or A+",
-    units = "%",
     polarity = indicator_polarity[["RI_5B1_nondom_epc_a"]]
   )
 ```
@@ -312,9 +312,9 @@ RI_5B1_nondom_epc_a_plot
 indicator_fact_tbl |>
   format_indicator_summary(
     "RI_5A2_domestic_renewable",
+    dim_tbl = core_dim_data_tbl,
     title = "Domestic Renewable Energy",
     subtitle = "Photovoltaic sites",
-    units = "Sites per household",
     polarity = indicator_polarity[["RI_5A2_domestic_renewable"]]
   )
 ```
@@ -348,9 +348,9 @@ RI_5A2_domestic_renewable_plot
 indicator_fact_tbl |>
   format_indicator_summary(
     "RI_5A1_renewable_capacity_km2",
+    dim_tbl = core_dim_data_tbl,
     title = "Renewable Electricity Installed Capacity",
     subtitle = "Installed capacity per square Km",
-    units = "MW/km2",
     polarity = indicator_polarity[["RI_5A1_renewable_capacity_km2"]]
   )
 ```

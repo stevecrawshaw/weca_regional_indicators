@@ -98,9 +98,9 @@ format_priority_summary(
 indicator_fact_tbl |>
   format_indicator_summary(
     "RI_2A1_bus_rail_trips",
+    dim_tbl = core_dim_data_tbl,
     title = "Bus and Rail Trips",
     subtitle = "DfT/ORR data",
-    units = "Trips pppa",
     polarity = indicator_polarity[["RI_2A1_bus_rail_trips"]]
   )
 ```
@@ -137,9 +137,9 @@ RI_2A1_plot
 indicator_fact_tbl |>
   format_indicator_summary(
     "RI_2A2_pt_satisfaction",
+    dim_tbl = core_dim_data_tbl,
     title = "Bus Satisfaction",
     subtitle = "% of bus users satisfied",
-    units = "%",
     polarity = indicator_polarity[["RI_2A2_pt_satisfaction"]]
   )
 ```
@@ -172,9 +172,9 @@ RI_2A2_plot
 indicator_fact_tbl |>
   format_indicator_summary(
     "RI_2D2_bus_value_for_money",
+    dim_tbl = core_dim_data_tbl,
     title = "Bus satisfaction with Value for Money",
     subtitle = "% of bus users satisfied",
-    units = "%",
     polarity = indicator_polarity[["RI_2D2_bus_value_for_money"]]
   )
 ```
@@ -209,9 +209,9 @@ RI_2D2_plot
 indicator_fact_tbl |>
   format_indicator_summary(
     "RI_2B1_walk_cycle_rate",
+    dim_tbl = core_dim_data_tbl,
     title = "Active Travel Participation Rates",
     subtitle = "% participating at least twice in the past 28 days",
-    units = "%",
     polarity = indicator_polarity[["RI_2B1_walk_cycle_rate"]]
   )
 ```
@@ -252,9 +252,9 @@ RI_2B1_plot
 indicator_fact_tbl |>
   format_indicator_summary(
     "RI_2B3_active_travel_satisfaction",
+    dim_tbl = core_dim_data_tbl,
     title = "Active Travel Satisfaction",
     subtitle = "% of people surveyed by NHT",
-    units = "%",
     polarity = indicator_polarity[["RI_2B3_active_travel_satisfaction"]]
   )
 ```
@@ -290,9 +290,9 @@ RI_2B3_plot
 indicator_fact_tbl |>
   format_indicator_summary(
     "RI_2B2_ebike_escooter_usage",
+    dim_tbl = core_dim_data_tbl,
     title = "E-bike and E-scooter Usage",
     subtitle = "Operated by Voi (Oct 24 - Aug 23), Tier (Sept 23- Aug 24), Dott (Sept 24 - present) ",
-    units = "Trips",
     polarity = indicator_polarity[["RI_2B2_ebike_escooter_usage"]]
   )
 ```
@@ -329,9 +329,9 @@ RI_2B2_plot
 indicator_fact_tbl |>
   format_indicator_summary(
     "RI_2C1_pt_connectivity_score",
+    dim_tbl = core_dim_data_tbl,
     title = "Public Transport Connectivity",
     subtitle = "Peak hour journey times to education, employment, health and retail",
-    units = "Score",
     polarity = indicator_polarity[["RI_2C1_pt_connectivity_score"]]
   )
 ```
@@ -366,9 +366,9 @@ RI_2C1_plot
 indicator_fact_tbl |>
   format_indicator_summary(
     "RI_2C2_pop_30min_employment",
+    dim_tbl = core_dim_data_tbl,
     title = "Population within 30 minutes of major employment sites",
     subtitle = "by bus, train, walking or cycling",
-    units = "%",
     polarity = indicator_polarity[["RI_2C2_pop_30min_employment"]]
   )
 ```
@@ -404,9 +404,9 @@ RI_2C2_plot
 indicator_fact_tbl |>
   format_indicator_summary(
     "RI_2_mode_share",
+    dim_tbl = core_dim_data_tbl,
     title = "Mode Share in the West of England",
     subtitle = "DfT: National Travel Survey",
-    units = "%",
     polarity = indicator_polarity[["RI_2_mode_share"]]
   )
 ```

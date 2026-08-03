@@ -124,9 +124,9 @@ All indicators in this section relate to the wider West of England geography, wh
 indicator_fact_tbl |>
   format_indicator_summary(
     "RI_6A1_child_poverty",
+    dim_tbl = core_dim_data_tbl,
     title = "Child Poverty",
     subtitle = "Children living in low-income families after housing costs",
-    units = "%",
     polarity = indicator_polarity[["RI_6A1_child_poverty"]]
   )
 ```
@@ -151,9 +151,9 @@ RI_6A1_child_poverty_plot
 indicator_fact_tbl |>
   format_indicator_summary(
     "RI_6A2_child_development_u5",
+    dim_tbl = core_dim_data_tbl,
     title = "Good Level of Development by Age 5",
     subtitle = "Children achieving a good level of development",
-    units = "%",
     polarity = indicator_polarity[["RI_6A2_child_development_u5"]]
   )
 ```
@@ -179,9 +179,9 @@ RI_6A2_child_development_u5_plot
 indicator_fact_tbl |>
   format_indicator_summary(
     "RI_6A3_ks2_expected_standards",
+    dim_tbl = core_dim_data_tbl,
     title = "KS2 Expected Standards",
     subtitle = "Pupils meeting expected standards in reading, writing and maths",
-    units = "%",
     polarity = indicator_polarity[["RI_6A3_ks2_expected_standards"]]
   )
 ```
@@ -206,9 +206,9 @@ RI_6A3_ks2_expected_standards_plot
 indicator_fact_tbl |>
   format_indicator_summary(
     "RI_6A4_free_school_meals",
+    dim_tbl = core_dim_data_tbl,
     title = "Free School Meals Eligibility",
     subtitle = "Pupils eligible for free school meals",
-    units = "%",
     polarity = indicator_polarity[["RI_6A4_free_school_meals"]]
   )
 ```
@@ -232,9 +232,9 @@ RI_6A4_free_school_meals_plot
 indicator_fact_tbl |>
   format_indicator_summary(
     "RI_6B1_childcare_places",
+    dim_tbl = core_dim_data_tbl,
     title = "Childcare Places",
     subtitle = "Childcare places relative to the population aged 0-4",
-    units = "%",
     polarity = indicator_polarity[["RI_6B1_childcare_places"]]
   )
 ```
@@ -261,9 +261,9 @@ RI_6B1_childcare_places_plot
 indicator_fact_tbl |>
   format_indicator_summary(
     "RI_6B2_early_years_quality",
+    dim_tbl = core_dim_data_tbl,
     title = "Early Years Settings Rated Good or Outstanding",
     subtitle = "Early years settings judged good or outstanding",
-    units = "%",
     polarity = indicator_polarity[["RI_6B2_early_years_quality"]]
   )
 ```
@@ -343,9 +343,9 @@ RI_6D3_healthy_life_expectancy_male_plot
 indicator_fact_tbl |>
   format_indicator_summary(
     "RI_6D4_child_health_2yr_review",
+    dim_tbl = core_dim_data_tbl,
     title = "Child Health at 2–2.5 Year Review",
     subtitle = "Children achieving a good level of development at review",
-    units = "%",
     polarity = indicator_polarity[["RI_6D4_child_health_2yr_review"]]
   )
 ```
@@ -373,9 +373,9 @@ RI_6D4_child_health_2yr_review_plot
 indicator_fact_tbl |>
   format_indicator_summary(
     "RI_6D5_pupil_semh_needs",
+    dim_tbl = core_dim_data_tbl,
     title = "Pupils with Social, Emotional and Mental Health Needs",
     subtitle = "School pupils identified with SEMH needs",
-    units = "%",
     polarity = indicator_polarity[["RI_6D5_pupil_semh_needs"]]
   )
 ```

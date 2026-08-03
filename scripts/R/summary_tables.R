@@ -291,8 +291,9 @@ format_priority_summary <- function(
 #' One table per priority (that has FACT data), stacked with spacing via a
 #' `gt_group`. Each table shows one row per indicator with the latest observed
 #' value, its period, units, and a change column: percentage-point change for
-#' percentage indicators (units == "%"), otherwise relative % change vs the
-#' previous observation. "--" where no previous observation exists.
+#' percentage indicators (`unit_type == "percent"`), otherwise relative %
+#' change vs the previous observation. "--" where no previous observation
+#' exists.
 #'
 #' Splitting into separate tables (rather than one grouped table) avoids the
 #' Bootstrap `.table-striped` conflict with a green group band: striping inside
@@ -352,7 +353,7 @@ format_overall_summary <- function(
 
   tbl <- tbl |>
     dplyr::mutate(
-      is_percent = (units == "%"),
+      is_percent = (unit_type == "percent"),
       change_raw = dplyr::if_else(
         is_percent,
         latest_value - previous_value,

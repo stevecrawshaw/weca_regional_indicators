@@ -32,13 +32,14 @@
 #'   `pct_change`, `pct_change_since_first`, `n_observations`, `sparkline`,
 #'   `last_updated`.
 #' @param indicator_id Character scalar identifying the row to render.
-#' @param units Character scalar. Units suffix shown alongside the latest /
-#'   previous / first values, e.g. `"kt CO2e"`, `"GWh"`, `"%"`. Default `""`
-#'   (no unit). When `units == "%"`, the "Change vs previous" and "Change
-#'   since first" rows are expressed in **percentage points** (absolute
-#'   difference of the underlying values) rather than as a relative
-#'   `pct_change`, since a relative change between two percentages is
-#'   rarely what readers want.
+#' @param dim_tbl The core DIM data tibble (e.g. `core_dim_data_tbl`).
+#'   `units` and `unit_type` for the indicator are looked up from this table
+#'   by `indicator_id` via `get_dim_indicator()`. When `unit_type` is
+#'   `"percent"`, the "Change vs previous" and "Change since first" rows are
+#'   expressed in **percentage points** (absolute difference of the
+#'   underlying values) rather than as a relative `pct_change`, since a
+#'   relative change between two percentages is rarely what readers want, and
+#'   values are suffixed "%" rather than the raw `units` label.
 #' @param title Optional gt table title. Defaults to `indicator_id`.
 #' @param subtitle Optional gt table subtitle.
 #' @param value_fmt Optional formatter applied to the numeric value cells
@@ -55,14 +56,14 @@
 #' rv <- build_reporting_view(collate_fact())
 #'
 #' # Default formatting (comma-separated numerics with a unit suffix)
-#' format_indicator_summary(rv, "RI_5_ghg_emissions", units = "kt CO2e")
+#' format_indicator_summary(rv, "RI_5_ghg_emissions", core_dim_data_tbl)
 #'
 #' # Percentage indicator - change rows switch to percentage points
-#' format_indicator_summary(rv, "RI_5A1_renewable_share", units = "%")
+#' format_indicator_summary(rv, "RI_5A1_renewable_share", core_dim_data_tbl)
 #' }
 format_indicator_summary <- function(reporting_view,
                                      indicator_id,
-                                     units = "",
+                                     dim_tbl,
                                      polarity = 0L,
                                      title = NULL,
                                      subtitle = NULL,
@@ -79,8 +80,8 @@ format_indicator_summary <- function(reporting_view,
       call. = FALSE
     )
   }
-  if (!is.character(units) || length(units) != 1L || is.na(units)) {
-    stop("`units` must be a single character string (use \"\" for none).",
+  if (!is.data.frame(dim_tbl)) {
+    stop("`dim_tbl` must be a data frame (e.g. core_dim_data_tbl).",
       call. = FALSE
     )
   }
@@ -133,19 +134,23 @@ format_indicator_summary <- function(reporting_view,
   }
   spark_vec <- row$sparkline[[1]]
 
+  # --- DIM lookup ------------------------------------------------------------
+  dim_row <- get_dim_indicator(dim_tbl, indicator_id)
+  units <- dim_row$units
+
   # --- formatting helpers --------------------------------------------------
-  # NB: When units == "%" we report change rows in percentage points rather
-  # than as pct_change, since a relative change between two percentages is
-  # rarely what a reader wants (20% -> 22% is +2 ppts, not +10%). Longer
-  # term this logic belongs in build_reporting_view() alongside a proper
-  # units column on the FACT/DIM tables.
+  # NB: When unit_type == "percent" we report change rows in percentage
+  # points rather than as pct_change, since a relative change between two
+  # percentages is rarely what a reader wants (20% -> 22% is +2 ppts, not
+  # +10%).
   if (is.null(value_fmt)) {
     value_fmt <- scales::label_comma(accuracy = 0.1)
   }
   # No space before "%" (e.g. "22.4%"); space for worded units (e.g. "4,410 kt CO2e").
-  unit_suffix <- if (!nzchar(units)) {
+  is_percent <- identical(dim_row$unit_type, "percent")
+  unit_suffix <- if (is.na(units) || !nzchar(units)) {
     ""
-  } else if (identical(units, "%")) {
+  } else if (is_percent) {
     "%"
   } else {
     paste0(" ", units)
@@ -170,7 +175,6 @@ format_indicator_summary <- function(reporting_view,
     fmt_val(row$first_value), fmt_date_suffix(row$first_period_end)
   )
 
-  is_percent <- identical(units, "%")
   change_vs_previous_raw <- if (is_percent) {
     row$latest_value - row$previous_value
   } else {

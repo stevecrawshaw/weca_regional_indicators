@@ -170,7 +170,7 @@ format_priority_summary <- function(
       align = "center",
       columns = c("period_start", "period_end")
     ) |>
-    gt::fmt_number(columns = "value", decimals = 1, use_seps = TRUE) |>
+    gt::fmt_number(columns = "value", decimals = 0, use_seps = TRUE) |>
     gt::cols_width(indicator_summary ~ gt::px(360)) |>
     gt::tab_style(
       style = gt::cell_text(weight = "bold"),
@@ -239,7 +239,7 @@ format_priority_summary <- function(
       align = "center",
       columns = c("period_start", "period_end")
     ) |>
-    gt::fmt_number(columns = "value", decimals = 1, use_seps = TRUE) |>
+    gt::fmt_number(columns = "value", decimals = 0, use_seps = TRUE) |>
     gt::cols_width(
       indicator_summary ~ gt::pct(.overall_col_pct[["indicator_summary"]]),
       period_start ~ gt::pct(.overall_col_pct[["period_start"]]),

@@ -61,47 +61,69 @@
 #' # Percentage indicator - change rows switch to percentage points
 #' format_indicator_summary(rv, "RI_5A1_renewable_share", core_dim_data_tbl)
 #' }
-format_indicator_summary <- function(reporting_view,
-                                     indicator_id,
-                                     dim_tbl,
-                                     polarity = 0L,
-                                     title = NULL,
-                                     subtitle = NULL,
-                                     value_fmt = NULL) {
+format_indicator_summary <- function(
+  reporting_view,
+  indicator_id,
+  dim_tbl,
+  polarity = 0L,
+  title = NULL,
+  subtitle = NULL,
+  value_fmt = NULL
+) {
   # --- argument validation -------------------------------------------------
   if (!is.data.frame(reporting_view)) {
-    stop("`reporting_view` must be a data frame produced by build_reporting_view().",
+    stop(
+      "`reporting_view` must be a data frame produced by build_reporting_view().",
       call. = FALSE
     )
   }
-  if (!is.character(indicator_id) || length(indicator_id) != 1L ||
-    is.na(indicator_id) || !nzchar(indicator_id)) {
-    stop("`indicator_id` must be a single non-empty character string.",
+  if (
+    !is.character(indicator_id) ||
+      length(indicator_id) != 1L ||
+      is.na(indicator_id) ||
+      !nzchar(indicator_id)
+  ) {
+    stop(
+      "`indicator_id` must be a single non-empty character string.",
       call. = FALSE
     )
   }
   if (!is.data.frame(dim_tbl)) {
-    stop("`dim_tbl` must be a data frame (e.g. core_dim_data_tbl).",
+    stop(
+      "`dim_tbl` must be a data frame (e.g. core_dim_data_tbl).",
       call. = FALSE
     )
   }
-  if (!is.numeric(polarity) || length(polarity) != 1L || is.na(polarity) ||
-      !polarity %in% c(-1L, 0L, 1L)) {
-    stop("`polarity` must be one of -1 (up is bad), 0 (neutral), or 1 (up is good).",
+  if (
+    !is.numeric(polarity) ||
+      length(polarity) != 1L ||
+      is.na(polarity) ||
+      !polarity %in% c(-1L, 0L, 1L)
+  ) {
+    stop(
+      "`polarity` must be one of -1 (up is bad), 0 (neutral), or 1 (up is good).",
       call. = FALSE
     )
   }
 
   required <- c(
-    "indicator_id", "latest_period_end", "latest_value",
-    "previous_period_end", "previous_value",
-    "first_period_end", "first_value",
-    "pct_change", "pct_change_since_first",
-    "n_observations", "sparkline", "last_updated"
+    "indicator_id",
+    "latest_period_end",
+    "latest_value",
+    "previous_period_end",
+    "previous_value",
+    "first_period_end",
+    "first_value",
+    "pct_change",
+    "pct_change_since_first",
+    "n_observations",
+    "sparkline",
+    "last_updated"
   )
   missing_cols <- setdiff(required, names(reporting_view))
   if (length(missing_cols) > 0L) {
-    stop("`reporting_view` is missing required columns: ",
+    stop(
+      "`reporting_view` is missing required columns: ",
       paste(missing_cols, collapse = ", "),
       ". Did you pass the raw FACT table instead of build_reporting_view() output?",
       call. = FALSE
@@ -109,16 +131,28 @@ format_indicator_summary <- function(reporting_view,
   }
 
   # --- row selection -------------------------------------------------------
-  row <- reporting_view[reporting_view$indicator_id == indicator_id, , drop = FALSE]
+  row <- reporting_view[
+    reporting_view$indicator_id == indicator_id,
+    ,
+    drop = FALSE
+  ]
   if (nrow(row) == 0L) {
-    available <- paste(sort(unique(reporting_view$indicator_id)), collapse = ", ")
-    stop("No row for indicator_id '", indicator_id, "'. Available ids: ",
+    available <- paste(
+      sort(unique(reporting_view$indicator_id)),
+      collapse = ", "
+    )
+    stop(
+      "No row for indicator_id '",
+      indicator_id,
+      "'. Available ids: ",
       available,
       call. = FALSE
     )
   }
   if (nrow(row) > 1L) {
-    stop("More than one row matched indicator_id '", indicator_id,
+    stop(
+      "More than one row matched indicator_id '",
+      indicator_id,
       "'. The reporting view should have one row per indicator - ",
       "investigate build_reporting_view() upstream.",
       call. = FALSE
@@ -126,9 +160,13 @@ format_indicator_summary <- function(reporting_view,
   }
 
   # --- sparkline column sanity check ---------------------------------------
-  if (!is.list(row$sparkline) || length(row$sparkline) != 1L ||
-    !is.numeric(row$sparkline[[1]])) {
-    stop("`reporting_view$sparkline` must be a list-column of numeric vectors.",
+  if (
+    !is.list(row$sparkline) ||
+      length(row$sparkline) != 1L ||
+      !is.numeric(row$sparkline[[1]])
+  ) {
+    stop(
+      "`reporting_view$sparkline` must be a list-column of numeric vectors.",
       call. = FALSE
     )
   }
@@ -144,7 +182,7 @@ format_indicator_summary <- function(reporting_view,
   # percentages is rarely what a reader wants (20% -> 22% is +2 ppts, not
   # +10%).
   if (is.null(value_fmt)) {
-    value_fmt <- scales::label_comma(accuracy = 0.1)
+    value_fmt <- scales::label_comma(accuracy = 1)
   }
   # No space before "%" (e.g. "22.4%"); space for worded units (e.g. "4,410 kt CO2e").
   is_percent <- identical(dim_row$unit_type, "percent")
@@ -166,13 +204,16 @@ format_indicator_summary <- function(reporting_view,
   }
 
   latest_txt <- paste0(
-    fmt_val(row$latest_value), fmt_date_suffix(row$latest_period_end)
+    fmt_val(row$latest_value),
+    fmt_date_suffix(row$latest_period_end)
   )
   previous_txt <- paste0(
-    fmt_val(row$previous_value), fmt_date_suffix(row$previous_period_end)
+    fmt_val(row$previous_value),
+    fmt_date_suffix(row$previous_period_end)
   )
   first_txt <- paste0(
-    fmt_val(row$first_value), fmt_date_suffix(row$first_period_end)
+    fmt_val(row$first_value),
+    fmt_date_suffix(row$first_period_end)
   )
 
   change_vs_previous_raw <- if (is_percent) {
@@ -187,7 +228,7 @@ format_indicator_summary <- function(reporting_view,
   }
   change_vs_previous_txt <- .fmt_change(change_vs_previous_raw, is_percent)
   change_since_first_txt <- .fmt_change(change_since_first_raw, is_percent)
-  col_vs_prev  <- .change_colour(change_vs_previous_raw, polarity)
+  col_vs_prev <- .change_colour(change_vs_previous_raw, polarity)
   col_vs_first <- .change_colour(change_since_first_raw, polarity)
 
   # --- long-form two-column table -----------------------------------------
@@ -221,7 +262,7 @@ format_indicator_summary <- function(reporting_view,
 
   gt::gt(display_tbl) |>
     gt::tab_header(
-      title    = title %||% indicator_id,
+      title = title %||% indicator_id,
       subtitle = subtitle
     ) |>
     gt::cols_label(metric = "", value = "") |>
@@ -230,26 +271,26 @@ format_indicator_summary <- function(reporting_view,
     gt::text_transform(
       locations = gt::cells_body(
         columns = "value",
-        rows    = metric == "Trend"
+        rows = metric == "Trend"
       ),
       fn = function(x) sparkline_svg
     ) |>
     gt::tab_style(
-      style     = gt::cell_text(color = col_vs_prev),
+      style = gt::cell_text(color = col_vs_prev),
       locations = gt::cells_body(
         columns = "value",
-        rows    = metric == "Change vs previous"
+        rows = metric == "Change vs previous"
       )
     ) |>
     gt::tab_style(
-      style     = gt::cell_text(color = col_vs_first),
+      style = gt::cell_text(color = col_vs_first),
       locations = gt::cells_body(
         columns = "value",
-        rows    = metric == "Change since first"
+        rows = metric == "Change since first"
       )
     ) |>
     gt::tab_options(
-      table.width          = gt::pct(60),
+      table.width = gt::pct(60),
       column_labels.hidden = TRUE
     )
 }
@@ -272,9 +313,15 @@ format_indicator_summary <- function(reporting_view,
   # Single-point edge case: just draw the endpoint dot.
   if (n < 2L) {
     return(paste0(
-      '<svg xmlns="http://www.w3.org/2000/svg" width="', width,
-      '" height="', height, '">',
-      '<circle cx="', width / 2, '" cy="', height / 2,
+      '<svg xmlns="http://www.w3.org/2000/svg" width="',
+      width,
+      '" height="',
+      height,
+      '">',
+      '<circle cx="',
+      width / 2,
+      '" cy="',
+      height / 2,
       '" r="2.5" fill="#c00000"/>',
       "</svg>"
     ))
@@ -282,7 +329,9 @@ format_indicator_summary <- function(reporting_view,
 
   y_rng <- range(vec, na.rm = TRUE)
   # Avoid degenerate range (all values identical).
-  if (diff(y_rng) == 0) y_rng <- y_rng + c(-1, 1)
+  if (diff(y_rng) == 0) {
+    y_rng <- y_rng + c(-1, 1)
+  }
 
   margin <- 3
   plot_w <- width - 2 * margin
@@ -295,12 +344,19 @@ format_indicator_summary <- function(reporting_view,
   pts <- paste(round(xs, 1), round(ys, 1), sep = ",", collapse = " ")
 
   paste0(
-    '<svg xmlns="http://www.w3.org/2000/svg" width="', width,
-    '" height="', height, '">',
-    '<polyline points="', pts,
+    '<svg xmlns="http://www.w3.org/2000/svg" width="',
+    width,
+    '" height="',
+    height,
+    '">',
+    '<polyline points="',
+    pts,
     '" fill="none" stroke="#1f4e79" stroke-width="1.5"',
     ' stroke-linejoin="round" stroke-linecap="round"/>',
-    '<circle cx="', round(xs[n], 1), '" cy="', round(ys[n], 1),
+    '<circle cx="',
+    round(xs[n], 1),
+    '" cy="',
+    round(ys[n], 1),
     '" r="2.5" fill="#c00000"/>',
     "</svg>"
   )

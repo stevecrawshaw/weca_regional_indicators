@@ -66,8 +66,8 @@ RI_5B1_nondom_epc_a_fact_tbl <- make_cumulative_prop_tbl(
 
 RI_5B1_nondom_epc_a_plot <- RI_5B1_nondom_epc_a_fact_tbl |>
   ggplot(aes(x = period_end, y = value)) +
-  geom_line(color = "#40A832", linewidth = 1) +
-  geom_point(size = 2, color = "#40A832") +
+  geom_line(color = get_weca_color("west_green"), linewidth = 1) +
+  geom_point(size = 2, color = get_weca_color("west_green")) +
   labs(
     title = "Proportion of non-domestic properties with EPC rating A or A+",
     subtitle = "Cumulative monthly proportions",

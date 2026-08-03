@@ -121,7 +121,7 @@ RI_5_sector_current_year_plot <-
       x = sector,
       y = territorial_emissions_kt_co2e
     ),
-    fill = get_weca_color("forest_green")
+    fill = get_weca_color("west_green")
   ) +
   labs(
     title = "Latest Greenhouse Gas Emissions by Sector",

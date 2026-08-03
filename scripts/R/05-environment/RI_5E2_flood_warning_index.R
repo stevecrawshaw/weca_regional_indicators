@@ -18,8 +18,8 @@ RI_5E2_flood_warning_index_fact_tbl <- RI_5E2_raw_tbl |>
 
 RI_5E2_flood_warning_index_plot <- RI_5E2_flood_warning_index_fact_tbl |>
   ggplot(aes(x = period_start, y = value)) +
-  geom_line(color = "#40A832", linewidth = 1) +
-  geom_point(size = 2, color = "#40A832") +
+  geom_line(color = get_weca_color("west_green"), linewidth = 1) +
+  geom_point(size = 2, color = get_weca_color("west_green")) +
   geom_hline(
     yintercept = 100,
     linetype = "dashed",

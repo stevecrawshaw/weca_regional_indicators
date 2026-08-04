@@ -1,0 +1,44 @@
+name: CSV Value Change Alert
+
+on:
+  push:
+    paths:
+      - "data/fact/RI_1B1_gdp_growth.csv"
+
+jobs:
+  check-csv-change:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Check if CSV content actually changed
+        id: diff_check
+        run: |
+          if git diff --quiet HEAD^ HEAD -- data/fact/RI_1B1_gdp_growth.csv; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Save diff to file
+        if: steps.diff_check.outputs.changed == 'true'
+        run: |
+          git diff HEAD^ HEAD -- data/fact/RI_1B1_gdp_growth.csv > csv_diff.txt
+
+      - name: Open GitHub issue with diff
+        if: steps.diff_check.outputs.changed == 'true'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const diff = fs.readFileSync('csv_diff.txt', 'utf8');
+            await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: "CSV values changed - tell Joe: RI_1B1_gdp_growth.csv",
+              body: "```diff\n" + diff + "\n```",
+              assignees: ['stevecrawshaw']
+            });

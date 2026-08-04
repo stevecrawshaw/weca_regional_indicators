@@ -1,6 +1,11 @@
 # pacman loads common (i.e. across the project) packages we are using
 # source(here::here) puts the scripts we are using into the correct location
-pacman::p_load(tidyverse, glue, janitor, here, readxl, scales)
+library(tidyverse)
+library(glue)
+library(janitor)
+library(here)
+library(readxl)
+library(scales)
 source(here::here("scripts", "R", "_common.R"))
 
 # read in median wage data
@@ -85,7 +90,7 @@ RI_1B3_median_wage_tbl <- la_estimate_10_years |>
 # save_fact
 RI_1B3_median_wage_tbl |>
   build_fact(
-    indicator_id = "RI_1B3_median_weekly_pay"
+    indicator_id = "RI_1B3_median_pay"
   ) |>
   save_fact()
 
@@ -131,4 +136,4 @@ RI_1B3_plot <- ggplot(la_estimate_10_years, aes(x = date, y = estimated_wage)) +
   )
 
 # Display the plot
-##RI_1B3_plot
+# RI_1B3_plot

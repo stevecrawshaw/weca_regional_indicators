@@ -1,6 +1,11 @@
 # pacman loads common (i.e. across the project) packages we are using
 # source(here::here) puts the scripts we are using into the correct location
-pacman::p_load(tidyverse, glue, janitor, here, readxl, scales)
+library(tidyverse)
+library(glue)
+library(janitor)
+library(here)
+library(readxl)
+library(scales)
 source(here::here("scripts", "R", "_common.R"))
 
 # read in data
@@ -141,12 +146,12 @@ RI_1B2_plot <- ggplot(
   theme(axis.title.y = element_text(angle = 0, vjust = 0.5))
 
 
-##RI_1B2_plot
+# RI_1B2_plot
 
 # Save fact file
 RI_1B2_gva_per_job_tbl |>
   build_fact(
-    indicator_id = "RI_1B2_gva_per_hour"
+    indicator_id = "RI_1B2_gva"
   ) |>
   save_fact()
 

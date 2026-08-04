@@ -27,9 +27,9 @@ source(here::here(
   "RI_1A2_employment_priority_sectors.R"
 ))
 source(here::here("scripts", "R", "01-economy", "RI_1B1_gdp_growth.R"))
-source(here::here("scripts", "R", "01-economy", "RI_1B2_gva_per_hour.R"))
+source(here::here("scripts", "R", "01-economy", "RI_1B2_gva.R"))
 source(here::here("scripts", "R", "01-economy", "RI_1A1_employment_rate.R"))
-source(here::here("scripts", "R", "01-economy", "RI_1B3_median_weekly_pay.R"))
+source(here::here("scripts", "R", "01-economy", "RI_1B3_median_pay.R"))
 source(here::here("scripts", "R", "01-economy", "RI_1D1_broadband_coverage.R"))
 source(here::here("scripts", "R", "01-economy", "RI_1E2_population_change.R"))
 source(here::here("scripts", "R", "01-economy", "RI_1E3_area_satisfaction.R"))
@@ -92,11 +92,11 @@ RI_1B1_plot
 #| code-summary: "RI_1B2_gva_per_job KPI summary"
 indicator_fact_tbl |>
   format_indicator_summary(
-    "RI_1B2_gva_per_hour",
+    "RI_1B2_gva",
     dim_tbl = core_dim_data_tbl,
     title = "Annual GVA per job, 2013-2023",
     subtitle = "Current price GVA (including inflation) per job for the West of England",
-    polarity = indicator_polarity[["RI_1B2_gva_per_hour"]]
+    polarity = indicator_polarity[["RI_1B2_gva"]]
   )
 ```
 
@@ -191,11 +191,11 @@ RI_1A2_employment_priority_sectors_plot
 #| code-summary: " RI_1B3_median_wage KPI summary"
 indicator_fact_tbl |>
   format_indicator_summary(
-    "RI_1B3_median_weekly_pay",
+    "RI_1B3_median_pay",
     dim_tbl = core_dim_data_tbl,
     title = "Annual GVA per job, 2013-2023",
     subtitle = "Current price GVA (including inflation) per job for the West of England",
-    polarity = indicator_polarity[["RI_1B3_median_weekly_pay"]]
+    polarity = indicator_polarity[["RI_1B3_median_pay"]]
   )
 ```
 

@@ -18,7 +18,7 @@ library(ggplot2)
 # Register fonts for Windows graphics device
 if (.Platform$OS.type == "windows") {
   windowsFonts(
-    Arial          = windowsFont("Arial"),
+    Arial = windowsFont("Arial"),
     `Trebuchet MS` = windowsFont("Trebuchet MS")
   )
 }
@@ -42,7 +42,7 @@ ua_colors_by_name <-
     "Bristol" = "#CE132D",
     "South Gloucestershire" = "#1D4F2B",
     "Bath and North East Somerset" = "#590075",
-    "North Somerset" = "#1F1F1F"
+    "North Somerset" = "#ED8073"
   )
 
 ua_colors_by_code <-
@@ -50,7 +50,7 @@ ua_colors_by_code <-
     "E06000023" = "#CE132D",
     "E06000025" = "#1D4F2B",
     "E06000022" = "#590075",
-    "E06000024" = "#1F1F1F"
+    "E06000024" = "#ED8073"
   )
 
 

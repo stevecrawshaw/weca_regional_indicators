@@ -59,18 +59,27 @@ RI_2D2_bus_value_for_money_plot_tbl <- RI_2D2_bus_value_for_money |>
     )
   )
 
-at_satisfaction_colours <- weca_colors[1:6]
+# at_satisfaction_colours <- weca_colors[1:6]
 
-at_sat_colours_named <-
-  at_satisfaction_colours |>
-  set_names(
-    "West of England",
-    "England",
-    "Bristol",
-    "B&NES",
-    "North Somerset",
-    "South Glos"
-  )
+# at_sat_colours_named <-
+#   at_satisfaction_colours |>
+#   set_names(
+#     "West of England",
+#     "England",
+#     "Bristol",
+#     "B&NES",
+#     "North Somerset",
+#     "South Glos"
+#   )
+
+at_sat_colours_named <- c(
+  "West of England" = get_weca_color("west_green"),
+  "England" = get_weca_color("black"),
+  "Bristol" = get_weca_color("claret"),
+  "B&NES" = get_weca_color("rich_purple"),
+  "North Somerset" = get_weca_color("soft_purple"),
+  "South Glos" = get_weca_color("forest_green")
+)
 
 RI_2D2_plot <-
   RI_2D2_bus_value_for_money_plot_tbl |>
@@ -103,7 +112,7 @@ RI_2D2_plot <-
   theme(axis.title.y = element_text(angle = 0, vjust = 0.5))
 
 
-# RI_2D2_plot
+RI_2D2_plot
 
 RI_2D2_bus_value_for_money_plot_tbl |>
   filter(area == "West of England") |>

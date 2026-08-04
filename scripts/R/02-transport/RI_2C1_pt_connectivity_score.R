@@ -63,18 +63,14 @@ RI_2C1_pt_connectivity_plot_tbl <- RI_2C1_pt_connectivity_score |>
     )
   )
 
+connectivity_colours_named <- c(
+  "West of England" = get_weca_color("west_green"),
+  "Bristol" = get_weca_color("claret"),
+  "B&NES" = get_weca_color("rich_purple"),
+  "North Somerset" = get_weca_color("soft_purple"),
+  "South Glos" = get_weca_color("forest_green")
+)
 
-connectivity_colours <- weca_colors[1:5]
-
-connectivity_colours_named <-
-  connectivity_colours |>
-  set_names(
-    "West of England",
-    "B&NES",
-    "Bristol",
-    "North Somerset",
-    "South Glos"
-  )
 
 RI_2C1_plot <-
   RI_2C1_pt_connectivity_plot_tbl |>
@@ -92,7 +88,7 @@ RI_2C1_plot <-
   theme_weca() +
   theme(axis.title.y = element_text(angle = 0, vjust = 0.5))
 
-#  RI_2C1_plot
+# RI_2C1_plot
 
 RI_2C1_pt_connectivity_plot_tbl |>
   filter(area == "West of England") |>

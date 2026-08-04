@@ -1,5 +1,10 @@
 # libraries ---------------------
-pacman::p_load(tidyverse, janitor, glue, tidyxl, readxl, here)
+library(tidyverse)
+library(janitor)
+library(glue)
+library(readxl)
+library(here)
+
 source(here::here("scripts", "R", "_common.R"))
 
 # RI_6A3_ks2_expected_standards
@@ -86,7 +91,8 @@ RI_6A3_ks2_expected_standards_fact_tbl <-
     period_start,
     period_end,
     value
-  )
+  ) |>
+  filter(!is.na(value))
 
 # Save the fact file
 RI_6A3_ks2_expected_standards_fact_tbl |>

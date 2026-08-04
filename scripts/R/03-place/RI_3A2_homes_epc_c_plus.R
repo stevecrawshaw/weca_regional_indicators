@@ -1,4 +1,9 @@
-pacman::p_load(tidyverse, glue, janitor, here, httr2)
+library(tidyverse)
+library(glue)
+library(janitor)
+library(here)
+library(httr2)
+
 source(here::here("scripts", "R", "_common.R"))
 
 # RI_3A2_homes_epc_c_plus
@@ -77,8 +82,8 @@ RI_3A2_fact_tbl <- RI_3A2_in_cat_tbl |>
 
 RI_3A2_plot <- RI_3A2_fact_tbl |>
   ggplot(aes(x = period_end, y = value)) +
-  geom_line() +
-  geom_point() +
+  geom_line(linewidth = 1, color = get_weca_color("west_green")) +
+  # geom_point(size = 2, color = get_weca_color("west_green")) +
   labs(
     title = "Proportion of Homes with EPC rating C or better",
     subtitle = "Cumulative monthly proportions",
@@ -92,6 +97,8 @@ RI_3A2_plot <- RI_3A2_fact_tbl |>
   ) +
   theme_weca() +
   theme(axis.title.y = element_text(angle = 0, vjust = 0.5))
+
+# RI_3A2_plot
 
 RI_3A2_fact_tbl |>
   build_fact(indicator_id = "RI_3A2_homes_epc_c_plus") |>

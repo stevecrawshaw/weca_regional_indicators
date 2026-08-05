@@ -14,10 +14,30 @@ jobs:
         with:
           fetch-depth: 2
 
-      - name: Check if CSV content actually changed
+      - name: Strip last_updated column from old and new CSV
+        id: strip_timestamp
+        run: |
+          strip_col() {
+            awk -F, '
+              NR==1 {
+                for (i=1; i<=NF; i++) if ($i == "last_updated") col=i
+              }
+              {
+                out=""
+                for (i=1; i<=NF; i++) {
+                  if (i==col) continue
+                  out = out (out=="" ? "" : ",") $i
+                }
+                print out
+              }'
+          }
+          git show HEAD^:data/fact/RI_1B1_gdp_growth.csv | strip_col > old_novalue_ts.csv
+          strip_col < data/fact/RI_1B1_gdp_growth.csv > new_novalue_ts.csv
+
+      - name: Check if CSV values actually changed
         id: diff_check
         run: |
-          if git diff --quiet HEAD^ HEAD -- data/fact/RI_1B1_gdp_growth.csv; then
+          if diff --brief old_novalue_ts.csv new_novalue_ts.csv > /dev/null; then
             echo "changed=false" >> "$GITHUB_OUTPUT"
           else
             echo "changed=true" >> "$GITHUB_OUTPUT"
@@ -26,7 +46,7 @@ jobs:
       - name: Save diff to file
         if: steps.diff_check.outputs.changed == 'true'
         run: |
-          git diff HEAD^ HEAD -- data/fact/RI_1B1_gdp_growth.csv > csv_diff.txt
+          diff -u old_novalue_ts.csv new_novalue_ts.csv > csv_diff.txt || true
 
       - name: Open GitHub issue with diff
         if: steps.diff_check.outputs.changed == 'true'

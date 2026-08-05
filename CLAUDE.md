@@ -42,11 +42,17 @@ weca_regional_indicators/
 │   │   ├── fact_helpers.R     # build_fact() / save_fact() — analyst FACT workflow
 │   │   ├── collate_fact.R     # collate_fact() / build_reporting_view()
 │   │   ├── reporting_table.R  # format_indicator_summary() — GT summary tables
-│   │   └── db_connect.R       # Postgres connection via .env variables
+│   │   ├── dim_data.R         # core_dim_data_tbl — indicator metadata (polarity, priority, units)
+│   │   ├── summary_tables.R   # format_priority_summary() / format_overall_summary() — multi-indicator GT tables
+│   │   ├── db_connect.R       # Postgres connection via .env variables
+│   │   ├── azure_blob.R       # refresh_raw_chapter_data() — pull a chapter's raw data from Azure Blob
+│   │   ├── sync_raw_data.R    # CLI wrapper around azure_blob.R (Rscript, manual step)
+│   │   └── load_pins.R        # pins board helpers (S3-backed spatial/tabular pins)
 │   ├── python/          # Python utility scripts
 │   └── hooks/           # Pre-commit hook scripts
 ├── _freeze/             # Quarto execution cache (committed)
 ├── _output/             # Rendered HTML/PDF output (gitignored)
+├── WIP/                 # In-progress analyst notes/specs (gitignored, local only)
 ├── pyproject.toml       # Python dependencies (uv-managed)
 ├── renv.lock            # R package lock file
 └── .github/workflows/   # GitHub Actions (publish to GitHub Pages)
@@ -79,42 +85,6 @@ Each priority area has a dedicated chapter directory under `chapters/`:
 - `chapters/06-child-poverty/` - Lifting families out of poverty
 
 ## Working with the Report
-
-### Rendering
-
-```bash
-# From the repository root:
-
-# Render entire book (HTML and PDF)
-quarto render
-
-# Preview with live reload
-quarto preview
-
-# Render specific chapter only
-quarto render chapters/05-environment/index.qmd
-```
-
-### Environment Setup
-
-**Python (using uv):**
-
-```bash
-# Install dependencies from pyproject.toml
-uv sync
-
-# Activate virtual environment
-uv venv
-source .venv/bin/activate  # Unix
-.venv\Scripts\activate     # Windows
-```
-
-**R (using renv):**
-
-```bash
-# Restore R package environment
-R -e "renv::restore()"
-```
 
 ### Adding a New Chapter
 
@@ -180,10 +150,28 @@ fact <- collate_fact()            # binds all data/fact/*.csv
 rv   <- build_reporting_view(fact) # one row per indicator: latest, previous, sparkline
 
 # Per-chapter GT summary table
-format_indicator_summary(rv, "RI_5_ghg_emissions", units = "kt CO2e")
+# units/unit_type are looked up from core_dim_data_tbl by indicator_id
+format_indicator_summary(rv, "RI_5_ghg_emissions", dim_tbl = core_dim_data_tbl, polarity = 1L)
 ```
 
 **Rules enforced by `build_fact()`:** exactly `period_start`, `period_end`, `value` columns; no duplicate `period_end` per indicator; dates must coerce without NA; `period_start <= period_end`.
+
+`polarity` (`format_indicator_summary()` arg, and a column on `core_dim_data_tbl`) marks whether an increase is good (`1`), bad (`-1`), or neutral (`0`) — it drives the up/down arrow colour in GT tables.
+
+**Multi-indicator summary tables** (`dim_data.R` + `summary_tables.R`, both sourced by `_common.R`):
+
+```r
+# core_dim_data_tbl is loaded from data/common_project_data/indicators-master.xlsx
+rv <- build_reporting_view(collate_fact())
+
+# One row per indicator within a priority — chapter top-of-page summary
+format_priority_summary(rv, core_dim_data_tbl, priority = 3)
+
+# One table per priority, stacked — report landing page (index.qmd)
+format_overall_summary(rv, core_dim_data_tbl)
+```
+
+See [`docs/summary-table-units.md`](docs/summary-table-units.md) for how `units` and the change column handle percentages vs. percentage points.
 
 **Sparkline note:** `format_indicator_summary()` generates SVG strings directly (not via `svglite`). Never use device rendering for inline GT sparklines — browsers fill `fill`-less polylines black.
 
@@ -195,7 +183,9 @@ Every chapter sources `_common.R` which loads all shared helpers:
 source(here::here("scripts", "R", "_common.R"))
 ```
 
-This provides: `theme_weca`, `load_csv()`, `build_fact()`, `save_fact()`, `collate_fact()`, `build_reporting_view()`, `format_indicator_summary()`.
+This provides: `theme_weca`, `load_csv()`, `build_fact()`, `save_fact()`, `collate_fact()`, `build_reporting_view()`, `format_indicator_summary()`, `core_dim_data_tbl`, `format_priority_summary()`, `format_overall_summary()`.
+
+Each chapter directory also carries a `README.md` documenting its indicator table (ID, name, status, data source, refresh cadence) and known data gaps — see `chapters/03-place/README.md` for the pattern.
 
 ## Database Connection
 
@@ -206,6 +196,10 @@ POSTGRES_HOST, POSTGRES_PORT, POSTGRES_DB, POSTGRES_USER, POSTGRES_PASSWORD
 ```
 
 Call `readRenviron(".env")` before sourcing `db_connect.R` in interactive scripts.
+
+## Azure Blob Raw Data Sync
+
+Raw chapter data (`data/raw/`) is not committed — it's synced from the central Azure Blob container. See the `sync-raw-data` skill for the commands and auth flow.
 
 ## R Documentation (btw MCP)
 
@@ -262,4 +256,4 @@ Five canonical roles mapped to default label strings. See `docs/agents/triage-la
 
 ### Domain docs
 
-Single-context layout — one `CONTEXT.md` + `docs/adr/` at the repo root. See `docs/agents/domain.md`.
+Single-context layout — one `CONTEXT.md` + `docs/adr/` at the repo root, per `docs/agents/domain.md`. Not yet created: check before assuming either exists.

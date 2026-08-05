@@ -113,8 +113,8 @@ upper_limit <- round_to_interval(max_value, interval = 250)
 
 # Generate the plot
 RI_1B3_plot <- ggplot(la_estimate_10_years, aes(x = date, y = estimated_wage)) +
-  geom_line(linewidth = 1) +
-  geom_point(size = 2) +
+  geom_line(linewidth = 1, color = get_weca_color("west_green")) +
+  # geom_point(size = 2, color = get_weca_color("west_green")) +
   labs(
     title = "Median monthly wage since 2016",
     subtitle = "Changes in the median wage for the region",

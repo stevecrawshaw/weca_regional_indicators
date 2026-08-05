@@ -128,8 +128,8 @@ RI_1B2_plot <- ggplot(
   RI_1B2_gva_per_job_tbl,
   aes(x = period_start, y = value)
 ) +
-  geom_line(linewidth = 1) +
-  geom_point(size = 2) +
+  geom_line(linewidth = 1, color = get_weca_color("west_green")) +
+  geom_point(size = 2, color = get_weca_color("west_green")) +
   labs(
     title = "Annual GVA per job, 2013-2023",
     subtitle = "Current price GVA (including inflation) per job for the West of England",

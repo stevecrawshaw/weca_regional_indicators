@@ -6,12 +6,36 @@ source(here::here("scripts", "R", "_common.R"))
 
 # Priority sector SIC codes
 priority_sector_sic_codes <- c(
-  "20", "254", "26", "27", "28", "29", "30",
-  "3212", "3316", "465",
-  "58", "59", "60", "61", "62", "63",
-  "7021", "7111", "7112", "712", "721",
-  "731", "741", "742", "743",
-  "8552", "90", "9101", "9102", "951"
+  "20",
+  "254",
+  "26",
+  "27",
+  "28",
+  "29",
+  "30",
+  "3212",
+  "3316",
+  "465",
+  "58",
+  "59",
+  "60",
+  "61",
+  "62",
+  "63",
+  "7021",
+  "7111",
+  "7112",
+  "712",
+  "721",
+  "731",
+  "741",
+  "742",
+  "743",
+  "8552",
+  "90",
+  "9101",
+  "9102",
+  "951"
 )
 
 # Getting data ------------------
@@ -57,11 +81,11 @@ RI_1A2_employment_priority_sectors_long_tbl <-
 
 ## view(RI_1A2_employment_priority_sectors_long_tbl)
 
-RI_1A2_employment_priority_sectors_fact_tbl <- RI_1A2_employment_priority_sectors_long_tbl |> 
+RI_1A2_employment_priority_sectors_fact_tbl <- RI_1A2_employment_priority_sectors_long_tbl |>
   mutate(
     period_start = as.Date(glue("{year}-01-01")),
     period_end = as.Date(glue("{year}-12-31"))
-  ) |> 
+  ) |>
   select(
     period_start,
     period_end,
@@ -74,8 +98,6 @@ RI_1A2_employment_priority_sectors_fact_tbl <- RI_1A2_employment_priority_sector
 
 ## view(RI_1A2_employment_priority_sectors_long_tbl)
 
-
-
 # Line chart
 RI_1A2_employment_priority_sectors_plot <-
   RI_1A2_employment_priority_sectors_long_tbl |>
@@ -85,12 +107,8 @@ RI_1A2_employment_priority_sectors_plot <-
       y = value
     )
   ) +
-  geom_line(
-    linewidth = 1.2
-  ) +
-  geom_point(
-    size = 2
-  ) +
+  geom_line(linewidth = 1, color = get_weca_color("west_green")) +
+  geom_point(size = 2, color = get_weca_color("west_green")) +
   scale_x_continuous(
     breaks = seq(
       min(RI_1A2_employment_priority_sectors_long_tbl$year),
@@ -116,4 +134,3 @@ RI_1A2_employment_priority_sectors_plot <-
 
 # View chart
 ##RI_1A2_employment_priority_sectors_plot
-

@@ -9,12 +9,12 @@ The default geography includes North Somerset as part of a wider West of England
 
 ## Priority Areas
 
-- [Contributing to national economic growth helping our businesses succeed and creating jobs](/chapters/01-economy/)
-- [Connecting the region through public transport & active travel](/chapters/02-transport/)
-- [Building affordable and attractive homes in sustainable communities](/chapters/03-place/)
-- [Empowering residents with the skills to access the jobs that will shape our future](/chapters/04-skills/)
-- [Making the West of England the home for green jobs and green growth](/chapters/05-environment/)
-- [Lifting children and families out of poverty in the West of England](/chapters/06-child-poverty/)
+- Contributing to national [economic growth](/chapters/01-economy/) helping our businesses succeed and creating jobs
+- Connecting the region through [public transport & active travel](/chapters/02-transport/)
+- Building [affordable and attractive homes in sustainable communities](/chapters/03-place/)
+- Empowering residents with the [skills](/chapters/04-skills/) to access the jobs that will shape our future
+- Making the West of England the home for [green jobs and green growth](/chapters/05-environment/)
+- [Lifting children and families out of poverty](/chapters/06-child-poverty/) in the West of England
 
 ```{r}
 #| label: overall_summary

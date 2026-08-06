@@ -39,6 +39,10 @@ We use a modular structure. Each chapter has its own directory to prevent file c
 - **R Management:** `renv`
 - **Rendering:** Quarto
 
+## 🚀 Deployment
+
+Every push to `main` runs `.github/workflows/publish.yml`, which renders the book and the presentation deck, then publishes the result to GitHub Pages via a `build` job (renders, then packages `_output/` as a Pages artefact) and a separate `deploy` job (`actions/deploy-pages`). Pages is configured under Settings → Pages → Source: **GitHub Actions** — there's no `gh-pages` branch to push to or watch anymore.
+
 ## 📚 Learning Resources
 
 ### R for Excel Users

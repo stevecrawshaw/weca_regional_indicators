@@ -236,7 +236,7 @@ cd presentation && quarto render      # writes presentation/_output/
 
 Chart slides keep their `##` heading in the DOM for screen readers and the overview, but hide it visually (`.chart-slide` in `weca-reveal.scss`) — each plot already renders its own title, subtitle and source caption.
 
-**The deck is never frozen** (`freeze: false`): it must always reflect the book's current `_freeze/`. If a chart chunk has no cached figure the render stops with an error naming the chunk — that means the book's freeze cache is stale and the book needs re-rendering first. For the same reason CI renders the book, then the deck, then copies `presentation/_output` into `_output/presentation` and publishes with `render: false`.
+**The deck is never frozen** (`freeze: false`): it must always reflect the book's current `_freeze/`. If a chart chunk has no cached figure the render stops with an error naming the chunk — that means the book's freeze cache is stale and the book needs re-rendering first. For the same reason CI renders the book, then the deck, then copies `presentation/_output` into `_output/presentation` before publishing (see [Deployment](#deployment) below).
 
 `presentation/figures/` is a gitignored copy of the cached PNGs plus `weca_logo.jpg`, refreshed on every render; Quarto cannot pull resources in from outside the presentation project.
 
@@ -252,7 +252,16 @@ Rendered reports are written to:
 
 - `_output/` (configured in `_quarto.yml`)
 
-This directory is gitignored - only source files are version controlled. The report is published to GitHub Pages via GitHub Actions.
+This directory is gitignored - only source files are version controlled.
+
+## Deployment
+
+`.github/workflows/publish.yml` runs on every push to `main`. Two jobs:
+
+- **`build`** — renders the book, then the presentation deck, copies the deck into `_output/presentation`, and uploads `_output/` as a Pages artefact (`actions/upload-pages-artifact`).
+- **`deploy`** — publishes that artefact with `actions/deploy-pages`.
+
+Pages is configured under Settings → Pages → Source: **GitHub Actions** (not the legacy "Deploy from a branch" build). The `gh-pages` branch is no longer written to and isn't part of the deploy path — it's dormant, kept around from the pre-migration setup rather than deleted outright.
 
 **Setup (run once per clone):**
 

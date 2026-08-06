@@ -40,23 +40,6 @@ jobs:
 
       - uses: r-lib/actions/setup-renv@v2
 
-      - name: Install uv
-        uses: astral-sh/setup-uv@v3
-        with:
-          version: "latest"
-
-      - name: Set up Python 3.13
-        run: uv python install 3.13
-
-      - name: Install Python dependencies
-        run: uv sync
-
-      - name: Register Python kernel
-        run: uv run python -m ipykernel install --user --name python3
-
-      - name: Lint Python
-        run: uv run ruff check . && uv run ruff format --check .
-
       - uses: quarto-dev/quarto-actions/setup@v2
         with:
           tinytex: true

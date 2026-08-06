@@ -59,12 +59,15 @@ fi
 # ----------------------------------------------------------------------------
 
 SAFELIST_REGEX='^chapters/[^/]+/index\.qmd$'
+SAFELIST_REGEX="$SAFELIST_REGEX|^index\.qmd$"
 SAFELIST_REGEX="$SAFELIST_REGEX|^scripts/R/.+\.R$"
-SAFELIST_REGEX="$SAFELIST_REGEX|^scripts/python/.+\.py$"
 SAFELIST_REGEX="$SAFELIST_REGEX|^data/fact/.+\.csv$"
 SAFELIST_REGEX="$SAFELIST_REGEX|^_freeze/chapters/.+/execute-results/.+\.json$"
+SAFELIST_REGEX="$SAFELIST_REGEX|^_freeze/index/execute-results/html\.json$"
 SAFELIST_REGEX="$SAFELIST_REGEX|^_freeze/chapters/.+/figure-html/.+\.(png|svg|jpg|jpeg)$"
 SAFELIST_REGEX="$SAFELIST_REGEX|^data/common_project_data/indicators-master\.xlsx$"
+SAFELIST_REGEX="$SAFELIST_REGEX|^presentation/(index\.qmd|_quarto\.yml|weca-reveal\.scss|\.Rprofile|\.gitignore)$"
+SAFELIST_REGEX="$SAFELIST_REGEX|^docs/presentation\.md$"
 
 # ----------------------------------------------------------------------------
 # 3. Stage matching changed/untracked/deleted files, report the rest

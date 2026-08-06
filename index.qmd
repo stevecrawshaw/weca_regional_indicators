@@ -35,6 +35,7 @@ format_overall_summary(
 
 ## How to Use These Summaries
 
+- Every chart in this report is also available as a [slide deck](presentation/index.html), one chart per slide
 - Use the **sidebar navigation** to jump to any chapter
 - Each summary is self-contained and can be read independently
 - The majority of time series data are for a calendar year, but some data represent different time periods, for example academic years. Where data are update more frequently than yearly they are provided at this cadence.

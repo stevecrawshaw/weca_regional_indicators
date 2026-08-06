@@ -127,12 +127,7 @@ How it gets there, on every push to main:
 
 1. quarto render — book into _output/
 2. quarto render in presentation/ — deck into presentation/_output/
-3. cp -r presentation/_output_output/presentation
-4. quarto publish gh-pages with render: false, which pushes all of _output/ to the gh-pages branch
+3. cp -r presentation/_output _output/presentation
+4. actions/upload-pages-artifact packages _output/, then a separate deploy job runs actions/deploy-pages to publish it — GitHub Pages is configured as an Actions-based deployment (Settings → Pages → Source: "GitHub Actions"), not the legacy "Deploy from a branch" / gh-pages build
 
-Caveat: none of this has actually run yet. I've verified the deck renders and that the publish action accepts render: false, but the workflow itself is untested — it's a rewrite of a step that previously let the action do the rendering. Two things I'd watch on the first run:
-
-- The book render now happens in its own step, so if it depends on anything the publish action was setting up beyond the AWS credentials I carried across, it'll surface there.
-- --no-render means whatever is in _output/ at step 4 is exactly what ships. If step 1 fails the job stops, so there's no risk of publishing a stale book, but it does mean the deck and book must both render successfully for either to update.
-
-Worth pushing to a branch and running the workflow manually first — it already has workflow_dispatch, so you can trigger it against a branch without touching main.
+The gh-pages branch is no longer written to or used — it's left dormant from the pre-migration setup.

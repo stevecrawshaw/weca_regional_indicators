@@ -88,7 +88,7 @@ RI_2C1_plot <-
   theme_weca() +
   theme(axis.title.y = element_text(angle = 0, vjust = 0.5))
 
-# RI_2C1_plot
+RI_2C1_plot
 
 RI_2C1_pt_connectivity_plot_tbl |>
   filter(area == "West of England") |>

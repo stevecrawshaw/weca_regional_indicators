@@ -82,7 +82,7 @@ RI_5B1_nondom_epc_a_plot <- RI_5B1_nondom_epc_a_fact_tbl |>
   theme_weca() +
   theme(axis.title.y = element_text(angle = 0, vjust = 0.5))
 
-RI_5B1_nondom_epc_a_plot
+# RI_5B1_nondom_epc_a_plot
 
 RI_5B1_nondom_epc_a_fact_tbl |>
   build_fact(indicator_id = "RI_5B1_nondom_epc_a") |>

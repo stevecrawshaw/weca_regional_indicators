@@ -1,8 +1,8 @@
 indicator_id,period_start,period_end,value,last_updated
-RI_2B2_ebike_escooter_usage,2020-01-01,2020-12-31,67220,2026-08-03
-RI_2B2_ebike_escooter_usage,2021-01-01,2021-12-31,3396427,2026-08-03
-RI_2B2_ebike_escooter_usage,2022-01-01,2022-12-31,4923200,2026-08-03
-RI_2B2_ebike_escooter_usage,2023-01-01,2023-12-31,4259174,2026-08-03
-RI_2B2_ebike_escooter_usage,2024-01-01,2024-12-31,3220059,2026-08-03
-RI_2B2_ebike_escooter_usage,2025-01-01,2025-12-31,3319165,2026-08-03
-RI_2B2_ebike_escooter_usage,2026-01-01,2026-12-31,1789307,2026-08-03
+RI_2B2_ebike_escooter_usage,2020-01-01,2020-12-31,67220,2026-08-06
+RI_2B2_ebike_escooter_usage,2021-01-01,2021-12-31,3396427,2026-08-06
+RI_2B2_ebike_escooter_usage,2022-01-01,2022-12-31,4923200,2026-08-06
+RI_2B2_ebike_escooter_usage,2023-01-01,2023-12-31,4259174,2026-08-06
+RI_2B2_ebike_escooter_usage,2024-01-01,2024-12-31,3220059,2026-08-06
+RI_2B2_ebike_escooter_usage,2025-01-01,2025-12-31,3319165,2026-08-06
+RI_2B2_ebike_escooter_usage,2026-01-01,2026-12-31,1789307,2026-08-06

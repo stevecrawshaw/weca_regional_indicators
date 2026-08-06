@@ -5,11 +5,15 @@ on:
 
 name: Quarto Publish
 
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
 jobs:
-  build-deploy:
+  build:
     runs-on: ubuntu-latest
     permissions:
-      contents: write
+      contents: read
     steps:
       - uses: actions/checkout@v4
 
@@ -75,9 +79,20 @@ jobs:
       - name: Add presentation to the site
         run: cp -r presentation/_output _output/presentation
 
-      - uses: quarto-dev/quarto-actions/publish@v2
+      - uses: actions/upload-pages-artifact@v3
         with:
-          target: gh-pages
-          render: false
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          path: _output
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

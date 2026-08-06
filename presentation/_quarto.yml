@@ -1,0 +1,17 @@
+project:
+  type: default
+  # Kept inside the presentation project: pointing output-dir at the book's
+  # ../_output makes Quarto warn that it cannot manage stale files there. CI
+  # copies this directory into the published site instead.
+  output-dir: _output
+  execute-dir: project
+  render:
+    - index.qmd
+
+# The deck holds no cached computation of its own: it reads the book's
+# _freeze/ cache at render time, so it must never be frozen itself.
+execute:
+  freeze: false
+  echo: false
+  warning: false
+  message: false

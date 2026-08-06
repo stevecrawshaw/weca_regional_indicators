@@ -235,6 +235,8 @@ data/processed/*
 
 # Quarto outputs
 _output/
+# Chart PNGs copied from _freeze/ when the presentation renders
+presentation/figures/
 # NOTE: _freeze/ must be tracked in git for collaborative rendering
 # Each analyst's cached outputs allow others to render without their data
 *.html
@@ -272,3 +274,5 @@ Thumbs.db
 
 **/*.quarto_ipynb
 .vscode/
+WIP/*
+site_libs/*

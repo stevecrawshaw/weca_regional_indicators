@@ -1,0 +1,28 @@
+---
+title: "West of England Regional Priorities"
+subtitle: "Indicator charts"
+date: last-modified
+format:
+  revealjs:
+    theme: [default, weca-reveal.scss]
+    logo: figures/weca_logo.jpg
+    navigation-mode: linear
+    slide-number: c/t
+    hash: true
+    center: true
+    width: 1050
+    height: 700
+    margin: 0.06
+---
+
+```{r}
+#| label: slides
+#| output: asis
+
+root <- normalizePath("..", winslash = "/")
+source(file.path(root, "scripts", "R", "presentation_manifest.R"))
+
+manifest <- build_slide_manifest(root)
+copy_slide_figures(manifest, "figures", root)
+cat(render_slides(manifest), sep = "\n")
+```

@@ -212,6 +212,34 @@ An MCP server for the `btw` R package is available. Use it when writing or revie
 
 Use these tools instead of guessing R function signatures. Particularly valuable for ggplot2, dplyr, tidyr, and other tidyverse packages used in chapters.
 
+## Presentation Deck
+
+`presentation/` is a separate Quarto project producing a revealjs deck of every chart in the book, one chart per slide. It is derived from the book — never authored alongside it. Full detail in [`docs/presentation.md`](docs/presentation.md).
+
+```bash
+cd presentation && quarto render      # writes presentation/_output/
+```
+
+**How content is derived** (`scripts/R/presentation_manifest.R`):
+
+| Deck element | Comes from |
+|---|---|
+| Priority order and section titles | `_quarto.yml` chapter list, chapter YAML `title`/`subtitle` |
+| Contents slide bullets | the `## Priority Areas` list in `index.qmd`, links retargeted at deck sections |
+| Which charts appear, and their order | chart chunks in `chapters/*/index.qmd` |
+| The chart image itself | the PNG the book already cached in `_freeze/` |
+| Slide heading and alt text | the chunk's preceding `##` heading and its `fig-alt` |
+
+**A chart chunk is any chunk carrying `fig-alt:`.** That is the whole rule. Add a chart to a chapter with alt text and it becomes a slide; no deck file needs touching. Chunks without `fig-alt` — GT summary tables, setup — are skipped, which is what keeps tables out of the deck. Two charts under one indicator are two chunks, so they get a slide each.
+
+**Structure:** level-1 headings open one vertical stack per priority, with `navigation-mode: linear` so left/right steps through all 61 slides in reading order while the stacks still drive the overview grid (`o` key) and deep links.
+
+Chart slides keep their `##` heading in the DOM for screen readers and the overview, but hide it visually (`.chart-slide` in `weca-reveal.scss`) — each plot already renders its own title, subtitle and source caption.
+
+**The deck is never frozen** (`freeze: false`): it must always reflect the book's current `_freeze/`. If a chart chunk has no cached figure the render stops with an error naming the chunk — that means the book's freeze cache is stale and the book needs re-rendering first. For the same reason CI renders the book, then the deck, then copies `presentation/_output` into `_output/presentation` and publishes with `render: false`.
+
+`presentation/figures/` is a gitignored copy of the cached PNGs plus `weca_logo.jpg`, refreshed on every render; Quarto cannot pull resources in from outside the presentation project.
+
 **Data locations:**
 
 - `data/` - Project data assets

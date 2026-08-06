@@ -1,0 +1,101 @@
+/*-- scss:defaults --*/
+
+// Mirrors custom.scss so the deck and the book share one visual identity.
+// Values originate in _brand.yml.
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&family=IBM+Plex+Mono&display=swap');
+
+$weca-black: #1F1F1F;
+$weca-claret: #CE132D;
+$weca-rich-purple: #590075;
+$weca-forest-green: #1D4F2B;
+
+$font-family-sans-serif: "Open Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif !default;
+$font-family-monospace: "IBM Plex Mono", "Courier New", monospace !default;
+
+$body-bg: #ffffff !default;
+$body-color: $weca-black !default;
+$link-color: $weca-forest-green !default;
+
+$presentation-font-size-root: 30px !default;
+$presentation-heading-font: "Trebuchet MS", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Tahoma, sans-serif !default;
+$presentation-heading-color: $weca-forest-green !default;
+$presentation-heading-font-weight: 400 !default;
+
+/*-- scss:rules --*/
+
+// Priority divider slides: the level-1 heading opening each vertical stack.
+.reveal .slides > section > section:first-child h1 {
+  border-bottom: 4px solid $weca-forest-green;
+  padding-bottom: 0.3em;
+  margin-bottom: 0.4em;
+}
+
+// Chart slides carry a heading for screen readers and the slide overview, but
+// hide it visually: every plot already renders its own title, subtitle and
+// source caption, so a second one would only cost chart area.
+.chart-slide h2 {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.chart-slide img {
+  max-height: 600px;
+  max-width: 100%;
+  width: auto;
+  margin: 0 auto;
+}
+
+// Quarto wraps images in <figure>; suppress the empty caption slot.
+.chart-slide figure {
+  margin: 0;
+}
+
+.chart-slide figcaption {
+  display: none;
+}
+
+// Pin the title-slide subtitle to the brand body colour rather than inheriting
+// whatever the base reveal theme uses.
+.reveal p.subtitle,
+.reveal .quarto-title-block .subtitle {
+  color: $weca-black;
+}
+
+// WECA logo, top-left on every slide, matching the book. The mark is
+// wordmark-only and quite wide, so it is sized on width rather than Quarto's
+// default height.
+.reveal .slide-logo {
+  display: block;
+  position: fixed;
+  top: 12px;
+  left: 16px;
+  bottom: auto;
+  right: auto;
+  // Quarto's own `logo:` styling sizes on height and wins without !important.
+  width: 150px !important;
+  max-width: 150px !important;
+  height: auto !important;
+  max-height: none !important;
+  z-index: 10;
+  pointer-events: none;
+}
+
+#contents ul {
+  line-height: 1.6;
+}
+
+#contents a {
+  text-decoration: none;
+  border-bottom: 2px solid rgba($weca-forest-green, 0.35);
+}
+
+#contents a:hover {
+  border-bottom-color: $weca-claret;
+}

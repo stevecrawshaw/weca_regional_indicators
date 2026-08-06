@@ -59,11 +59,25 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - uses: quarto-dev/quarto-actions/publish@v2
-        with:
-          target: gh-pages
+      - name: Render book
+        run: quarto render
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_DEFAULT_REGION: eu-west-2
+
+      # Must follow the book render: the deck reads the book's _freeze cache,
+      # and _output is created by the book render.
+      - name: Render presentation
+        working-directory: presentation
+        run: quarto render
+
+      - name: Add presentation to the site
+        run: cp -r presentation/_output _output/presentation
+
+      - uses: quarto-dev/quarto-actions/publish@v2
+        with:
+          target: gh-pages
+          render: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

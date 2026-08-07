@@ -23,7 +23,6 @@ library(tidyverse)
 
 # Source shared helpers (theme, helpers, fact_helpers, collate_fact)
 source(here::here("scripts", "R", "_common.R"))
-# source(here::here("scripts", "R", "load_pins.R"))
 source(here::here("scripts", "R", "05-environment", "RI_5_ghg_emissions.R"))
 source(here::here("scripts", "R", "05-environment", "RI_5A1_renewable.R"))
 source(here::here("scripts", "R", "05-environment", "RI_5B1_nondom_epc_a.R"))

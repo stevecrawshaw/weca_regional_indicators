@@ -1,7 +1,7 @@
 indicator_id,period_start,period_end,value,last_updated
-RI_5E2_flood_warning_index,2020-01-01,2020-12-31,100,2026-08-06
-RI_5E2_flood_warning_index,2021-01-01,2021-12-31,39.6,2026-08-06
-RI_5E2_flood_warning_index,2022-01-01,2022-12-31,29.3,2026-08-06
-RI_5E2_flood_warning_index,2023-01-01,2023-12-31,101.2,2026-08-06
-RI_5E2_flood_warning_index,2024-01-01,2024-12-31,167,2026-08-06
-RI_5E2_flood_warning_index,2025-01-01,2025-12-31,69.6,2026-08-06
+RI_5E2_flood_warning_index,2020-01-01,2020-12-31,100,2026-08-07
+RI_5E2_flood_warning_index,2021-01-01,2021-12-31,39.6,2026-08-07
+RI_5E2_flood_warning_index,2022-01-01,2022-12-31,29.3,2026-08-07
+RI_5E2_flood_warning_index,2023-01-01,2023-12-31,101.2,2026-08-07
+RI_5E2_flood_warning_index,2024-01-01,2024-12-31,167,2026-08-07
+RI_5E2_flood_warning_index,2025-01-01,2025-12-31,69.6,2026-08-07

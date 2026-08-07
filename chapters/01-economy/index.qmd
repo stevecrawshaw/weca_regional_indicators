@@ -19,7 +19,6 @@ library(tidyverse)
 
 # Source shared helpers (theme, helpers, fact_helpers, collate_fact)
 source(here::here("scripts", "R", "_common.R"))
-# source(here::here("scripts", "R", "load_pins.R"))
 source(here::here(
   "scripts",
   "R",

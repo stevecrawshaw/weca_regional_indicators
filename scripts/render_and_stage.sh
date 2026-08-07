@@ -6,6 +6,13 @@
 #   scripts/render_and_stage.sh                  # render whole book, stage safelisted changes
 #   scripts/render_and_stage.sh 04-skills         # render only chapters/04-skills/index.qmd
 #   scripts/render_and_stage.sh --no-render       # skip render, just stage
+#   scripts/render_and_stage.sh --clean-freeze    # wipe freeze cache (all chapters), then render
+#   scripts/render_and_stage.sh 04-skills --clean-freeze  # wipe cache for one chapter, then render
+#
+# --clean-freeze deletes the _freeze/chapters/*/index/ cache dir(s) before
+# rendering, forcing a full re-execution instead of a freeze-cached render.
+# Use this to regenerate every figure from scratch (e.g. after a theme or
+# palette change) — it's slower since all R code reruns, not just plotting.
 #
 # Never commits. Prints `git status` at the end for you to review before
 # `git commit`. Anything outside the safelist (renv.lock, .Rproj, data/raw/,
@@ -18,14 +25,17 @@ cd "$PROJECT_ROOT"
 
 CHAPTER=""
 DO_RENDER=true
+CLEAN_FREEZE=false
 
 for arg in "$@"; do
     case "$arg" in
         --no-render) DO_RENDER=false ;;
+        --clean-freeze) CLEAN_FREEZE=true ;;
         --help|-h)
-            echo "Usage: $0 [chapter-dir] [--no-render]"
-            echo "  chapter-dir   e.g. 04-skills — render only that chapter"
-            echo "  --no-render   skip rendering, just stage safelisted changes"
+            echo "Usage: $0 [chapter-dir] [--no-render] [--clean-freeze]"
+            echo "  chapter-dir     e.g. 04-skills — render only that chapter"
+            echo "  --no-render     skip rendering, just stage safelisted changes"
+            echo "  --clean-freeze  delete the freeze cache (that chapter, or all) before rendering"
             exit 0
             ;;
         *) CHAPTER="$arg" ;;
@@ -33,7 +43,22 @@ for arg in "$@"; do
 done
 
 # ----------------------------------------------------------------------------
-# 1. Render
+# 1. Optionally wipe the freeze cache to force full re-execution
+# ----------------------------------------------------------------------------
+
+if [ "$CLEAN_FREEZE" = true ]; then
+    if [ -n "$CHAPTER" ]; then
+        FREEZE_DIR="_freeze/chapters/$CHAPTER/index"
+        echo "Removing freeze cache: $FREEZE_DIR"
+        rm -rf "$FREEZE_DIR"
+    else
+        echo "Removing freeze cache for all chapters ..."
+        rm -rf _freeze/chapters/*/index/
+    fi
+fi
+
+# ----------------------------------------------------------------------------
+# 2. Render
 # ----------------------------------------------------------------------------
 
 if [ "$DO_RENDER" = true ]; then
@@ -54,7 +79,7 @@ else
 fi
 
 # ----------------------------------------------------------------------------
-# 2. Safelist patterns (the "four things" from WORKFLOW_LEARNING_GUIDE.md,
+# 3. Safelist patterns (the "four things" from WORKFLOW_LEARNING_GUIDE.md,
 #    plus figure assets under _freeze/)
 # ----------------------------------------------------------------------------
 
@@ -70,7 +95,7 @@ SAFELIST_REGEX="$SAFELIST_REGEX|^presentation/(index\.qmd|_quarto\.yml|weca-reve
 SAFELIST_REGEX="$SAFELIST_REGEX|^docs/presentation\.md$"
 
 # ----------------------------------------------------------------------------
-# 3. Stage matching changed/untracked/deleted files, report the rest
+# 4. Stage matching changed/untracked/deleted files, report the rest
 # ----------------------------------------------------------------------------
 
 STAGED=()

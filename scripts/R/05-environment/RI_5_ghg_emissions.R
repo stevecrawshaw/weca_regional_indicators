@@ -81,7 +81,7 @@ RI_5_plot <- RI_5_kpi_sector_weca_tbl |>
   )) +
   labs(
     title = "Greenhouse Gas Emission Trends by Sector",
-    subtitle = "West of England Combined Authority",
+    subtitle = "West of England",
     x = "Year",
     y = "Kt CO2e",
     fill = "Sector",
@@ -126,7 +126,7 @@ RI_5_sector_current_year_plot <-
   labs(
     title = "Latest Greenhouse Gas Emissions by Sector",
     subtitle = glue::glue(
-      "West of England Combined Authority - {RI_5_max_date |> year()}"
+      "West of England - {RI_5_max_date |> year()}"
     ),
     x = "Sector",
     y = "Total emissions (Kt CO2e)",

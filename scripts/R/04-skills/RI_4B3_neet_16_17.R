@@ -46,13 +46,14 @@ RI_4B3_neet_16_17_plot_tbl <-
   RI_4B3_neet_16_17_long_tbl |>
   filter(year >= 2015) |>
   filter(
-    area %in% c(
-      "Bath and North East Somerset",
-      "Bristol",
-      "North Somerset",
-      "South Gloucestershire",
-      "West of England"
-    )
+    area %in%
+      c(
+        "Bath and North East Somerset",
+        "Bristol",
+        "North Somerset",
+        "South Gloucestershire",
+        "West of England"
+      )
   )
 
 # Line chart
@@ -71,7 +72,7 @@ RI_4B3_neet_16_17_plot <-
   scale_x_continuous(breaks = seq(2019, 2025, by = 1)) +
   labs(
     title = "16 to 17 year olds not in education, employment or training",
-    subtitle = "West of England",
+    # subtitle = "West of England",
     x = "Year",
     y = "%",
     colour = NULL,
@@ -111,4 +112,3 @@ RI_4B3_neet_16_17_fact_tbl |>
     indicator_id = "RI_4B3_neet_16_17"
   ) |>
   save_fact()
-

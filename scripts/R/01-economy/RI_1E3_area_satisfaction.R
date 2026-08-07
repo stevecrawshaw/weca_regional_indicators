@@ -36,7 +36,7 @@ RI_1E3_plot <- ggplot(RI_1E3_raw_tbl, aes(x = date)) +
   ) +
   labs(
     title = "Satisfaction with local area as a place to live",
-    subtitle = "Constituent authorities within the West of England region and North Somerset",
+    subtitle = "West of England Unitary Authorities",
     y = "Percentage of respondents satisfied (%)",
     x = "Year",
     caption = "Source: Community Life Survey (Department for Culture, Media and Sport)"

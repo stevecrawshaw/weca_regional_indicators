@@ -150,7 +150,7 @@ RI_4A3_apprenticeship_starts_change_plot <-
   ) +
   labs(
     title = "Change in apprenticeship starts from the previous year",
-    subtitle = "West of England",
+    # subtitle = "West of England",
     x = "Academic year",
     y = "% Annual\nchange",
     caption = "Source: Department for Education"

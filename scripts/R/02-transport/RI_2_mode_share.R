@@ -47,7 +47,7 @@ RI_2_plot <-
   geom_col(position = "stack") +
   labs(
     title = "Mode Share in the West of England",
-    subtitle = "DfT: National Travel Survey",
+    subtitle = "Department for Transport: National Travel Survey",
     x = "Two year period start",
     y = "%",
     fill = "Mode"

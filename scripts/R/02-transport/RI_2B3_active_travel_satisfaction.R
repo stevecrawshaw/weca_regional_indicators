@@ -67,7 +67,7 @@ RI_2B3_plot <-
   geom_col(position = "dodge") +
   labs(
     title = "Active Travel Satisfaction",
-    subtitle = "% of people surveyed by NHT",
+    subtitle = "% of people surveyed by National Highways and Transport",
     x = "Year",
     y = "%",
     fill = "Mode"

@@ -49,7 +49,7 @@ RI_1E2_plot <-
   ) +
   labs(
     title = "Cumulative Population change",
-    subtitle = "West of England (including constituent authorities and North Somerset)",
+    subtitle = "West of England",
     y = "%",
     x = "Year",
     caption = "Source: ONS mid-year population estimates"

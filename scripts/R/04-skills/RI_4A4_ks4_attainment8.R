@@ -46,13 +46,14 @@ RI_4A4_ks4_attainment8_plot_tbl <-
     academic_year >= "2015/16"
   ) |>
   filter(
-    area %in% c(
-      "Bath and North East Somerset",
-      "Bristol",
-      "North Somerset",
-      "South Gloucestershire",
-      "West of England"
-    )
+    area %in%
+      c(
+        "Bath and North East Somerset",
+        "Bristol",
+        "North Somerset",
+        "South Gloucestershire",
+        "West of England"
+      )
   )
 
 
@@ -71,7 +72,7 @@ RI_4A4_ks4_attainment8_plot <-
   scale_y_continuous(labels = scales::comma) +
   labs(
     title = "Attainment 8 score",
-    subtitle = "West of England",
+    # subtitle = "West of England",
     x = "Academic year",
     y = "Attainment\n8 score",
     colour = NULL,
@@ -107,11 +108,9 @@ RI_4A4_ks4_attainment8_fact_tbl <-
   )
 
 
-
 # Save the fact file
 RI_4A4_ks4_attainment8_fact_tbl |>
   build_fact(
     indicator_id = "RI_4A4_ks4_attainment8"
   ) |>
   save_fact()
-

@@ -112,7 +112,7 @@ RI_4A2_level4_plus_plot <-
   ) +
   labs(
     title = "Residents aged 16-64 with Level 4 or above qualifications",
-    subtitle = "West of England",
+    # subtitle = "West of England",
     x = "Year",
     y = "%",
     colour = NULL,

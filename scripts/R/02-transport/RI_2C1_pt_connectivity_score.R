@@ -78,7 +78,7 @@ RI_2C1_plot <-
   geom_col(position = "dodge") +
   labs(
     title = "Public Transport Connectivity Score",
-    subtitle = "Peak hour journey times by public transport to education, employment, retail and health",
+    subtitle = "Peak hour journey times by public transport\nto education, employment, retail and health",
     x = "Year",
     y = "Score",
     fill = "Area"

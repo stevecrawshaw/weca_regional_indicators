@@ -82,7 +82,7 @@ RI_6A2_child_development_u5_plot <-
   scale_y_continuous(labels = scales::percent) +
   labs(
     title = "Children achieving a good level of development",
-    subtitle = "West of England",
+    # subtitle = "West of England",
     x = "Academic year",
     y = "%",
     colour = NULL,

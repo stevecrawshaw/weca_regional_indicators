@@ -119,7 +119,7 @@ RI_4A1_no_qualifications_plot <-
   ) +
   labs(
     title = "Residents aged 16-64 with no qualifications",
-    subtitle = "West of England",
+    # subtitle = "West of England",
     x = "Year",
     y = "%",
     colour = NULL,

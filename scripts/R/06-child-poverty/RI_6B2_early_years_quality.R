@@ -79,7 +79,7 @@ RI_6B2_early_years_quality_plot <-
   ) +
   labs(
     title = "Early years settings judged good or outstanding",
-    subtitle = "West of England",
+    # subtitle = "West of England",
     x = "Date",
     y = "%",
     colour = NULL,

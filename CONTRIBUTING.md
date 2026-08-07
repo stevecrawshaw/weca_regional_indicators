@@ -24,8 +24,7 @@ weca_regional_indicators/
 │   ├── processed/        # Cleaned/transformed data (not committed)
 │   └── examples/         # Small example datasets (committed)
 ├── scripts/
-│   ├── R/                # Shared R functions
-│   └── python/           # Shared Python functions
+│   └── R/                # Shared R functions
 ├── _quarto.yml           # Book configuration
 └── index.qmd             # Landing page
 ```
@@ -42,7 +41,7 @@ weca_regional_indicators/
 
 When you render your chapter with `freeze: auto` enabled:
 
-1. **Quarto executes your code** (Python/R) using your local data
+1. **Quarto executes your code** (R) using your local data
 2. **All outputs are cached** (plots, tables, results) in the `_freeze/` directory
 3. **You commit both source and cache** to git
 4. **Others render the full book** using your cached outputs
@@ -73,7 +72,7 @@ quarto render chapters/05-environment/index.qmd
 
 **What happens:**
 
-- Quarto runs your Python/R code with your local data
+- Quarto runs your R code with your local data
 - Generates plots, tables, calculations
 - Saves results to `_freeze/html/chapters/05-environment/`
 
@@ -500,7 +499,7 @@ ggplot(employment_data, aes(x = year, y = employment_rate)) +
 **Examples:**
 
 - `theme_weca.R` ✅
-- `data_cleaning_utilities.py` ✅
+- `data_cleaning_utilities.R` ✅
 - `plot_helper_functions.R` ✅
 
 ---

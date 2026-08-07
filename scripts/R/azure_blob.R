@@ -77,7 +77,6 @@ weca_blob_container <- function(account_url = Sys.getenv("STORAGE_ACCOUNT_URL"),
                                 tenant = Sys.getenv("AZURE_TENANT_ID"),
                                 app = Sys.getenv("AZURE_CLIENT_ID")) {
   # Load config from .env (repo root) if the caller has not already done so.
-  # This is the same file db_connect.R uses for Postgres settings.
   env_path <- here::here(".env")
   if (fs::file_exists(env_path)) {
     readRenviron(env_path)

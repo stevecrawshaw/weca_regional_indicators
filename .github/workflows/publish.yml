@@ -25,11 +25,9 @@ jobs:
           sudo apt-get update -y
           sudo apt-get install -y \
             cmake \
-            gdal-bin \
             libcurl4-openssl-dev \
             libfontconfig1-dev \
             libfreetype6-dev \
-            libgdal-dev \
             libudunits2-dev \
             libx11-dev
 
@@ -48,10 +46,6 @@ jobs:
 
       - name: Render book
         run: quarto render
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_DEFAULT_REGION: eu-west-2
 
       # Must follow the book render: the deck reads the book's _freeze cache,
       # and _output is created by the book render.

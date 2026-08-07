@@ -1,6 +1,6 @@
 # West of England Priority Indicators: Collaborative Quarto Report
 
-This repository contains the source code and data for the integrated West of England regional report. This is a polyglot project using **R** and **Python**, managed via **Quarto**.
+This repository contains the source code and data for the integrated West of England regional report. This is an **R** project, managed via **Quarto**.
 
 ## 🚀 Quick Start
 
@@ -23,7 +23,7 @@ We use a modular structure. Each chapter has its own directory to prevent file c
 - `index.qmd`: The report landing page/executive summary.
 - `_quarto.yml`: Global configuration (Chapter order, themes, and execution settings).
 - `data/`: Shared data assets (Raw and Processed).
-- `scripts/`: Shared utility scripts (Python/R functions used across chapters).
+- `scripts/`: Shared utility scripts (R functions used across chapters).
 - **Chapters** (under `chapters/`):
   - `chapters/01-economy/`: Contributing to national economic growth (SN)
   - `chapters/02-transport/`: Connecting the region through better public transport (HB)
@@ -35,7 +35,6 @@ We use a modular structure. Each chapter has its own directory to prevent file c
 ## 🛠 Tech Stack
 
 - **IDE:** Positron
-- **Python Management:** `uv` (using `pyproject.toml`)
 - **R Management:** `renv`
 - **Rendering:** Quarto
 
@@ -55,7 +54,6 @@ Every push to `main` runs `.github/workflows/publish.yml`, which renders the boo
 - **[Quarto Official Documentation](https://quarto.org/)** - Complete reference for Quarto features
 - **[Quarto Books Guide](https://quarto.org/docs/books/)** - How to structure multi-chapter reports
 - **[Quarto with R](https://quarto.org/docs/computations/r.html)** - R-specific execution and output
-- **[Quarto with Python](https://quarto.org/docs/computations/python.html)** - Python-specific execution and output
 
 ### Git and Version Control
 
@@ -79,7 +77,7 @@ Every push to `main` runs `.github/workflows/publish.yml`, which renders the boo
 
 See **[GETTING_STARTED.md](GETTING_STARTED.md)** for detailed setup instructions including:
 
-- Prerequisites (Quarto, R, Python, Git)
+- Prerequisites (Quarto, R, Git)
 - Environment configuration
 - Pre-commit hook installation
 - Rendering your first chapter
@@ -91,5 +89,5 @@ See **[CONTRIBUTING.md](CONTRIBUTING.md)** for:
 - Git workflow and branch naming conventions
 - Commit message standards
 - Pull request process
-- Code style guide (R vs Python)
+- Code style guide (R)
 - Peer review checklist

@@ -12,12 +12,10 @@ Before you begin, install the following software:
 
 | Tool | Purpose | Download Link |
 |------|---------|---------------|
-| **Positron** | IDE for R and Python | [https://github.com/posit-dev/positron/releases](https://github.com/posit-dev/positron/releases) |
+| **Positron** | IDE for R | [https://github.com/posit-dev/positron/releases](https://github.com/posit-dev/positron/releases) |
 | **R** (≥4.3) | Statistical computing | [https://cran.r-project.org/](https://cran.r-project.org/) |
-| **Python** (≥3.10) | Data analysis | [https://www.python.org/downloads/](https://www.python.org/downloads/) |
 | **Quarto** (≥1.4) | Document rendering | [https://quarto.org/docs/get-started/](https://quarto.org/docs/get-started/) |
 | **Git** | Version control | [https://git-scm.com/downloads](https://git-scm.com/downloads) |
-| **uv** | Python package manager | [https://docs.astral.sh/uv/](https://docs.astral.sh/uv/) |
 
 ### Verify Installation
 
@@ -27,10 +25,8 @@ Open **Git Bash** (The Terminal in Rstudio or Positron) and run:
 # Check versions
 positron --version
 R --version
-python --version
 quarto --version
 git --version
-uv --version
 ```
 
 ---
@@ -68,16 +64,7 @@ The project uses pre-commit hooks to prevent accidental commits of secrets (API 
 - Blocks commits containing `.env` files, API keys, passwords
 - Prevents accidental exposure of sensitive data
 
-### 3. Set Up Python Environment
-
-```bash
-# You should have a pyproject.toml file so just install dependencies
-uv sync
-```
-
-**Installed packages:** pandas, polars, matplotlib, plotly, jupyter, and more (see `pyproject.toml`)
-
-### 4. Set Up R Environment
+### 3. Set Up R Environment
 
 Open **Positron** and run in the R console:
 
@@ -344,24 +331,6 @@ If the hook blocks a commit incorrectly:
 
 ## ❓ Troubleshooting FAQ
 
-### Python Issues
-
-**Q: `uv: command not found`**
-
-```bash
-# Install uv
-curl -LsSf https://astral.sh/uv/install.sh | sh
-```
-
-**Q: Virtual environment not activating**
-
-```bash
-# Recreate virtual environment
-rm -rf .venv
-uv venv
-source .venv/bin/activate
-```
-
 ### R Issues
 
 **Q: `renv` packages not loading**
@@ -388,13 +357,6 @@ install.packages("package-name")
 
 - Restart your terminal after installing Quarto
 - Check PATH: `echo $PATH` should include Quarto bin directory
-
-**Q: Render fails with "Kernel error"**
-
-```bash
-# Reinstall Jupyter kernel
-uv pip install ipykernel --force-reinstall
-```
 
 **Q: R code chunks don't execute**
 
@@ -461,9 +423,6 @@ here::i_am("scripts/R/my_script.R")
 ```
 
 **Tip:** The `.Rprofile` loads the `here` package automatically, so you can use `here()` instead of `here::here()`. However, using the full `here::here()` makes code more explicit about where the function comes from.
-
-**Q: Can I use Python instead of R?**
-Yes! Both are supported. See `CONTRIBUTING.md` for guidance on when to use each.
 
 ---
 

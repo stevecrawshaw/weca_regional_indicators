@@ -50,13 +50,8 @@ format:
   #   documentclass: report
   #   papersize: a4
 
-# Engine Configuration
-# This ensures Quarto looks for the 'uv' virtual environment
-# for Python chunks and the 'renv' library for R chunks.
 knitr:
   opts_chunk:
     message: false
     warning: false
     dev: ragg_png
-
-jupyter: python3

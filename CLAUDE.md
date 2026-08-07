@@ -44,32 +44,27 @@ weca_regional_indicators/
 │   │   ├── reporting_table.R  # format_indicator_summary() — GT summary tables
 │   │   ├── dim_data.R         # core_dim_data_tbl — indicator metadata (polarity, priority, units)
 │   │   ├── summary_tables.R   # format_priority_summary() / format_overall_summary() — multi-indicator GT tables
-│   │   ├── db_connect.R       # Postgres connection via .env variables
 │   │   ├── azure_blob.R       # refresh_raw_chapter_data() — pull a chapter's raw data from Azure Blob
-│   │   ├── sync_raw_data.R    # CLI wrapper around azure_blob.R (Rscript, manual step)
-│   │   └── load_pins.R        # pins board helpers (S3-backed spatial/tabular pins)
-│   ├── python/          # Python utility scripts
+│   │   └── sync_raw_data.R    # CLI wrapper around azure_blob.R (Rscript, manual step)
 │   └── hooks/           # Pre-commit hook scripts
 ├── _freeze/             # Quarto execution cache (committed)
 ├── _output/             # Rendered HTML/PDF output (gitignored)
 ├── WIP/                 # In-progress analyst notes/specs (gitignored, local only)
-├── pyproject.toml       # Python dependencies (uv-managed)
 ├── renv.lock            # R package lock file
 └── .github/workflows/   # GitHub Actions (publish to GitHub Pages)
 ```
 
-### Quarto Polyglot Report
+### Quarto Report
 
 **Tech Stack:**
 
 - **Rendering:** Quarto
-- **Python:** Managed via `uv` (pyproject.toml-based)
 - **R:** Managed via `renv`
 - **IDE:** Positron (recommended)
 
 **Architecture Pattern:**
 
-- **Polyglot:** Chapters can use R or Python as needed
+- **R-only:** All chapters use R; Python is not part of the toolchain
 - **Modular:** Each chapter has its own directory to prevent merge conflicts
 - **Freeze execution:** Chapters only re-render when source changes (`freeze: auto`)
 - **Shared resources:** `data/` and `scripts/` directories contain assets used across chapters
@@ -103,13 +98,11 @@ The report uses code folding to keep output clean:
 
 ## Quarto Execution Model
 
-**Key concept:** `freeze: auto` prevents R/Python environment conflicts during final assembly. Chapters are cached and only re-executed when their source files change.
+**Key concept:** `freeze: auto` prevents R environment conflicts during final assembly. Chapters are cached and only re-executed when their source files change.
 
-**Execution engines:**
+**Execution engine:**
 
-- Python chunks use the `uv` virtual environment
-- R chunks use the `renv` library
-- Jupyter kernel: `python3`
+- R chunks use the `renv` library (knitr engine)
 
 ## R Environment Setup
 
@@ -186,16 +179,6 @@ source(here::here("scripts", "R", "_common.R"))
 This provides: `theme_weca`, `load_csv()`, `build_fact()`, `save_fact()`, `collate_fact()`, `build_reporting_view()`, `format_indicator_summary()`, `core_dim_data_tbl`, `format_priority_summary()`, `format_overall_summary()`.
 
 Each chapter directory also carries a `README.md` documenting its indicator table (ID, name, status, data source, refresh cadence) and known data gaps — see `chapters/03-place/README.md` for the pattern.
-
-## Database Connection
-
-`scripts/R/db_connect.R` connects to Postgres via variables in `.env` (gitignored):
-
-```
-POSTGRES_HOST, POSTGRES_PORT, POSTGRES_DB, POSTGRES_USER, POSTGRES_PASSWORD
-```
-
-Call `readRenviron(".env")` before sourcing `db_connect.R` in interactive scripts.
 
 ## Azure Blob Raw Data Sync
 

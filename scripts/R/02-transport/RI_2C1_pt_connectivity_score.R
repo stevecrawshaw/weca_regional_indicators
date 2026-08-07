@@ -67,7 +67,7 @@ connectivity_colours_named <- c(
   "West of England" = get_weca_color("west_green"),
   "Bristol" = get_weca_color("claret"),
   "B&NES" = get_weca_color("rich_purple"),
-  "North Somerset" = get_weca_color("soft_purple"),
+  "North Somerset" = get_weca_color("soft_claret"),
   "South Glos" = get_weca_color("forest_green")
 )
 

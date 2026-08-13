@@ -37,7 +37,8 @@ RI_3C1_long_tbl <- RI_3C1_raw_tbl |>
     year = str_extract(year_raw, "\\d{4}") |> as.integer(),
 
     # area column required downstream
-    area = la,
+    area = if_else(la == "Bath & North East Somerset",
+                  "Bath and North East Somerset", la),
 
     # Net additions are annual, ending 31 March
     period_end = make_date(year, 3, 31),

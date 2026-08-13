@@ -121,8 +121,18 @@ indicator_fact_tbl |>
 
 ### Overview
 
-This indicator tracks the proportion of dwellings in each local authority area that do not meet the Decent Homes Standard. The series is derived from the EHS LA Stock Condition Modelling dataset and provides a time series from 2009/10 to 2024/25. The values represent the estimated share of homes that fall below the standard in each year. A lower percentage indicates better housing quality and a smaller proportion of non-decent homes.
+This indicator tracks the proportion of dwellings in each local authority area that do not meet the Decent Homes Standard.
 
+A home is considered non‑decent if it fails to meet the Decent Homes Standard, which requires that a dwelling:
+
+- is free from serious hazards assessed under the Housing Health and Safety Rating System (HHSRS)\
+- is in a reasonable state of repair\
+- has reasonably modern facilities and services\
+- provides a reasonable degree of thermal comfort\
+
+Source: [UK Government – Consultation on a reformed Decent Homes Standard for social and privately rented homes, GOV.UK](https://www.gov.uk/government/consultations/consultation-on-a-reformed-decent-homes-standard-for-social-and-privately-rented-homes/outcome/the-new-decent-homes-standard-policy-statement)
+
+The series is derived from the EHS LA Stock Condition Modelling dataset and provides a time series from 2009/10 to 2024/25. The values represent the estimated share of homes that fall below the standard in each year. A lower percentage indicates better housing quality and a smaller proportion of non-decent homes.
 
 ```{r}
 #| label: RI_3A3_non_decent_homes_plot

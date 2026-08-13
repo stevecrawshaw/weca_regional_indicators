@@ -33,7 +33,9 @@ RI_3C3_long_tbl <- RI_3C3_raw_tbl |>
     year = str_extract(year_raw, "\\d{4}") |> as.integer(),
 
     # area column required downstream
-    area = la,
+    area = if_else(la == "Bath & North East Somerset",
+                   "Bath and North East Somerset",
+                   la),
 
     # Rental affordability → annual period ending mid-year
     period_end = make_date(year, 6, 30),
@@ -80,7 +82,7 @@ RI_3C3_plot <- RI_3C3_plot_tbl |>
     x = "Year",
     y = "£ per month",
     colour = NULL,
-    caption = "Source: WECA synthetic LA rent time series (PRMS anchors)"
+    caption = "Source: Local Authority rent time series (PRMS anchors)"
   ) +
   theme_ua() +
   theme(

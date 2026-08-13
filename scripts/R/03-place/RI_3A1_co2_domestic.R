@@ -33,7 +33,9 @@ RI_3A1_long_tbl <- RI_3A1_raw_tbl |>
   ) |>
   mutate(
     year = as.integer(str_remove(year_raw, "x")),
-    area = la,
+    area = if_else(la == "Bath & North East Somerset",
+                        "Bath and North East Somerset",
+                         la),
     period_end = make_date(year, 12, 31),
     period_start = make_date(year, 1, 1)
   ) |>

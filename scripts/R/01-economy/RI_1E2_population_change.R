@@ -1,4 +1,7 @@
-pacman::p_load(tidyverse, glue, janitor, here)
+library(tidyverse)
+library(janitor)
+library(here)
+
 source(here::here("scripts", "R", "_common.R"))
 
 # RI_1E2_population_change
@@ -32,8 +35,7 @@ RI_1E2_fact_tbl <- RI_1E2_raw_tbl |>
 RI_1E2_plot <-
   RI_1E2_raw_tbl |>
   ggplot(
-    aes(x = Date, y = cumulative_percentage_change, color = Area),
-    na.rm = TRUE
+    aes(x = Date, y = cumulative_percentage_change, color = Area)
   ) +
   geom_line() +
   geom_point() +
@@ -46,10 +48,13 @@ RI_1E2_plot <-
       "West of England" = "#40A832"
     )
   ) +
+  scale_y_continuous(
+    labels = scales::label_percent(scale = 1, accuracy = 1)
+  ) +
   labs(
     title = "Cumulative Population change",
     subtitle = "West of England",
-    y = "%",
+    y = NULL,
     x = "Year",
     caption = "Source: ONS mid-year population estimates"
   ) +

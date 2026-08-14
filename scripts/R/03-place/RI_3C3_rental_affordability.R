@@ -65,8 +65,8 @@ RI_3C3_plot_tbl <- bind_rows(RI_3C3_long_tbl, RI_3C3_weca_tbl)
 RI_3C3_plot <- RI_3C3_plot_tbl |>
   mutate(year = year(period_end)) |>
   ggplot(aes(x = year, y = value, colour = area, group = area)) +
-  geom_line(linewidth = 1.2) +
-  geom_point(size = 3) +
+  geom_line(linewidth = 1) +
+  geom_point(size = 2) +
   scale_colour_manual(
     values = c(
       ua_colors_by_name,
@@ -76,11 +76,14 @@ RI_3C3_plot <- RI_3C3_plot_tbl |>
   scale_x_continuous(
     breaks = sort(unique(year(RI_3C3_plot_tbl$period_end)))
   ) +
+  scale_y_continuous(
+    labels = scales::label_dollar(prefix = "£")
+  ) +
   labs(
     title = "Rental Affordability",
-    subtitle = "Median monthly private rent (£)",
+    subtitle = "Median monthly private rent",
     x = "Year",
-    y = "£ per month",
+    y = NULL,
     colour = NULL,
     caption = "Source: Local Authority rent time series (PRMS anchors)"
   ) +
@@ -91,6 +94,8 @@ RI_3C3_plot <- RI_3C3_plot_tbl |>
   ) +
   guides(colour = guide_legend(ncol = 2))
 
+
+# RI_3C3_plot
 # ------------------------------------------------------------
 # Fact table
 # ------------------------------------------------------------

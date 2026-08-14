@@ -62,7 +62,7 @@ RI_6A3_ks2_expected_standards_plot <-
     title = "Pupils meeting expected standards in reading, writing \nand maths at KS2",
     subtitle = "West of England",
     x = "Academic year",
-    y = "%",
+    y = NULL,
     caption = "Source: Department for Education"
   ) +
   theme_weca() +

@@ -1,6 +1,10 @@
 # libraries ---------------------
-pacman::p_load(tidyverse, janitor, glue, here, nomisdata, lubridate)
-source(here::here("scripts", "R", "_common.R"))
+library(tidyverse)
+library(lubridate)
+library(nomisdata)
+library(here)
+# pacman::p_load(tidyverse, janitor, glue, here, nomisdata, lubridate)
+source(here("scripts", "R", "_common.R"))
 
 # RI_4B2_economic_inactivity
 
@@ -32,7 +36,6 @@ RI_4B2_economic_inactivity_raw_tbl <- fetch_nomis(
     )
   )
 
-glimpse(RI_4B2_economic_inactivity_raw_tbl)
 
 # Keep the columns needed for plotting, checking and the fact table
 RI_4B2_economic_inactivity_long_tbl <-
@@ -46,8 +49,8 @@ RI_4B2_economic_inactivity_long_tbl <-
 
 
 # Check each area has one row per available period
-RI_4B2_economic_inactivity_long_tbl |>
-  count(area)
+# RI_4B2_economic_inactivity_long_tbl |>
+  # count(area)
 
 # Chart table: West of England and Great Britain only
 RI_4B2_economic_inactivity_plot_tbl <-
@@ -81,14 +84,14 @@ RI_4B2_economic_inactivity_plot <-
   ) +
   scale_x_date(date_breaks = "1 year", date_labels = "%Y") +
   scale_y_continuous(
-    labels = scales::percent,
+    labels = scales::label_percent(accuracy = 1),
     n.breaks = 10
   ) +
   labs(
     title = "Economically inactive residents aged 16-64",
     subtitle = "West of England and Great Britain",
     x = "Year",
-    y = "Economic \ninactivity \nrate",
+    y = "Economic\ninactivity\nrate",
     colour = NULL,
     caption = "Source: Nomis, Annual Population Survey"
   ) +
@@ -97,6 +100,7 @@ RI_4B2_economic_inactivity_plot <-
     axis.title.y = element_text(angle = 0, vjust = 0.5)
   )
 
+RI_4B2_economic_inactivity_plot
 
 # Creating fact table
 RI_4B2_economic_inactivity_fact_tbl <-

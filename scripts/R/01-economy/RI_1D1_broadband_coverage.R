@@ -1,4 +1,5 @@
-pacman::p_load(tidyverse, glue, janitor, here)
+library(tidyverse)
+library(here)
 source(here::here("scripts", "R", "_common.R"))
 
 # RI_1D1_broadband_coverage
@@ -16,9 +17,6 @@ RI_1D1_raw_tbl <- read_csv(
   )
 )
 
-# head(RI_1D1_raw_tbl)
-
-# plot
 
 RI_1D1_plot <- ggplot(RI_1D1_raw_tbl, aes(x = date)) +
   geom_line(
@@ -50,14 +48,15 @@ RI_1D1_plot <- ggplot(RI_1D1_raw_tbl, aes(x = date)) +
   labs(
     title = "Broadband coverage",
     subtitle = "West of England (weighted)",
-    y = "Coverage (%)",
+    y = "Coverage\n(%)",
     x = "Year",
     caption = "Source: Ofcom Connected Nations"
   ) +
   theme_weca() +
   theme(
     legend.title = element_blank(),
-    legend.text = element_text(size = 11)
+    legend.text = element_text(size = 11),
+    axis.title.y = element_text(angle = 0, vjust = 0.5),
   ) +
   scale_x_date(
     date_breaks = "1 year",
@@ -77,9 +76,7 @@ RI_1D1_fact_tbl <- RI_1D1_raw_tbl |>
       default = (make_date(year(max(date)), 12, 31) + 1)
     ) -
       days(1),
-    value = superfast_coverage,
-    date = NULL,
-    superfast_coverage = NULL
+    value = superfast_coverage
   )
 
 RI_1D1_fact_tbl |>

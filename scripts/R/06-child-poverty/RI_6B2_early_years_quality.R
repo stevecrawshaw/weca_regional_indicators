@@ -1,8 +1,6 @@
 # libraries ---------------------
 library(tidyverse)
 library(janitor)
-library(glue)
-library(tidyxl)
 library(readxl)
 library(here)
 
@@ -81,7 +79,7 @@ RI_6B2_early_years_quality_plot <-
     title = "Early years settings judged good or outstanding",
     # subtitle = "West of England",
     x = "Date",
-    y = "%",
+    y = NULL,
     colour = NULL,
     caption = "Source: Ofsted"
   ) +

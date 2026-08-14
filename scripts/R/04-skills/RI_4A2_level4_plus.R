@@ -1,5 +1,9 @@
 # libraries ---------------------
-pacman::p_load(tidyverse, janitor, glue, here, nomisdata, lubridate)
+library(tidyverse)
+library(here)
+library(nomisdata)
+library(lubridate)
+
 source(here::here("scripts", "R", "_common.R"))
 
 # RI_4A2_level4_plus
@@ -60,8 +64,8 @@ RI_4A2_level4_plus_long_tbl <-
 
 
 # Check to make sure each area should have one row per available year
-RI_4A2_level4_plus_long_tbl |>
-  count(area)
+# RI_4A2_level4_plus_long_tbl |>
+#   count(area)
 
 # Compare local authorities against West of England
 RI_4A2_level4_plus_plot_tbl <-
@@ -92,8 +96,8 @@ RI_4A2_level4_plus_plot <-
       group = area
     )
   ) +
-  geom_line(linewidth = 1.2) +
-  geom_point(size = 3) +
+  geom_line(linewidth = 1) +
+  geom_point(size = 2) +
   scale_colour_manual(
     values = c(
       ua_colors_by_name,
@@ -108,13 +112,13 @@ RI_4A2_level4_plus_plot <-
     )
   ) +
   scale_y_continuous(
-    labels = scales::percent
+    labels = scales::label_percent(accuracy = 1)
   ) +
   labs(
     title = "Residents aged 16-64 with Level 4 or above qualifications",
     # subtitle = "West of England",
     x = "Year",
-    y = "%",
+    y = NULL,
     colour = NULL,
     caption = "Source: Nomis, Annual Population Survey"
   ) +
@@ -128,7 +132,7 @@ RI_4A2_level4_plus_plot <-
   )
 
 # View line chart
-#RI_4A2_level4_plus_plot
+# RI_4A2_level4_plus_plot
 
 # Creating fact table
 # This indicator is annual December data from Nomis.

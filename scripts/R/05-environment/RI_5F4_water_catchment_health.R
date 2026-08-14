@@ -34,7 +34,7 @@ RI_5F4_plot <- RI_5F4_fact_tbl |>
     title = "Proportion of Surface Waters in 'Good' Ecological Health",
     subtitle = "Avon Bristol and Somerset North Streams",
     x = "Year",
-    y = "%",
+    y = NULL,
     caption = "Source: Environment Agency"
   ) +
   theme_weca() +

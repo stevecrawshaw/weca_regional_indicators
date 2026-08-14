@@ -84,7 +84,7 @@ RI_6A2_child_development_u5_plot <-
     title = "Children achieving a good level of development",
     # subtitle = "West of England",
     x = "Academic year",
-    y = "%",
+    y = NULL,
     colour = NULL,
     caption = "Source: Department for Education"
   ) +

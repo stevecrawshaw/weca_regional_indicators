@@ -57,7 +57,7 @@ RI_6A1_child_poverty_plot <-
     title = "Children in poverty after housing costs",
     subtitle = "West of England",
     x = "Financial year",
-    y = "%",
+    y = NULL,
     caption = "Source: End Child Poverty"
   ) +
   theme_weca() +

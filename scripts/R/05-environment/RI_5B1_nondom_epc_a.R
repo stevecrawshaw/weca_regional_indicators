@@ -72,7 +72,7 @@ RI_5B1_nondom_epc_a_plot <- RI_5B1_nondom_epc_a_fact_tbl |>
     title = "Proportion of non-domestic properties with EPC rating A or A+",
     subtitle = "Cumulative monthly proportions",
     x = "Date",
-    y = "%",
+    y = NULL,
     caption = "Source: MHCLG"
   ) +
   scale_y_continuous(

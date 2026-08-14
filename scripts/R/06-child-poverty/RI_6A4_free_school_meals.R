@@ -1,5 +1,8 @@
 # libraries ---------------------
-pacman::p_load(tidyverse, janitor, glue, tidyxl, readxl, here)
+library(tidyverse)
+library(readxl)
+library(here)
+
 source(here::here("scripts", "R", "_common.R"))
 
 # RI_6A4_free_school_meals
@@ -57,7 +60,7 @@ RI_6A4_free_school_meals_plot <-
     title = "Pupils eligible for free school meals",
     subtitle = "West of England",
     x = "Academic year",
-    y = "%",
+    y = NULL,
     caption = "Source: Department for Education"
   ) +
   theme_weca() +
@@ -67,7 +70,7 @@ RI_6A4_free_school_meals_plot <-
   )
 
 # View bar chart
-#RI_6A4_free_school_meals_plot
+RI_6A4_free_school_meals_plot
 
 # Creating fact table
 RI_6A4_free_school_meals_fact_tbl <-

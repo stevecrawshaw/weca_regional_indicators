@@ -23,14 +23,15 @@ RI_6D5_pupil_semh_needs_raw_tbl <- fingertips_data(
 RI_6D5_pupil_semh_needs_la_tbl <-
   RI_6D5_pupil_semh_needs_raw_tbl |>
   filter(
-    age== "School age",
-    area_name %in% c(
-      "Bath and North East Somerset",
-      "Bristol",
-      "North Somerset",
-      "South Gloucestershire",
-      "England"
-    )
+    age == "School age",
+    area_name %in%
+      c(
+        "Bath and North East Somerset",
+        "Bristol",
+        "North Somerset",
+        "South Gloucestershire",
+        "England"
+      )
   ) |>
   transmute(
     area = area_name,
@@ -39,7 +40,7 @@ RI_6D5_pupil_semh_needs_la_tbl <-
     count,
     denominator,
     value = value / 100
-  ) 
+  )
 
 
 # Create West of England figure --
@@ -100,7 +101,7 @@ RI_6D5_pupil_semh_needs_plot <-
     title = "School pupils with social, emotional and mental health needs",
     subtitle = "West of England",
     x = "Academic year",
-    y = "%",
+    y = NULL,
     caption = "Source: Fingertips"
   ) +
   theme_ua() +

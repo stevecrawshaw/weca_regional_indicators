@@ -88,7 +88,7 @@ RI_3A2_plot <- RI_3A2_fact_tbl |>
     title = "Proportion of Homes with EPC rating C or better",
     subtitle = "Cumulative monthly proportions",
     x = "Date",
-    y = "%",
+    y = NULL,
     caption = "Source: MHCLG"
   ) +
   scale_y_continuous(

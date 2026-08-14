@@ -23,13 +23,14 @@ RI_6D4_child_health_2yr_review_raw_tbl <- fingertips_data(
 RI_6D4_child_health_2yr_review_la_tbl <-
   RI_6D4_child_health_2yr_review_raw_tbl |>
   filter(
-    area_name %in% c(
-      "Bath and North East Somerset",
-      "Bristol",
-      "North Somerset",
-      "South Gloucestershire",
-      "England"
-    )
+    area_name %in%
+      c(
+        "Bath and North East Somerset",
+        "Bristol",
+        "North Somerset",
+        "South Gloucestershire",
+        "England"
+      )
   ) |>
   transmute(
     area = area_name,
@@ -48,12 +49,13 @@ RI_6D4_child_health_2yr_review_la_tbl <-
 RI_6D4_child_health_2yr_review_woe_tbl <-
   RI_6D4_child_health_2yr_review_la_tbl |>
   filter(
-    area %in% c(
-      "Bath and North East Somerset",
-      "Bristol",
-      "North Somerset",
-      "South Gloucestershire"
-    )
+    area %in%
+      c(
+        "Bath and North East Somerset",
+        "Bristol",
+        "North Somerset",
+        "South Gloucestershire"
+      )
   ) |>
   group_by(financial_year, timeperiod_sortable) |>
   summarise(
@@ -83,40 +85,45 @@ RI_6D4_child_health_2yr_review_plot_tbl <-
   ) |>
   arrange(timeperiod_sortable, area)
 
+y_lower_limit <- 0.8
 
-# Bar chart: West of England -----
+# Line chart: West of England -----
+# changed from bar chart to enable truncated axis
+# in line with QA Doc
 RI_6D4_child_health_2yr_review_plot <-
   RI_6D4_child_health_2yr_review_woe_tbl |>
-  ggplot(
-    aes(
-      x = financial_year,
-      y = value
-    )
+  ggplot() +
+  aes(
+    x = timeperiod_sortable,
+    y = value
   ) +
-  geom_col(
-    fill = "#40A832"
+  geom_line(
+    color = "#40A832",
+    linewidth = 1
   ) +
+  geom_point(size = 2, color = "#40A832") +
   scale_y_continuous(
-    labels = scales::percent,
-    breaks = seq(0.70, 1.00, by = 0.05)
+    labels = scales::label_percent(accuracy = 1),
+    limits = c(y_lower_limit, 1),
+    breaks = seq(y_lower_limit, 1, by = 0.02),
+    expand = expansion(mult = c(0.05, 0.05))
   ) +
-  coord_cartesian(
-    ylim = c(0.70, 1.00)
+  scale_x_continuous(
+    breaks = RI_6D4_child_health_2yr_review_woe_tbl$timeperiod_sortable,
+    labels = RI_6D4_child_health_2yr_review_woe_tbl$financial_year
   ) +
+  guides(y = guide_axis(cap = "both")) +
   labs(
     title = "Children achieving a good level of development \nat 2 to 2.5 year review",
     subtitle = "West of England",
     x = "Financial year",
-    y = "%",
+    y = NULL,
     caption = "Source: Fingertips"
   ) +
-  theme_ua() +
-  theme(
-    axis.title.y = element_text(angle = 0, vjust = 0.5)
-  )
+  theme_ua()
 
 # View
-#RI_6D4_child_health_2yr_review_plot
+RI_6D4_child_health_2yr_review_plot
 
 # Creating fact table ------------
 RI_6D4_child_health_2yr_review_fact_tbl <-

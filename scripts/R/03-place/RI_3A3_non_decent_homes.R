@@ -9,7 +9,6 @@ library(readxl)
 library(janitor)
 library(lubridate)
 library(here)
-library(glue)
 
 source(here::here("scripts", "R", "_common.R"))
 
@@ -62,17 +61,18 @@ RI_3A3_plot <- RI_3A3_plot_tbl |>
       ua_colors_by_name,
       "West of England" = "#40A832"
     )
-  
   ) +
   scale_x_continuous(
     breaks = sort(unique(year(RI_3A3_plot_tbl$period_end)))
   ) +
-  scale_y_continuous(labels = scales::percent) +
+  scale_y_continuous(
+    labels = scales::label_percent(accuracy = 1),
+  ) +
   labs(
     title = "Non-decent Homes",
     subtitle = "Proportion of dwellings failing the Decent Homes Standard",
     x = "Year",
-    y = "%",
+    y = NULL,
     colour = NULL,
     caption = "Source: EHS LA Stock Condition Modelling (2024), WECA synthetic time series"
   ) +
@@ -82,6 +82,9 @@ RI_3A3_plot <- RI_3A3_plot_tbl |>
     legend.position = "bottom"
   ) +
   guides(colour = guide_legend(ncol = 2))
+
+# RI_3A3_plot
+
 
 RI_3A3_fact_tbl <- RI_3A3_weca_tbl |>
   mutate(value = value * 100) |>

@@ -1,7 +1,5 @@
 # libraries ---------------------
 library(tidyverse)
-library(janitor)
-library(glue)
 library(readxl)
 library(here)
 source(here::here("scripts", "R", "_common.R"))
@@ -51,7 +49,7 @@ RI_6B1_childcare_places_plot <-
     title = "Childcare places relative to population aged 0 to 4",
     subtitle = "West of England",
     x = "Year",
-    y = "%",
+    y = NULL,
     caption = "Source: Ofsted and ONS"
   ) +
   theme_weca() +

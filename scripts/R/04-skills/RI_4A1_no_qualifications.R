@@ -1,6 +1,10 @@
 # libraries ---------------------
-pacman::p_load(tidyverse, janitor, glue, here, nomisdata, lubridate)
-source(here::here("scripts", "R", "_common.R"))
+library(tidyverse)
+library(here)
+library(nomisdata)
+library(lubridate)
+
+source(here("scripts", "R", "_common.R"))
 
 # RI_4A1_no_qualifications
 
@@ -99,8 +103,8 @@ RI_4A1_no_qualifications_plot <-
       group = area
     )
   ) +
-  geom_line(linewidth = 1.2) +
-  geom_point(size = 3) +
+  geom_line(linewidth = 1) +
+  geom_point(size = 2) +
   scale_colour_manual(
     values = c(
       ua_colors_by_name,
@@ -121,7 +125,7 @@ RI_4A1_no_qualifications_plot <-
     title = "Residents aged 16-64 with no qualifications",
     # subtitle = "West of England",
     x = "Year",
-    y = "%",
+    y = NULL,
     colour = NULL,
     caption = "Source: Nomis, Annual Population Survey"
   ) +
@@ -135,7 +139,7 @@ RI_4A1_no_qualifications_plot <-
   )
 
 # View line chart
-#RI_4A1_no_qualifications_plot
+# RI_4A1_no_qualifications_plot
 
 # Creating fact table
 # This indicator is annual December data from Nomis.

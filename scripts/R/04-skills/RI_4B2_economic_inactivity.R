@@ -100,7 +100,7 @@ RI_4B2_economic_inactivity_plot <-
     axis.title.y = element_text(angle = 0, vjust = 0.5)
   )
 
-RI_4B2_economic_inactivity_plot
+# RI_4B2_economic_inactivity_plot
 
 # Creating fact table
 RI_4B2_economic_inactivity_fact_tbl <-

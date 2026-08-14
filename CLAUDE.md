@@ -12,47 +12,7 @@ This repository (`weca_regional_indicators`) contains the West of England Combin
 
 ### Repository Structure
 
-Everything lives at the repository root (no nested `projects/` directory):
-
-```
-weca_regional_indicators/
-├── _quarto.yml          # Quarto configuration (chapter order, themes, execution)
-├── _brand.yml           # WECA branding configuration
-├── index.qmd            # Report landing page
-├── custom.scss          # Custom SCSS styling
-├── .Rprofile            # renv activation + vscode-R options (must load renv first)
-├── .Renviron            # Disables renv startup sync check (speeds up R start)
-├── chapters/            # Modular chapter directories (one per analyst/priority)
-│   ├── 01-economy/
-│   ├── 02-transport/
-│   ├── 03-place/
-│   ├── 04-skills/
-│   ├── 05-environment/
-│   └── 06-child-poverty/
-├── data/                # Shared data assets
-│   ├── raw/             # Original data files (not committed)
-│   ├── processed/       # Cleaned/transformed data (not committed)
-│   ├── fact/            # Per-indicator FACT CSVs (committed, one file per indicator)
-│   └── examples/        # Small example datasets (committed)
-├── scripts/
-│   ├── R/
-│   │   ├── _common.R          # Sourced by every chapter (loads all helpers below)
-│   │   ├── theme_weca.R       # WECA ggplot2 theme
-│   │   ├── helpers.R          # General data loading utilities
-│   │   ├── fact_helpers.R     # build_fact() / save_fact() — analyst FACT workflow
-│   │   ├── collate_fact.R     # collate_fact() / build_reporting_view()
-│   │   ├── reporting_table.R  # format_indicator_summary() — GT summary tables
-│   │   ├── dim_data.R         # core_dim_data_tbl — indicator metadata (polarity, priority, units)
-│   │   ├── summary_tables.R   # format_priority_summary() / format_overall_summary() — multi-indicator GT tables
-│   │   ├── azure_blob.R       # refresh_raw_chapter_data() — pull a chapter's raw data from Azure Blob
-│   │   └── sync_raw_data.R    # CLI wrapper around azure_blob.R (Rscript, manual step)
-│   └── hooks/           # Pre-commit hook scripts
-├── _freeze/             # Quarto execution cache (committed)
-├── _output/             # Rendered HTML/PDF output (gitignored)
-├── WIP/                 # In-progress analyst notes/specs (gitignored, local only)
-├── renv.lock            # R package lock file
-└── .github/workflows/   # GitHub Actions (publish to GitHub Pages)
-```
+Everything lives at the repository root (no nested `projects/` directory). Chapter directories under `chapters/` hold one per analyst/priority; shared data lives under `data/` (`raw/` and `processed/` are gitignored, `fact/` and `examples/` are committed); shared R code lives under `scripts/R/` (see [FACT Table Workflow](#fact-table-workflow) and [Chapter Setup](#chapter-setup) below for what each script provides).
 
 ### Quarto Report
 
@@ -179,6 +139,10 @@ source(here::here("scripts", "R", "_common.R"))
 This provides: `theme_weca`, `load_csv()`, `build_fact()`, `save_fact()`, `collate_fact()`, `build_reporting_view()`, `format_indicator_summary()`, `core_dim_data_tbl`, `format_priority_summary()`, `format_overall_summary()`.
 
 Each chapter directory also carries a `README.md` documenting its indicator table (ID, name, status, data source, refresh cadence) and known data gaps — see `chapters/03-place/README.md` for the pattern.
+
+**Line and point sizing is set globally, not per chart.** `theme_weca()` (and so `theme_ua()`) carries `geom = element_geom(linewidth = weca_linewidth, pointsize = weca_pointsize)`, currently 1 and 2.5. Write `geom_line()` and `geom_point()` with no `linewidth` or `size` argument and they inherit those values, so every line chart in the report matches. Change the two constants at the top of `scripts/R/theme_weca.R` to restyle the whole report.
+
+Set a size locally only where a layer must deviate — a lightweight reference line, for instance, needs `geom_hline(linewidth = 0.5)`, because otherwise it inherits the data-line weight and competes with it. An explicit argument always wins over the theme.
 
 ## Azure Blob Raw Data Sync
 

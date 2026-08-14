@@ -21,22 +21,18 @@ RI_1D1_raw_tbl <- read_csv(
 RI_1D1_plot <- ggplot(RI_1D1_raw_tbl, aes(x = date)) +
   geom_line(
     aes(y = superfast_coverage, color = "Superfast (30mbps)"),
-    linewidth = 1,
     na.rm = TRUE
   ) +
   geom_line(
     aes(y = gigabit_coverage, color = "Gigabit (1000mbps)"),
-    linewidth = 1,
     na.rm = TRUE
   ) +
   geom_point(
     aes(y = superfast_coverage, color = "Superfast (30mbps)"),
-    size = 2,
     na.rm = TRUE
   ) +
   geom_point(
     aes(y = gigabit_coverage, color = "Gigabit (1000mbps)"),
-    size = 2,
     na.rm = TRUE
   ) +
   scale_color_manual(

@@ -25,8 +25,8 @@ RI_5F1_index_tbl <- RI_5F1_nfi_tbl |>
 
 RI_5F1_plot <- RI_5F1_index_tbl |>
   ggplot(aes(x = Year, y = index)) +
-  geom_line(color = get_weca_color("west_green"), linewidth = 1) +
-  geom_point(size = 2, color = get_weca_color("west_green")) +
+  geom_line(color = get_weca_color("west_green")) +
+  geom_point(color = get_weca_color("west_green")) +
   scale_y_continuous(
     labels = scales::label_percent(scale = 1),
     limits = c(-1, 1)

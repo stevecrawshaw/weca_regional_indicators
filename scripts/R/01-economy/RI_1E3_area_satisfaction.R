@@ -22,10 +22,9 @@ RI_1E3_raw_tbl <- read_csv(
 RI_1E3_plot <- ggplot(RI_1E3_raw_tbl, aes(x = date)) +
   geom_line(
     aes(y = percent_satisfied, color = area),
-    linewidth = 1.25,
     na.rm = TRUE
   ) +
-  geom_point(aes(y = percent_satisfied, color = area), size = 2, na.rm = TRUE) +
+  geom_point(aes(y = percent_satisfied, color = area), na.rm = TRUE) +
   scale_color_manual(
     values = c(
       "Bath & North East Somerset" = "#590075",

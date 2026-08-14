@@ -60,8 +60,8 @@ RI_4B3_neet_16_17_plot_tbl <-
 RI_4B3_neet_16_17_plot <-
   RI_4B3_neet_16_17_plot_tbl |>
   ggplot(aes(x = year, y = value, colour = area, group = area)) +
-  geom_line(linewidth = 1.2) +
-  geom_point(size = 3) +
+  geom_line() +
+  geom_point() +
   scale_colour_manual(
     values = c(
       ua_colors_by_name,

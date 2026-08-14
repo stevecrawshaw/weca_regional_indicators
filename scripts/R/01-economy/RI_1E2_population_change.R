@@ -33,11 +33,10 @@ RI_1E2_plot <-
   RI_1E2_raw_tbl |>
   ggplot(
     aes(x = Date, y = cumulative_percentage_change, color = Area),
-    linewidth = 1.25,
     na.rm = TRUE
   ) +
-  geom_line(linewidth = 1) +
-  geom_point(size = 2) +
+  geom_line() +
+  geom_point() +
   scale_color_manual(
     values = c(
       "Bath & North East Somerset" = "#590075",

@@ -98,10 +98,9 @@ RI_6D4_child_health_2yr_review_plot <-
     y = value
   ) +
   geom_line(
-    color = "#40A832",
-    linewidth = 1
+    color = "#40A832"
   ) +
-  geom_point(size = 2, color = "#40A832") +
+  geom_point(color = "#40A832") +
   scale_y_continuous(
     labels = scales::label_percent(accuracy = 1),
     limits = c(y_lower_limit, 1),

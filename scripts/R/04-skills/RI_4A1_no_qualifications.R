@@ -103,8 +103,8 @@ RI_4A1_no_qualifications_plot <-
       group = area
     )
   ) +
-  geom_line(linewidth = 1) +
-  geom_point(size = 2) +
+  geom_line() +
+  geom_point() +
   scale_colour_manual(
     values = c(
       ua_colors_by_name,

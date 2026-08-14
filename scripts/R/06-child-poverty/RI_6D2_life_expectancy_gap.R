@@ -57,8 +57,8 @@ RI_6D2_life_expectancy_gap_male_plot <-
       group = area
     )
   ) +
-  geom_line(linewidth = 1.2) +
-  geom_point(size = 3) +
+  geom_line() +
+  geom_point() +
   scale_colour_manual(
     values = ua_colors_by_name
   ) +
@@ -99,8 +99,8 @@ RI_6D2_life_expectancy_gap_female_plot <-
       group = area
     )
   ) +
-  geom_line(linewidth = 1.2) +
-  geom_point(size = 3) +
+  geom_line() +
+  geom_point() +
   scale_colour_manual(
     values = ua_colors_by_name
   ) +

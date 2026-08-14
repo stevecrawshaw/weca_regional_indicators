@@ -73,8 +73,8 @@ RI_1A1_employment_rate_plot <-
       group = area
     )
   ) +
-  geom_line(linewidth = 1.2) +
-  geom_point(size = 2) +
+  geom_line() +
+  geom_point() +
   scale_colour_manual(
     values = c(
       "West of England" = "#40A832",

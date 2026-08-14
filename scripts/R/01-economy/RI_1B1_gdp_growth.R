@@ -108,8 +108,8 @@ upper_limit <- round_to_interval(max_value, interval = 10)
 
 # Generate the plot
 RI_1B1_plot <- ggplot(weca_cvm_series, aes(x = period_start, y = cvm_value)) +
-  geom_line(linewidth = 1, color = get_weca_color("west_green")) +
-  geom_point(size = 2, color = get_weca_color("west_green")) +
+  geom_line(color = get_weca_color("west_green")) +
+  geom_point(color = get_weca_color("west_green")) +
   labs(
     title = "GDP growth in 2023 prices",
     subtitle = "Real GDP (excluding inflation) for the West of England",

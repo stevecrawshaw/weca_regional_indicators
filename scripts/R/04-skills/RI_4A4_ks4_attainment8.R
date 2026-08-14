@@ -61,8 +61,8 @@ RI_4A4_ks4_attainment8_plot_tbl <-
 RI_4A4_ks4_attainment8_plot <-
   RI_4A4_ks4_attainment8_plot_tbl |>
   ggplot(aes(x = academic_year, y = value, colour = area, group = area)) +
-  geom_line(linewidth = 1.2) +
-  geom_point(size = 3) +
+  geom_line() +
+  geom_point() +
   scale_colour_manual(
     values = c(
       ua_colors_by_name,

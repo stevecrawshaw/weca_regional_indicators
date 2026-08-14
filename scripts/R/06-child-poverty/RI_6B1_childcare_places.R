@@ -41,8 +41,8 @@ RI_6B1_childcare_places_plot_tbl <-
 RI_6B1_childcare_places_plot <-
   RI_6B1_childcare_places_plot_tbl |>
   ggplot(aes(x = date, y = value)) +
-  geom_line(linewidth = 1.2, colour = "#40A832") +
-  geom_point(size = 3, colour = "#40A832") +
+  geom_line(colour = "#40A832") +
+  geom_point(colour = "#40A832") +
   scale_y_continuous(labels = scales::percent) +
   scale_x_date(date_breaks = "1 year", date_labels = "%Y") +
   labs(

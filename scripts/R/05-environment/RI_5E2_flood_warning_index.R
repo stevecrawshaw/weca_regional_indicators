@@ -18,11 +18,12 @@ RI_5E2_flood_warning_index_fact_tbl <- RI_5E2_raw_tbl |>
 
 RI_5E2_flood_warning_index_plot <- RI_5E2_flood_warning_index_fact_tbl |>
   ggplot(aes(x = period_start, y = value)) +
-  geom_line(color = get_weca_color("west_green"), linewidth = 1) +
-  geom_point(size = 2, color = get_weca_color("west_green")) +
+  geom_line(color = get_weca_color("west_green")) +
+  geom_point(color = get_weca_color("west_green")) +
   geom_hline(
     yintercept = 100,
     linetype = "dashed",
+    linewidth = 0.5,
     color = get_weca_color("forest_green")
   ) +
   scale_x_date(date_breaks = "1 year", date_labels = "%Y") +

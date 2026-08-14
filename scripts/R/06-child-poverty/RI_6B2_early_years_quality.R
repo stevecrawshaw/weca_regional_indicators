@@ -60,8 +60,8 @@ RI_6B2_early_years_quality_plot <-
       group = area
     )
   ) +
-  geom_line(linewidth = 1.2) +
-  geom_point(size = 3) +
+  geom_line() +
+  geom_point() +
   scale_colour_manual(
     values = c(
       ua_colors_by_name,

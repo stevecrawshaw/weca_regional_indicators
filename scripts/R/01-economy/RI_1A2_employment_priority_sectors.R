@@ -107,8 +107,8 @@ RI_1A2_employment_priority_sectors_plot <-
       y = value
     )
   ) +
-  geom_line(linewidth = 1, color = get_weca_color("west_green")) +
-  geom_point(size = 2, color = get_weca_color("west_green")) +
+  geom_line(color = get_weca_color("west_green")) +
+  geom_point(color = get_weca_color("west_green")) +
   scale_x_continuous(
     breaks = seq(
       min(RI_1A2_employment_priority_sectors_long_tbl$year),

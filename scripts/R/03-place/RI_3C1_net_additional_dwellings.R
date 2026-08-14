@@ -68,8 +68,8 @@ RI_3C1_plot_tbl <- bind_rows(RI_3C1_long_tbl, RI_3C1_weca_tbl)
 RI_3C1_plot <- RI_3C1_plot_tbl |>
   mutate(year = year(period_end)) |>
   ggplot(aes(x = year, y = value, colour = area, group = area)) +
-  geom_line(linewidth = 1.2) +
-  geom_point(size = 3) +
+  geom_line() +
+  geom_point() +
   scale_colour_manual(
     values = c(
       ua_colors_by_name,

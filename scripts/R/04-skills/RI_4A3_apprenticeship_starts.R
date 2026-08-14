@@ -139,8 +139,8 @@ RI_4A3_apprenticeship_starts_change_plot <-
     colour = "grey70",
     linewidth = 0.5
   ) +
-  geom_line(colour = "#40A832", linewidth = 1.2) +
-  geom_point(colour = "#40A832", size = 2.5) +
+  geom_line(colour = "#40A832") +
+  geom_point(colour = "#40A832") +
   scale_y_continuous(
     breaks = seq(-40, 40, by = 4),
     labels = scales::label_percent(

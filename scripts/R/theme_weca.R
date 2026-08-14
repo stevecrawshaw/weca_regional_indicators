@@ -45,6 +45,15 @@ ua_colors_by_name <-
     "North Somerset" = "#ED8073"
   )
 
+# Default geometry sizing, applied by theme_weca() (and so theme_ua()) via
+# ggplot2's `geom` theme element. Setting them here means indicator scripts do
+# not set `linewidth` in geom_line() or `size` in geom_point() - the chart picks
+# them up from the theme, so every line chart in the report matches.
+# Override locally only when a chart deliberately deviates (e.g. a lightweight
+# reference line).
+weca_linewidth <- 1
+weca_pointsize <- 2.5
+
 ua_colors_by_code <-
   c(
     "E06000023" = "#CE132D",
@@ -63,6 +72,10 @@ weca_palette <- function() {
 #'
 #' A clean, accessible theme aligned with WECA branding.
 #' Uses Open Sans font and WECA brand colors.
+#'
+#' Also sets report-wide geometry defaults, so line charts do not need to
+#' specify `linewidth` in `geom_line()` or `size` in `geom_point()` - see
+#' `weca_linewidth` / `weca_pointsize` above.
 #'
 #' @param base_size Base font size (default: 11)
 #' @param base_family Base font family (default: "Open Sans")
@@ -131,7 +144,15 @@ theme_weca <- function(base_size = 11, base_family = "Arial") {
 
       # Plot background
       plot.background = element_rect(fill = "white", colour = NA),
-      plot.margin = margin(10, 10, 10, 10)
+      plot.margin = margin(10, 10, 10, 10),
+
+      # Geometry defaults (ggplot2 >= 3.6): geom_line()/geom_path() inherit
+      # `linewidth`, geom_point() inherits `size`. Explicit arguments in a
+      # layer still win.
+      geom = element_geom(
+        linewidth = weca_linewidth,
+        pointsize = weca_pointsize
+      )
     )
 }
 

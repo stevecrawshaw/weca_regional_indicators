@@ -82,8 +82,8 @@ RI_3A2_fact_tbl <- RI_3A2_in_cat_tbl |>
 
 RI_3A2_plot <- RI_3A2_fact_tbl |>
   ggplot(aes(x = period_end, y = value)) +
-  geom_line(linewidth = 1, color = get_weca_color("west_green")) +
-  # geom_point(size = 2, color = get_weca_color("west_green")) +
+  geom_line(color = get_weca_color("west_green")) +
+  # geom_point(color = get_weca_color("west_green")) +
   labs(
     title = "Proportion of Homes with EPC rating C or better",
     subtitle = "Cumulative monthly proportions",

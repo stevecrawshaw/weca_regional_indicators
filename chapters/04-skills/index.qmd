@@ -142,6 +142,108 @@ Higher-level qualifications are an important indicator of workforce capability a
 
 RI_4A2_level4_plus_plot
 ```
+
+## NEET 16-17
+
+```{r}
+#| label: RI_4B3_neet_16_17_gt
+#| eval: true
+#| code-summary: "RI_4B3_neet_16_17 summary"
+
+indicator_fact_tbl |>
+  format_indicator_summary(
+    "RI_4B3_neet_16_17",
+    dim_tbl = core_dim_data_tbl,
+    title = "NEET 16-17",
+    subtitle = "16-17 year olds not in education, employment or training",
+    polarity = indicator_polarity[["RI_4B3_neet_16_17"]]
+  )
+```
+
+### Overview
+
+Participation in education, employment or training during the transition from school is important for long-term outcomes. This indicator measures the proportion of 16-17 year olds who are not in education, employment or training (NEET). Lower rates indicate that more young people are progressing into positive destinations and developing the skills needed for future careers. Reducing NEET levels helps strengthen the future workforce and improve social mobility.
+
+```{r}
+#| label: RI_4B3_neet_16_17_plot
+#| eval: true
+#| code-summary: "RI_4B3_neet_16_17 line chart"
+#| fig-alt: |
+#|   Line chart of the percentage of 16 to 17 year olds not in education,
+#|   employment or training, by year from 2015 onwards, for Bath and North
+#|   East Somerset, Bristol, North Somerset, South Gloucestershire and the
+#|   West of England as a whole. Rates vary between the local authorities
+#|   year to year, with no single authority consistently highest or lowest.
+
+RI_4B3_neet_16_17_plot
+```
+## Below Living Wage
+
+```{r}
+#| label: RI_4B5_below_living_wage_gt
+#| eval: true
+#| code-summary: "RI_4B5_below_living_wage summary"
+
+indicator_fact_tbl |>
+  format_indicator_summary(
+    "RI_4B5_below_living_wage",
+    dim_tbl = core_dim_data_tbl,
+    title = "Below Living Wage",
+    subtitle = "Proportion of employees earning below the Living Wage",
+    polarity = indicator_polarity[["RI_4B5_below_living_wage"]]
+  )
+```
+
+### Overview
+
+The quality of employment is an important aspect of economic wellbeing. This indicator measures the proportion of employees earning below the Real Living Wage, as defined by the Living Wage Foundation. Lower levels indicate that a greater share of workers are earning wages that better reflect the cost of living. Monitoring this indicator helps assess whether economic growth is translating into improved living standards and the creation of quality employment opportunities. The most recent year of data is provisional and should be interpreted with caution, as revised estimates will be published the following year.
+
+```{r}
+#| label: RI_4B5_below_living_wage_plot
+#| eval: true
+#| code-summary: "RI_4B5_below_living_wage line chart"
+#| fig-alt: |
+#|   Bar chart of the percentage of employees in the West of England
+#|   earning below the Real Living Wage, by year from 2015 onwards. The
+#|   share below the Living Wage has generally declined over the period,
+#|   though the most recent year is provisional and may be revised.
+
+RI_4B5_below_living_wage_plot
+```
+## Economic Inactivity
+
+```{r}
+#| label: RI_4B2_economic_inactivity_gt
+#| eval: true
+#| code-summary: "RI_4B2_economic_inactivity summary"
+
+indicator_fact_tbl |>
+  format_indicator_summary(
+    "RI_4B2_economic_inactivity",
+    dim_tbl = core_dim_data_tbl,
+    title = "Economic Inactivity",
+    subtitle = "Proportion of working-age residents economically inactive",
+    polarity = indicator_polarity[["RI_4B2_economic_inactivity"]]
+  )
+```
+### Overview
+
+Economic inactivity can limit workforce participation and reduce the availability of skills within the labour market. This indicator measures the proportion of working-age residents who are neither employed or actively seeking work. Lower levels of inactivity indicate greater participation in economic activity and access to employment opportunities. Reducing inactivity is an important part of addressing labour shortages and supporting inclusive growth.
+
+```{r}
+#| label: RI_4B2_economic_inactivity_plot
+#| eval: true
+#| code-summary: "RI_4B2_economic_inactivity line chart"
+#| fig-alt: |
+#|   Line chart of the economic inactivity rate for residents aged 16 to
+#|   64, tracked monthly over the most recent years, comparing the
+#|   West of England against Great Britain. The West of England rate
+#|   tracks below the Great Britain rate for most of the period, with
+#|   both series showing similar fluctuations over time.
+
+RI_4B2_economic_inactivity_plot
+```
+
 ## Apprenticeship Starts
 
 ```{r}
@@ -209,7 +311,7 @@ indicator_fact_tbl |>
 
 ### Overview
 
-Educational attainment provides the foundation for future learning, skills development and employment opportunities. This indicator measures [average pupil attainment across a range of subjects at the end of Key Stage 4 (GCSE)](https://www.gov.uk/government/publications/progress-8-school-performance-measure/secondary-accountability-measures-2025-guidance-for-maintained-secondary-schools-academies-and-free-schools#annex-a-progress-8-methodology). Strong educational outcomes help ensure young people are equipped to progress into further education, training and employment. Comparisons over time should be interpreted with some caution, as educational attainment and assessment arrangements were affected by the COVID-19 pandemic, particularly during 2020 and 2021. 
+Educational attainment provides the foundation for future learning, skills development and employment opportunities. This indicator measures [average pupil attainment across a range of subjects at the end of Key Stage 4 (GCSE)](https://www.gov.uk/government/publications/progress-8-school-performance-measure/secondary-accountability-measures-2025-guidance-for-maintained-secondary-schools-academies-and-free-schools#annex-a-progress-8-methodology). Strong educational outcomes help ensure young people are equipped to progress into further education, training and employment. Comparisons over time should be interpreted with some caution, as educational attainment and assessment arrangements were affected by the COVID-19 pandemic, particularly during 2020 and 2021.
 
 ```{r}
 #| label: RI_4A4_ks4_attainment8_plot
@@ -225,109 +327,10 @@ Educational attainment provides the foundation for future learning, skills devel
 
 RI_4A4_ks4_attainment8_plot
 ```
-## Economic Inactivity
 
-```{r}
-#| label: RI_4B2_economic_inactivity_gt
-#| eval: true
-#| code-summary: "RI_4B2_economic_inactivity summary"
-
-indicator_fact_tbl |>
-  format_indicator_summary(
-    "RI_4B2_economic_inactivity",
-    dim_tbl = core_dim_data_tbl,
-    title = "Economic Inactivity",
-    subtitle = "Proportion of working-age residents economically inactive",
-    polarity = indicator_polarity[["RI_4B2_economic_inactivity"]]
-  )
-```
-### Overview
-
-Economic inactivity can limit workforce participation and reduce the availability of skills within the labour market. This indicator measures the proportion of working-age residents who are neither employed or actively seeking work. Lower levels of inactivity indicate greater participation in economic activity and access to employment opportunities. Reducing inactivity is an important part of addressing labour shortages and supporting inclusive growth.
-
-```{r}
-#| label: RI_4B2_economic_inactivity_plot
-#| eval: true
-#| code-summary: "RI_4B2_economic_inactivity line chart"
-#| fig-alt: |
-#|   Line chart of the economic inactivity rate for residents aged 16 to
-#|   64, tracked monthly over the most recent years, comparing the
-#|   West of England against Great Britain. The West of England rate
-#|   tracks below the Great Britain rate for most of the period, with
-#|   both series showing similar fluctuations over time.
-
-RI_4B2_economic_inactivity_plot
-```
-## NEET 16-17
-
-```{r}
-#| label: RI_4B3_neet_16_17_gt
-#| eval: true
-#| code-summary: "RI_4B3_neet_16_17 summary"
-
-indicator_fact_tbl |>
-  format_indicator_summary(
-    "RI_4B3_neet_16_17",
-    dim_tbl = core_dim_data_tbl,
-    title = "NEET 16-17",
-    subtitle = "16-17 year olds not in education, employment or training",
-    polarity = indicator_polarity[["RI_4B3_neet_16_17"]]
-  )
-```
-
-### Overview
-
-Participation in education, employment or training during the transition from school is important for long-term outcomes. This indicator measures the proportion of 16-17 year olds who are not in education, employment or training (NEET). Lower rates indicate that more young people are progressing into positive destinations and developing the skills needed for future careers. Reducing NEET levels helps strengthen the future workforce and improve social mobility.
-
-```{r}
-#| label: RI_4B3_neet_16_17_plot
-#| eval: true
-#| code-summary: "RI_4B3_neet_16_17 line chart"
-#| fig-alt: |
-#|   Line chart of the percentage of 16 to 17 year olds not in education,
-#|   employment or training, by year from 2015 onwards, for Bath and North
-#|   East Somerset, Bristol, North Somerset, South Gloucestershire and the
-#|   West of England as a whole. Rates vary between the local authorities
-#|   year to year, with no single authority consistently highest or lowest.
-
-RI_4B3_neet_16_17_plot
-```
 ## NEET 18-24
 Please note: This indicator is currently under development and data is not yet available for reporting. Analysis will be included in a future update of the Regional Indicators report.
 
-## Below Living Wage
-
-```{r}
-#| label: RI_4B5_below_living_wage_gt
-#| eval: true
-#| code-summary: "RI_4B5_below_living_wage summary"
-
-indicator_fact_tbl |>
-  format_indicator_summary(
-    "RI_4B5_below_living_wage",
-    dim_tbl = core_dim_data_tbl,
-    title = "Below Living Wage",
-    subtitle = "Proportion of employees earning below the Living Wage",
-    polarity = indicator_polarity[["RI_4B5_below_living_wage"]]
-  )
-```
-
-### Overview
-
-The quality of employment is an important aspect of economic wellbeing. This indicator measures the proportion of employees earning below the Real Living Wage, as defined by the Living Wage Foundation. Lower levels indicate that a greater share of workers are earning wages that better reflect the cost of living. Monitoring this indicator helps assess whether economic growth is translating into improved living standards and the creation of quality employment opportunities. The most recent year of data is provisional and should be interpreted with caution, as revised estimates will be published the following year.
-
-```{r}
-#| label: RI_4B5_below_living_wage_plot
-#| eval: true
-#| code-summary: "RI_4B5_below_living_wage line chart"
-#| fig-alt: |
-#|   Bar chart of the percentage of employees in the West of England
-#|   earning below the Real Living Wage, by year from 2015 onwards. The
-#|   share below the Living Wage has generally declined over the period,
-#|   though the most recent year is provisional and may be revised.
-
-RI_4B5_below_living_wage_plot
-```
 ## Claimant Count in Deprived Wards
 Please note: This indicator is currently under development and data is not yet available for reporting. Analysis will be included in a future update of the Regional Indicators report.
 

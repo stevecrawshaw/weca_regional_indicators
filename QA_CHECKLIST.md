@@ -140,6 +140,13 @@ Use this checklist to review indicators before they are published. This ensures 
   - Y-axis label with units (e.g., "Employment Rate (%)")
   - Labels are legible
 
+- [ ] **Y-axis baseline is appropriate**
+  - Bar charts (`geom_col`/`geom_bar`) **must start at zero** — truncating the axis misrepresents magnitudes. Anchor with `scale_y_continuous(expand = expansion(mult = c(0, 0.05)))`; if year-on-year movement is then too small to see, switch to a line chart instead of truncating
+  - Line charts may start above zero where forcing zero would flatten all variation, but the truncation must be obvious from the axis labels
+  - **Never hard-code limits** (e.g., `limits = c(60, 70)`) — data outside the range is silently dropped. Derive limits from the data (e.g., `floor(min(value) / interval) * interval`) or use `expand = expansion(...)`
+  - Prefer `coord_cartesian(ylim = ...)` over `scale_y_continuous(limits = ...)` when zooming — `limits` filters out data before drawing, `coord_cartesian` only crops the view
+  - Index/change-from-baseline charts anchor at the reference value (0 or 100), with room for negative values where the data can go there
+
 - [ ] **Title is descriptive**
   - Explains what the chart shows
   - E.g., "Bus Ridership Trends in the West of England, 2015-2024"
@@ -389,7 +396,7 @@ Use this space to document:
 ## 🔗 Related Resources
 
 - **Accessibility:** [WCAG Guidelines](https://www.w3.org/WAI/WCAG21/quickref/)
-- **Data visualization:** [Government Analysis Function Chart Guidance](https://analysisfunction.civilservice.gov.uk/policy-store/data-visualisation-charts/)
+- **Data visualization:** [Government Analysis Function Chart Guidance](https://analysisfunction.civilservice.gov.uk/policy-store/data-visualisation-charts/) — includes the official position on axis baselines (bar charts must include zero)
 - **Plain English:** [GOV.UK Content Design](https://www.gov.uk/guidance/content-design/writing-for-gov-uk)
 - **Reproducible analysis:** [The Turing Way](https://the-turing-way.netlify.app/reproducible-research/reproducible-research.html)
 

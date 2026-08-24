@@ -39,16 +39,14 @@
 
 ## Technical Dependencies
 
-- R packages beyond `tidyverse`: `pins`, `gt`, `here`
-- Data retrieved via `scripts/R/load_pins.R` (requires access to the WECA pins board)
+- R packages beyond `tidyverse`: `gt`, `here`
 - Python: none
 
 ---
 
 ## Refresh Process
 
-1. Pull latest data from pins board: `source(here::here("scripts", "R", "load_pins.R"))`
-2. Re-run the relevant indicator script in `scripts/R/05-environment/`
-3. Fact table is written to `data/fact/` (committed)
-4. Re-render chapter: `quarto render chapters/05-environment/index.qmd`
-5. Commit updated freeze files and `data/fact/` outputs
+1. Re-run the relevant indicator script in `scripts/R/05-environment/`
+2. Fact table is written to `data/fact/` (committed)
+3. Re-render chapter: `quarto render chapters/05-environment/index.qmd`
+4. Commit updated freeze files and `data/fact/` outputs

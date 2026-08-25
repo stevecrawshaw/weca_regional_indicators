@@ -277,3 +277,5 @@ Thumbs.db
 WIP/*
 site_libs/*
 docs/review/
+review/interviews/
+review/*.xlsx

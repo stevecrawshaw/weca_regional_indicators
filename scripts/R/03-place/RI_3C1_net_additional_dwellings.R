@@ -85,7 +85,7 @@ RI_3C1_plot <- RI_3C1_plot_tbl |>
     x = "Year",
     y = "Dwellings",
     colour = NULL,
-    caption = "Source: WECA synthetic LA time series (2026 baseline)"
+    caption = "Source: DHLUC Housing Supply: Net Additional Dwellings"
   ) +
   theme_ua() +
   theme(

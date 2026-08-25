@@ -109,7 +109,7 @@ RI_3C2_plot <- RI_3C2_plot_tbl |>
     x = "Year",
     y = "Ratio",
     colour = NULL,
-    caption = "Source: ONS Housing Affordability Statistics (1997–2024)"
+    caption = "Source: ONS Housing Affordability Statistics"
   ) +
   theme_ua() +
   theme(

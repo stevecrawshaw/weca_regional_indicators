@@ -1,8 +1,4 @@
 # libraries ---------------------
-#pacman::p_load(tidyverse, janitor, glue, here, lubridate, readxl)
-
-# Hybrid approach: explicitly attach namespaces so Positron's language server
-# recognises all functions and stops producing "No symbol named ..." diagnostics.
 
 library(tidyverse)
 library(readxl)
@@ -74,7 +70,7 @@ RI_3A3_plot <- RI_3A3_plot_tbl |>
     x = "Year",
     y = NULL,
     colour = NULL,
-    caption = "Source: EHS LA Stock Condition Modelling (2024), WECA synthetic time series"
+    caption = "Source: EHS LA Stock Condition Modelling (2024)"
   ) +
   theme_ua() +
   theme(

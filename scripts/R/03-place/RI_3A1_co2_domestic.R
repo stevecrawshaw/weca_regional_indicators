@@ -85,7 +85,7 @@ RI_3A1_plot <- RI_3A1_plot_tbl |>
     x = "Year",
     y = "kt CO₂",
     colour = NULL,
-    caption = "Source: DESNZ Local Authority CO₂ Emissions (2005–2024)"
+    caption = "Source: DESNZ Local Authority CO₂ Emissions"
   ) +
   theme_ua() +
   theme(

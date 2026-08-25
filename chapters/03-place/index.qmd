@@ -257,7 +257,7 @@ RI_3C3_plot
 ```
 
 
-## Temporary Accommodation (Q4 total households)
+## Temporary Accommodation
 
 ```{r}
 #| label: RI_3C4_gt

@@ -1,6 +1,4 @@
 # libraries ---------------------
-pacman::p_load(tidyverse, janitor, glue, here, lubridate, readxl)
-
 # Hybrid approach: explicitly attach namespaces so Positron's language server
 # recognises all functions and stops producing "No symbol named ..." diagnostics.
 library(tidyverse)
@@ -19,7 +17,7 @@ source(here::here("scripts", "R", "_common.R"))
 path_3C4 <- here::here("data", "raw", "3C4.xlsx")
 
 # Use a defined range to avoid header/footer issues
-RI_3C4_raw_tbl <- read_excel(path_3C4, sheet = 1, range = "A2:H7") |>
+RI_3C4_raw_tbl <- read_excel(path_3C4, sheet = 1, range = "A2:H6") |>
   clean_names()
 
 
@@ -82,7 +80,7 @@ RI_3C4_plot <- RI_3C4_plot_tbl |>
   ) +
   labs(
     title = "Households in Temporary Accommodation (Q4 snapshot)",
-    subtitle = "Total households in TA (TA1)",
+    subtitle = "Total households in Q4",
     x = "Year",
     y = "Households",
     colour = NULL,
